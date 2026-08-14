@@ -10,10 +10,13 @@ type HeroProps = {
 export function Hero({ hero }: HeroProps) {
 	const { t } = useAppTranslation();
 
+	// The source design bottom-aligned both columns. Centring the text against
+	// the portrait reads better now that the frame holds a real photograph
+	// rather than an empty placeholder.
 	return (
 		<section
 			id="top"
-			className="mx-auto grid max-w-[1200px] grid-cols-1 items-end gap-[clamp(32px,5vw,88px)] px-[clamp(20px,5vw,72px)] pt-24 pb-[72px] lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)]"
+			className="mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-[clamp(32px,5vw,88px)] px-[clamp(20px,5vw,72px)] pt-24 pb-[72px] lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)]"
 		>
 			<div>
 				<h1 className="-ml-[0.052em] m-0 mb-[26px] font-display font-bold text-[clamp(40px,4.6vw,62px)] uppercase leading-[1.06] tracking-[0.01em]">

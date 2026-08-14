@@ -11,7 +11,9 @@ push to main
                                     docker pull → compose up → wait for healthy
 ```
 
-Every job is pinned to `runs-on: self-hosted`.
+Every job is pinned to `runs-on: self-hosted` — the org runner `gh-runner-docker` (labels `self-hosted, Linux, X64, docker, homelab`).
+
+That runner image ships docker and git but **no ssh client**, so the deploy step runs ssh from a throwaway `alpine` container. The private key is piped in on stdin rather than bind-mounted (a bind mount would resolve against the docker host, not the runner container) or passed as an env var (readable via `docker inspect`). If openssh-client is ever added to the runner image, that step can collapse back to a plain `ssh` call.
 
 ## Layout on the server
 

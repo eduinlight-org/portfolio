@@ -1,0 +1,15 @@
+services:
+  web:
+    image: portfolio:latest
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+      args:
+        - NODE_VERSION=22
+        - VITE_SITE_URL=${VITE_SITE_URL:-http://localhost:3000}
+    container_name: portfolio-prod
+    restart: unless-stopped
+    environment:
+      - VITE_SITE_URL=${VITE_SITE_URL:-http://localhost:3000}
+    ports:
+      - ${PROD_PORT:-3000}:3000

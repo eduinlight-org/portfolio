@@ -1,0 +1,108 @@
+@import "@fontsource/barlow/400.css";
+@import "@fontsource/barlow/500.css";
+@import "@fontsource/barlow/600.css";
+@import "@fontsource/barlow/700.css";
+@import "@fontsource/barlow-condensed/400.css";
+@import "@fontsource/barlow-condensed/500.css";
+@import "@fontsource/barlow-condensed/600.css";
+@import "@fontsource/barlow-condensed/700.css";
+
+@import "tailwindcss";
+
+/* The Industry design system. Vendored, unmodified, and the source of truth for
+   every color, font, space, radius and shadow — see app/styles/industry.css.
+   It is pulled into Tailwind's `components` layer on purpose: unlayered CSS
+   always outranks layered CSS, so importing it plainly would make `.btn`, `a`
+   and `body` beat every Tailwind utility. In `components` it sits above
+   preflight and below the utilities, which is where a component layer belongs. */
+@import "./styles/industry.css" layer(components);
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Tailwind theme — an alias layer over the Industry tokens.
+
+   Tailwind's `--color-*` / `--font-*` namespaces collide with Industry's own
+   variable names, and aliasing a variable to itself creates a CSS cycle that
+   silently blanks the value. So the utilities get distinct names that point
+   back at the Industry tokens:
+
+     bg-paper  text-ink  border-rule  bg-panel
+     text-steel-700  bg-steel-900  …  (Industry's --color-accent-*)
+     text-ash-600    bg-ash-100    …  (Industry's --color-neutral-*)
+     font-display (Barlow Condensed)  font-sans (Barlow)
+
+   `inline` keeps Industry's `:root` as the single definition site — the
+   utilities reference those variables rather than copying their values.
+   ────────────────────────────────────────────────────────────────────────── */
+@theme inline {
+	--color-paper: var(--color-bg);
+	--color-panel: var(--color-surface);
+	--color-ink: var(--color-text);
+	--color-rule: var(--color-divider);
+
+	--color-steel: var(--color-accent);
+	--color-steel-100: var(--color-accent-100);
+	--color-steel-200: var(--color-accent-200);
+	--color-steel-300: var(--color-accent-300);
+	--color-steel-400: var(--color-accent-400);
+	--color-steel-500: var(--color-accent-500);
+	--color-steel-600: var(--color-accent-600);
+	--color-steel-700: var(--color-accent-700);
+	--color-steel-800: var(--color-accent-800);
+	--color-steel-900: var(--color-accent-900);
+
+	--color-ash-100: var(--color-neutral-100);
+	--color-ash-200: var(--color-neutral-200);
+	--color-ash-300: var(--color-neutral-300);
+	--color-ash-400: var(--color-neutral-400);
+	--color-ash-500: var(--color-neutral-500);
+	--color-ash-600: var(--color-neutral-600);
+	--color-ash-700: var(--color-neutral-700);
+	--color-ash-800: var(--color-neutral-800);
+	--color-ash-900: var(--color-neutral-900);
+
+	--font-display: var(--font-heading);
+	--font-sans: var(--font-body);
+}
+
+/* — page base, from the design's per-page <style> blocks —
+   In `components` alongside industry.css so these win over it, and so Tailwind
+   utilities still win over both. */
+@layer components {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		margin: 0;
+		background: var(--color-bg);
+		color: var(--color-text);
+		font-family: var(--font-body);
+		font-size: 16px;
+		line-height: 24px;
+		text-wrap: pretty;
+	}
+
+	a {
+		color: var(--color-accent-700);
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: var(--color-accent-900);
+	}
+
+	code {
+		font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+		font-size: 0.9em;
+		/* Inline code in the architecture bullets is full of long unbroken
+		   identifiers and paths; without this they set the paragraph's min-content
+		   width and scroll the page sideways on a phone. */
+		overflow-wrap: anywhere;
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		html {
+			scroll-behavior: auto;
+		}
+	}
+}

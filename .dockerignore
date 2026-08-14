@@ -1,0 +1,11 @@
+node_modules
+build
+.react-router
+.git
+.github
+.husky
+.claude
+.env
+.env.local
+*.tsbuildinfo
+coverage

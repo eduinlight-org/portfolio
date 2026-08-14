@@ -1,0 +1,19 @@
+services:
+  web:
+    image: portfolio-js
+    build:
+      context: ./docker/node
+      args:
+        - NODE_VERSION=${NODE_VERSION:-22.20.0}
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    container_name: portfolio
+    working_dir: /home/node/app
+    command: pnpm dev
+    volumes:
+      - .:/home/node/app
+      - ~/.pnpm:/home/node/.pnpm
+    ports:
+      - ${PORT:-3000}:${PORT:-3000}
+    env_file:
+      - .env

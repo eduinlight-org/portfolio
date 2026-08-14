@@ -5,6 +5,8 @@ type ImageSlotProps = {
 	figure: Figure;
 	/** Overrides the figure's own aspect ratio — used where a cell must fill its row. */
 	fill?: boolean;
+	/** The hero images are above the fold and should not be deferred. */
+	priority?: boolean;
 	className?: string;
 };
 
@@ -16,7 +18,12 @@ type ImageSlotProps = {
  * area, and it deliberately skips `.duotone` — that treatment is for
  * photographs, and applying it to a blank panel just tints the page pale blue.
  */
-export function ImageSlot({ figure, fill, className }: ImageSlotProps) {
+export function ImageSlot({
+	figure,
+	fill,
+	priority,
+	className,
+}: ImageSlotProps) {
 	const { placeholder, src, alt, ratio } = figure;
 	const style = fill ? undefined : { aspectRatio: ratio };
 
@@ -29,6 +36,8 @@ export function ImageSlot({ figure, fill, className }: ImageSlotProps) {
 				<img
 					src={src}
 					alt={alt ?? placeholder}
+					loading={priority ? "eager" : "lazy"}
+					decoding={priority ? "sync" : "async"}
 					className="h-full w-full object-cover"
 				/>
 			</div>

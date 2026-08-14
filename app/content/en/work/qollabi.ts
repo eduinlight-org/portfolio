@@ -11,6 +11,8 @@ export const qollabi: Project = {
 
 	hero: {
 		placeholder: "Drop a Qollabi screenshot",
+		src: "/work/qollabi-hero.webp",
+		alt: "Qollabi platform",
 		ratio: "16 / 9",
 	},
 
@@ -405,8 +407,18 @@ export const qollabi: Project = {
 	],
 
 	gallery: [
-		{ placeholder: "Second screenshot", ratio: "4 / 3" },
-		{ placeholder: "Third screenshot", ratio: "4 / 3" },
+		{
+			placeholder: "Second screenshot",
+			ratio: "4 / 3",
+			src: "/work/qollabi-2.webp",
+			alt: "Qollabi integrations",
+		},
+		{
+			placeholder: "Third screenshot",
+			ratio: "4 / 3",
+			src: "/work/qollabi-3.webp",
+			alt: "Qollabi product overview",
+		},
 	],
 
 	card: {
@@ -415,6 +427,8 @@ export const qollabi: Project = {
 		body: "Legacy SPA on a Symfony backend, maintained and extended — and moved toward a micro-frontend architecture.",
 		meta: "SPA · Symfony · Micro-frontends",
 		placeholder: "Qollabi screenshot",
+		src: "/work/qollabi-card.webp",
+		alt: "Qollabi platform",
 	},
 
 	seo: {

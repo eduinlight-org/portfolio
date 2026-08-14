@@ -12,6 +12,8 @@ export const caxper: Project = {
 
 	hero: {
 		placeholder: "Añade una captura de Caxper",
+		src: "/work/caxper-hero.webp",
+		alt: "Vista de gestión de clientes de Caxper",
 		ratio: "16 / 9",
 		caption: "Fig. 01 — Panel del agente",
 	},
@@ -206,8 +208,18 @@ export const caxper: Project = {
 	],
 
 	gallery: [
-		{ placeholder: "Vista de pólizas o del libro contable", ratio: "4 / 3" },
-		{ placeholder: "Vista de informes o facturación", ratio: "4 / 3" },
+		{
+			placeholder: "Vista de pólizas o del libro contable",
+			ratio: "4 / 3",
+			src: "/work/caxper-ledger.webp",
+			alt: "Seguimiento de ingresos y comisiones en Caxper",
+		},
+		{
+			placeholder: "Vista de informes o facturación",
+			ratio: "4 / 3",
+			src: "/work/caxper-reports.webp",
+			alt: "Vista de informes fiscales de Caxper",
+		},
 	],
 
 	card: {
@@ -216,6 +228,8 @@ export const caxper: Project = {
 		body: "SaaS multi-tenant para agentes de seguros independientes — pólizas, libro de comisiones, informes fiscales y facturación con Stripe, construido en solitario.",
 		meta: "NestJS · React 19 · Postgres RLS",
 		placeholder: "Captura de Caxper",
+		src: "/work/caxper-card.webp",
+		alt: "Caxper",
 	},
 
 	seo: {

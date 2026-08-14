@@ -13,7 +13,12 @@ export function WorkCard({ project }: WorkCardProps) {
 	return (
 		<Blueprint className="flex flex-col p-0">
 			<ImageSlot
-				figure={{ placeholder: card.placeholder, ratio: "16 / 10" }}
+				figure={{
+					placeholder: card.placeholder,
+					ratio: "16 / 10",
+					src: card.src,
+					alt: card.alt,
+				}}
 				className="border-rule border-b"
 			/>
 			<Link

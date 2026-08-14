@@ -17,6 +17,8 @@ export const qollabiAi: Project = {
 
 	hero: {
 		placeholder: "Drop a Qollabi 2.0 screenshot",
+		src: "/work/qollabi-ai-hero.webp",
+		alt: "Qollabi platform",
 		ratio: "16 / 9",
 	},
 
@@ -404,8 +406,18 @@ export const qollabiAi: Project = {
 	],
 
 	gallery: [
-		{ placeholder: "Second screenshot", ratio: "4 / 3" },
-		{ placeholder: "Third screenshot", ratio: "4 / 3" },
+		{
+			placeholder: "Second screenshot",
+			ratio: "4 / 3",
+			src: "/work/qollabi-ai-2.webp",
+			alt: "Qollabi smart lists",
+		},
+		{
+			placeholder: "Third screenshot",
+			ratio: "4 / 3",
+			src: "/work/qollabi-ai-3.webp",
+			alt: "Qollabi on mobile",
+		},
 	],
 
 	card: {
@@ -414,6 +426,8 @@ export const qollabiAi: Project = {
 		body: "Greenfield TypeScript rewrite of the platform on Remix — ~205k lines across 7 apps, Postgres RLS tenancy and an in-house application framework.",
 		meta: "Remix · Bun · Postgres RLS",
 		placeholder: "Qollabi AI screenshot",
+		src: "/work/qollabi-ai-card.webp",
+		alt: "Qollabi platform",
 	},
 
 	seo: {

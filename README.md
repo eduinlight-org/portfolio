@@ -55,7 +55,11 @@ Adding a project is a new file in `app/content/<locale>/work/` plus an entry in 
 
 ## Images
 
-The hero headshot is wired up; every other image region renders as a labelled blueprint placeholder. Drop a file into `public/` and set `src` on the matching `Figure` in the content module to swap it in — the frame, aspect ratio and duotone treatment stay as they are.
+Real screenshots live in `public/work/`, captured from each project's live site (and, for lightnotes, from the screenshots shipped in its repo). They are padded to the frame's exact aspect ratio so nothing is cropped, and served as WebP — the whole set is under 1 MB.
+
+**My Altafit is deliberately still a placeholder.** `myaltafit.provis.es` now serves a later, non-React implementation by another vendor, so a screenshot of that domain would not show this work.
+
+To add or replace one: drop a file into `public/work/` and set `src` (and `alt`) on the matching `Figure` in *both* locales' content modules. The frame, aspect ratio and duotone treatment stay as they are.
 
 Photographs are washed into the steel accent by the design system's `.duotone` wrapper. To show one at its natural colours, drop the `duotone` class from `ImageSlot` in `app/components/common/image-slot.tsx`.
 

@@ -14,6 +14,8 @@ export const lightnotes: Project = {
 
 	hero: {
 		placeholder: "Añade una captura de LightNotes",
+		src: "/work/lightnotes-hero.webp",
+		alt: "Lista de notas de LightNotes en escritorio",
 		ratio: "16 / 9",
 	},
 
@@ -482,8 +484,18 @@ export const lightnotes: Project = {
 	],
 
 	gallery: [
-		{ placeholder: "Captura de escritorio", ratio: "4 / 3" },
-		{ placeholder: "Captura de móvil", ratio: "4 / 3" },
+		{
+			placeholder: "Captura de escritorio",
+			ratio: "4 / 3",
+			src: "/work/lightnotes-desktop.webp",
+			alt: "Calendario del diario de LightNotes en escritorio",
+		},
+		{
+			placeholder: "Captura de móvil",
+			ratio: "4 / 3",
+			src: "/work/lightnotes-mobile.webp",
+			alt: "Lista de notas de LightNotes en móvil",
+		},
 	],
 
 	card: {
@@ -492,6 +504,8 @@ export const lightnotes: Project = {
 		body: "Una app de notas local-first construida con Dioxus 0.7 — una base de código Rust que se publica en web, escritorio y móvil, con editor Markdown enriquecido, carpetas y etiquetas, y sincronización en segundo plano contra una API autoalojada.",
 		meta: "Rust · Dioxus 0.7 · Web / escritorio / móvil",
 		placeholder: "Captura de lightnotes",
+		src: "/work/lightnotes-card.webp",
+		alt: "LightNotes en escritorio",
 		featured: true,
 		tags: ["Rust", "Dioxus 0.7", "Web / escritorio / móvil"],
 	},

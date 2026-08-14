@@ -57,7 +57,7 @@ export function Hero({ hero }: HeroProps) {
 				</div>
 			</div>
 
-			<FigureFrame figure={hero.figure} />
+			<FigureFrame figure={hero.figure} priority />
 		</section>
 	);
 }

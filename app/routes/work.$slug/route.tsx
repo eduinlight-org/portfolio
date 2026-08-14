@@ -52,7 +52,7 @@ export default function Work({ loaderData }: Route.ComponentProps) {
 			<ProjectHero project={project} />
 
 			<section className="mx-auto mb-[72px] max-w-[1200px] px-[clamp(20px,5vw,72px)]">
-				<FigureFrame figure={project.hero} />
+				<FigureFrame figure={project.hero} priority />
 			</section>
 
 			{project.sheet ? (

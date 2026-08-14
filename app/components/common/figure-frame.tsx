@@ -4,6 +4,7 @@ import { ImageSlot } from "./image-slot";
 
 type FigureFrameProps = {
 	figure: Figure;
+	priority?: boolean;
 	className?: string;
 };
 
@@ -11,10 +12,10 @@ type FigureFrameProps = {
  * Every image region in the design: a hairline frame with its corner marks
  * around either a photograph or, until one is supplied, a labelled drop area.
  */
-export function FigureFrame({ figure, className }: FigureFrameProps) {
+export function FigureFrame({ figure, priority, className }: FigureFrameProps) {
 	return (
 		<Blueprint as="figure" className={className}>
-			<ImageSlot figure={figure} />
+			<ImageSlot figure={figure} priority={priority} />
 			{figure.caption ? (
 				<figcaption className="px-0.5 pt-2.5 font-display font-semibold text-[12px] text-ash-600 uppercase tracking-[0.18em]">
 					{figure.caption}

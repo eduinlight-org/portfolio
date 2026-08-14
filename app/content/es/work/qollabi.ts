@@ -12,6 +12,8 @@ export const qollabi: Project = {
 
 	hero: {
 		placeholder: "Añade una captura de Qollabi",
+		src: "/work/qollabi-hero.webp",
+		alt: "Plataforma Qollabi",
 		ratio: "16 / 9",
 	},
 
@@ -416,8 +418,18 @@ export const qollabi: Project = {
 	],
 
 	gallery: [
-		{ placeholder: "Segunda captura", ratio: "4 / 3" },
-		{ placeholder: "Tercera captura", ratio: "4 / 3" },
+		{
+			placeholder: "Segunda captura",
+			ratio: "4 / 3",
+			src: "/work/qollabi-2.webp",
+			alt: "Integraciones de Qollabi",
+		},
+		{
+			placeholder: "Tercera captura",
+			ratio: "4 / 3",
+			src: "/work/qollabi-3.webp",
+			alt: "Vista general del producto Qollabi",
+		},
 	],
 
 	card: {
@@ -426,6 +438,8 @@ export const qollabi: Project = {
 		body: "SPA heredada sobre un backend Symfony, mantenida y ampliada — y encaminada hacia una arquitectura de micro-frontends.",
 		meta: "SPA · Symfony · Micro-frontends",
 		placeholder: "Captura de Qollabi",
+		src: "/work/qollabi-card.webp",
+		alt: "Plataforma Qollabi",
 	},
 
 	seo: {

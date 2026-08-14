@@ -12,6 +12,8 @@ export const caxper: Project = {
 
 	hero: {
 		placeholder: "Drop a Caxper screenshot",
+		src: "/work/caxper-hero.webp",
+		alt: "Caxper client management view",
 		ratio: "16 / 9",
 		caption: "Fig. 01 — Agent dashboard",
 	},
@@ -206,8 +208,18 @@ export const caxper: Project = {
 	],
 
 	gallery: [
-		{ placeholder: "Policies or ledger view", ratio: "4 / 3" },
-		{ placeholder: "Reporting or billing view", ratio: "4 / 3" },
+		{
+			placeholder: "Policies or ledger view",
+			ratio: "4 / 3",
+			src: "/work/caxper-ledger.webp",
+			alt: "Caxper income and commission tracking",
+		},
+		{
+			placeholder: "Reporting or billing view",
+			ratio: "4 / 3",
+			src: "/work/caxper-reports.webp",
+			alt: "Caxper tax reports view",
+		},
 	],
 
 	card: {
@@ -216,6 +228,8 @@ export const caxper: Project = {
 		body: "Multi-tenant SaaS for independent insurance agents — policies, commission ledger, tax reporting and Stripe billing, built solo.",
 		meta: "NestJS · React 19 · Postgres RLS",
 		placeholder: "Caxper screenshot",
+		src: "/work/caxper-card.webp",
+		alt: "Caxper",
 	},
 
 	seo: {

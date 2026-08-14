@@ -109,6 +109,8 @@ export type ProjectCard = {
 	/** Footer line on the standard card, e.g. "NestJS · React 19 · Postgres RLS". */
 	meta: string;
 	placeholder: string;
+	src?: string;
+	alt?: string;
 	/** The featured card is full-width and shows tags instead of a meta line. */
 	featured?: boolean;
 	tags?: string[];

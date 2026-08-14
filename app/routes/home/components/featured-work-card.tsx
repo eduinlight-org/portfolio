@@ -17,7 +17,12 @@ export function FeaturedWorkCard({ project }: FeaturedWorkCardProps) {
 	return (
 		<Blueprint className="grid grid-cols-1 gap-0 p-0 lg:col-span-3 lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]">
 			<ImageSlot
-				figure={{ placeholder: card.placeholder, ratio: "16 / 10" }}
+				figure={{
+					placeholder: card.placeholder,
+					ratio: "16 / 10",
+					src: card.src,
+					alt: card.alt,
+				}}
 				fill
 				className="min-h-[320px] border-rule border-b lg:border-r lg:border-b-0"
 			/>

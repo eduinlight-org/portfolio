@@ -11,6 +11,8 @@ export const holaplace: Project = {
 
 	hero: {
 		placeholder: "Drop a HolaPlace screenshot",
+		src: "/work/holaplace-hero.webp",
+		alt: "HolaPlace venue search",
 		ratio: "16 / 9",
 	},
 
@@ -435,8 +437,18 @@ export const holaplace: Project = {
 	],
 
 	gallery: [
-		{ placeholder: "Second screenshot", ratio: "4 / 3" },
-		{ placeholder: "Third screenshot", ratio: "4 / 3" },
+		{
+			placeholder: "Second screenshot",
+			ratio: "4 / 3",
+			src: "/work/holaplace-venue.webp",
+			alt: "HolaPlace venue detail page",
+		},
+		{
+			placeholder: "Third screenshot",
+			ratio: "4 / 3",
+			src: "/work/holaplace-mobile.webp",
+			alt: "HolaPlace venue page on mobile",
+		},
 	],
 
 	card: {
@@ -445,6 +457,8 @@ export const holaplace: Project = {
 		body: "Two-sided venue marketplace built from scratch — 399 endpoints, Stripe Connect split payments, iCal sync and 7 realtime gateways.",
 		meta: "NestJS · React · Stripe Connect",
 		placeholder: "HolaPlace screenshot",
+		src: "/work/holaplace-card.webp",
+		alt: "HolaPlace",
 	},
 
 	seo: {

@@ -11,6 +11,8 @@ export const holaplace: Project = {
 
 	hero: {
 		placeholder: "Añade una captura de HolaPlace",
+		src: "/work/holaplace-hero.webp",
+		alt: "Búsqueda de espacios en HolaPlace",
 		ratio: "16 / 9",
 	},
 
@@ -445,8 +447,18 @@ export const holaplace: Project = {
 	],
 
 	gallery: [
-		{ placeholder: "Segunda captura", ratio: "4 / 3" },
-		{ placeholder: "Tercera captura", ratio: "4 / 3" },
+		{
+			placeholder: "Segunda captura",
+			ratio: "4 / 3",
+			src: "/work/holaplace-venue.webp",
+			alt: "Página de detalle de un espacio en HolaPlace",
+		},
+		{
+			placeholder: "Tercera captura",
+			ratio: "4 / 3",
+			src: "/work/holaplace-mobile.webp",
+			alt: "Página de espacio de HolaPlace en móvil",
+		},
 	],
 
 	card: {
@@ -455,6 +467,8 @@ export const holaplace: Project = {
 		body: "Marketplace de espacios de doble cara construido desde cero — 399 endpoints, pagos divididos con Stripe Connect, sincronización iCal y 7 gateways de tiempo real.",
 		meta: "NestJS · React · Stripe Connect",
 		placeholder: "Captura de HolaPlace",
+		src: "/work/holaplace-card.webp",
+		alt: "HolaPlace",
 	},
 
 	seo: {

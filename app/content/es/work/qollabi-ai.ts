@@ -18,6 +18,8 @@ export const qollabiAi: Project = {
 
 	hero: {
 		placeholder: "Añade una captura de Qollabi 2.0",
+		src: "/work/qollabi-ai-hero.webp",
+		alt: "Plataforma Qollabi",
 		ratio: "16 / 9",
 	},
 
@@ -410,8 +412,18 @@ export const qollabiAi: Project = {
 	],
 
 	gallery: [
-		{ placeholder: "Segunda captura", ratio: "4 / 3" },
-		{ placeholder: "Tercera captura", ratio: "4 / 3" },
+		{
+			placeholder: "Segunda captura",
+			ratio: "4 / 3",
+			src: "/work/qollabi-ai-2.webp",
+			alt: "Listas inteligentes de Qollabi",
+		},
+		{
+			placeholder: "Tercera captura",
+			ratio: "4 / 3",
+			src: "/work/qollabi-ai-3.webp",
+			alt: "Qollabi en móvil",
+		},
 	],
 
 	card: {
@@ -420,6 +432,8 @@ export const qollabiAi: Project = {
 		body: "Reescritura íntegra de la plataforma en TypeScript sobre Remix — ~205k líneas repartidas en 7 apps, tenancy con RLS de Postgres y un framework de aplicación propio.",
 		meta: "Remix · Bun · Postgres RLS",
 		placeholder: "Captura de Qollabi AI",
+		src: "/work/qollabi-ai-card.webp",
+		alt: "Plataforma Qollabi",
 	},
 
 	seo: {

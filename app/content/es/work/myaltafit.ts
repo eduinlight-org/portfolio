@@ -1,125 +1,122 @@
-// TODO: translate to Spanish.
-// Copied verbatim from ../en so the site renders in both locales today. The
-// structure must stay identical to the English module — the `Content` type is
-// what keeps the two in step.
-
 import { bold, mono, type Project, txt } from "~/content/types";
 
 export const myaltafit: Project = {
 	slug: "myaltafit",
 	name: "My Altafit",
-	kicker: "Freelance project · Altafit Gym Club, Spain · 2018 – 2019",
-	headline: ["A gym membership", "portal for members"],
-	lead: "Member-facing single-page application for Altafit Gym Club — login and account management, subscription and billing status, gym access history, class booking with a live schedule, activity timetable, member perks, training programmes (GBody / GBox), the “Club Corredor” content feed, news, and club contact with maps.",
+	kicker: "Proyecto freelance · Altafit Gym Club, España · 2018 – 2019",
+	headline: ["Un portal de socios", "para un gimnasio"],
+	lead: "Aplicación de página única orientada al socio de Altafit Gym Club — acceso y gestión de la cuenta, estado de la suscripción y la facturación, historial de accesos al gimnasio, reserva de clases con horario en vivo, cuadrante de actividades, ventajas para socios, programas de entrenamiento (GBody / GBox), el contenido del «Club Corredor», noticias y contacto con los clubes con mapas.",
 	sublead:
-		"Built as a freelance project and served as the production member portal at the time; the domain now hosts a later, non-React implementation by another vendor. The backend was a third-party gym-management API — this project owns the entire client and the integration layer against it.",
+		"Construido como proyecto freelance, fue el portal de socios en producción en su momento; el dominio aloja ahora una implementación posterior, no basada en React, de otro proveedor. El backend era una API de gestión de gimnasios de terceros — este proyecto abarca todo el cliente y la capa de integración contra ella.",
 	link: { label: "myaltafit.provis.es", href: "https://myaltafit.provis.es/" },
 	linkAsButton: true,
 
 	hero: {
-		placeholder: "Drop a My Altafit screenshot",
+		placeholder: "Añade una captura de My Altafit",
 		ratio: "16 / 9",
 	},
 
 	sheet: {
-		title: "My Altafit — application scale",
-		badges: ["React 16 SPA", "Sheet 01"],
-		note: "~7.2k lines of JavaScript across 104 files. Fully responsive, mobile-first, four breakpoints. Spanish UI throughout.",
+		title: "My Altafit — escala de la aplicación",
+		badges: ["SPA en React 16", "Hoja 01"],
+		note: "~7,2k líneas de JavaScript repartidas en 104 ficheros. Totalmente responsive, mobile-first, cuatro breakpoints. Interfaz íntegramente en español.",
 		stats: [
-			{ value: "27", label: "Pages" },
-			{ value: "37", label: "Routes" },
-			{ value: "19", label: "REST endpoints consumed" },
+			{ value: "27", label: "Páginas" },
+			{ value: "37", label: "Rutas" },
+			{ value: "19", label: "Endpoints REST consumidos" },
 			{ value: "15", label: "Reducers" },
-			{ value: "17", label: "Reusable components" },
-			{ value: "11", label: "Domain models" },
-			{ value: "104", label: "Files" },
-			{ value: "43", label: "Styled-component files" },
+			{ value: "17", label: "Componentes reutilizables" },
+			{ value: "11", label: "Modelos de dominio" },
+			{ value: "104", label: "Ficheros" },
+			{ value: "43", label: "Ficheros de styled-components" },
 		],
 	},
 
 	sections: [
 		{
 			index: 1,
-			title: "Architecture",
-			meta: "Redux conventions over boilerplate",
+			title: "Arquitectura",
+			meta: "Convenciones de Redux frente a boilerplate",
 			kind: "bullets",
 			items: [
 				[
-					bold("Create React App SPA"),
+					bold("SPA con Create React App"),
 					txt(
-						" — client-side routed, no server rendering, deployed as a static bundle.",
+						" — enrutada en cliente, sin renderizado en servidor, desplegada como bundle estático.",
 					),
 				],
 				[
-					bold("Redux with an async-action convention"),
-					txt(" — every API call is a "),
+					bold("Redux con una convención de acciones asíncronas"),
+					txt(" — cada llamada a la API es una acción de promesa de "),
 					mono("redux-promise-middleware"),
-					txt(" promise action expanding into "),
+					txt(" que se expande en "),
 					mono("FETCHING"),
 					txt(" / "),
 					mono("FETCHED"),
 					txt(" / "),
 					mono("ERROR"),
 					txt(
-						", so loading, success and error states are uniform across the whole app.",
+						", de modo que los estados de carga, éxito y error son uniformes en toda la aplicación.",
 					),
 				],
 				[
-					bold("Reducer factory for API state"),
-					txt(" — a single "),
+					bold("Factoría de reducers para el estado de la API"),
+					txt(" — un único reducer de orden superior "),
 					mono("getReducer(ACTION)"),
 					txt(
-						" higher-order reducer generates the request-state slice for all 19 endpoints, ",
+						" genera la porción de estado de petición para los 19 endpoints, montada con ",
 					),
 					mono("combineReducers"),
-					txt("-mounted under "),
+					txt(" bajo "),
 					mono("state.api"),
-					txt("; adding an endpoint is one line, not a new reducer file."),
+					txt(
+						"; añadir un endpoint es una línea, no un fichero de reducer nuevo.",
+					),
 				],
 				[
-					bold("Three-layer state split"),
+					bold("Estado dividido en tres capas"),
 					txt(" — "),
 					mono("state.api"),
-					txt(" (raw request lifecycle), "),
+					txt(" (ciclo de vida de las peticiones), "),
 					mono("state.pages"),
-					txt(" (per-screen view state), and "),
+					txt(" (estado de vista por pantalla) y "),
 					mono("state.storage"),
 					txt(" / "),
 					mono("state.template"),
 					txt(" / "),
 					mono("state.noti"),
-					txt(" (session, layout chrome, global notifications)."),
+					txt(" (sesión, estructura del layout, notificaciones globales)."),
 				],
 				[
-					bold("Custom middleware for session expiry"),
-					txt(" — intercepts any "),
+					bold("Middleware propio para la expiración de sesión"),
+					txt(" — intercepta cualquier acción "),
 					mono("*_ERROR"),
 					txt(
-						" action while authenticated, detects the backend's invalid-token response, and dispatches a global logout instead of letting each page handle it.",
+						" estando autenticado, detecta la respuesta de token inválido del backend y despacha un logout global en lugar de dejar que cada página lo gestione.",
 					),
 				],
 				[
-					bold("Session persistence"),
-					txt(" — token and profile hydrated from "),
+					bold("Persistencia de sesión"),
+					txt(" — token y perfil hidratados desde "),
 					mono("localStorage"),
 					txt(
-						" at store construction, kept in sync on login/logout, and mirrored into a static ",
+						" al construir el store, mantenidos en sincronía al iniciar y cerrar sesión, y replicados en una clase estática ",
 					),
 					mono("Config"),
-					txt(" so the HTTP layer always sends the current token."),
+					txt(" para que la capa HTTP envíe siempre el token vigente."),
 				],
 				[
-					bold("Route guards by composition"),
-					txt(" — the "),
+					bold("Guards de ruta por composición"),
+					txt(" — el árbol de rutas "),
 					mono("/users"),
-					txt(
-						" route tree is wrapped in a connected component that redirects to ",
-					),
+					txt(" se envuelve en un componente conectado que redirige a "),
 					mono("/auth/login"),
-					txt(" when unauthenticated, so no protected page repeats the check."),
+					txt(
+						" cuando no hay sesión, de modo que ninguna página protegida repite la comprobación.",
+					),
 				],
 				[
-					bold("Domain model classes"),
+					bold("Clases de modelo de dominio"),
 					txt(" — "),
 					mono("profile"),
 					txt(", "),
@@ -140,10 +137,10 @@ export const myaltafit: Project = {
 					mono("ajax"),
 					txt(", "),
 					mono("login"),
-					txt(", "),
+					txt(" y "),
 					mono("contacto"),
 					txt(
-						" normalize the third-party API's Spanish JSON payloads into stable client-side shapes.",
+						" normalizan los payloads JSON de la API de terceros hacia formas estables en el cliente.",
 					),
 				],
 			],
@@ -155,154 +152,163 @@ export const myaltafit: Project = {
 			kind: "rows",
 			rows: [
 				{
-					label: "Core",
+					label: "Núcleo",
 					value:
 						"React 16.4, JavaScript (ES6+), Create React App 1.1 (react-scripts, Webpack/Babel)",
 				},
 				{
-					label: "Routing",
+					label: "Enrutado",
 					value:
-						"React Router 4 + react-router-dom — nested Switch/Route trees, guarded areas, redirect fallbacks, 404 handling",
+						"React Router 4 + react-router-dom — árboles anidados de Switch/Route, áreas protegidas, redirecciones de respaldo y gestión del 404",
 				},
 				{
-					label: "State",
+					label: "Estado",
 					value:
-						"Redux 4, React-Redux 5, redux-thunk, redux-promise-middleware, redux-logger, custom middleware",
+						"Redux 4, React-Redux 5, redux-thunk, redux-promise-middleware, redux-logger y middleware propio",
 				},
 				{
-					label: "Styling",
+					label: "Estilos",
 					value:
-						"styled-components 3 (used in 43 files) + a central theme.js design-token class — brand palette, 4 media-query breakpoints, reusable CSS helpers",
+						"styled-components 3 (usado en 43 ficheros) + una clase central theme.js de tokens de diseño — paleta de marca, 4 breakpoints de media query y helpers CSS reutilizables",
 				},
 				{
-					label: "UI kit",
-					value: "Bootstrap 4 grid/utilities, Font Awesome 4 icons",
+					label: "Kit de UI",
+					value: "Grid y utilidades de Bootstrap 4, iconos de Font Awesome 4",
 				},
 				{
 					label: "Responsive",
 					value:
-						"Mobile-first layout with react-responsive for component-level breakpoint logic, plus a dedicated mobile menu and slide-out left bar",
+						"Layout mobile-first con react-responsive para la lógica de breakpoints a nivel de componente, más un menú móvil dedicado y una barra lateral desplegable",
 				},
 				{
-					label: "Animation",
+					label: "Animación",
 					value:
-						"react-motion spring animations, custom hover-animation and scroll-to-top components",
+						"Animaciones de muelle con react-motion, componentes propios de animación al pasar el cursor y de vuelta arriba",
 				},
 				{
-					label: "Calendar",
+					label: "Calendario",
 					value:
-						"fullcalendar-reactwrapper — class timetable and bookable-session agenda",
+						"fullcalendar-reactwrapper — cuadrante de clases y agenda de sesiones reservables",
 				},
 				{
-					label: "Maps",
-					value: "google-map-react — club locator on the contact page",
+					label: "Mapas",
+					value:
+						"google-map-react — localizador de clubes en la página de contacto",
 				},
 				{
 					label: "HTTP",
 					value:
-						"Axios with global default headers (platform key, API key, content type) behind a single utils/http module",
+						"Axios con cabeceras por defecto globales (clave de plataforma, API key, tipo de contenido) tras un único módulo utils/http",
 				},
 				{
-					label: "Dates",
+					label: "Fechas",
 					value:
-						"Moment.js — schedule ranges, booking windows, access-history formatting",
+						"Moment.js — rangos de horarios, ventanas de reserva y formato del historial de accesos",
 				},
 				{
-					label: "Notifications",
-					value: "AlertifyJS + an in-house Redux-driven notification component",
-				},
-				{
-					label: "Validation",
+					label: "Notificaciones",
 					value:
-						"string-validator for form and field checks (login, contact, password recovery)",
+						"AlertifyJS más un componente propio de notificaciones dirigido por Redux",
 				},
 				{
-					label: "Analytics",
+					label: "Validación",
 					value:
-						"React GA — Google Analytics page-view tracking wired into the router",
+						"string-validator para comprobaciones de formularios y campos (login, contacto, recuperación de contraseña)",
+				},
+				{
+					label: "Analítica",
+					value:
+						"React GA — seguimiento de páginas vistas en Google Analytics enlazado al router",
 				},
 				{
 					label: "PWA",
 					value:
-						"CRA service-worker registration + web app manifest (installable, standalone display)",
+						"Registro del service worker de CRA y manifiesto de aplicación web (instalable, visualización standalone)",
 				},
 				{
-					label: "Language",
-					value: "Spanish UI throughout — routes, copy and domain vocabulary",
+					label: "Idioma",
+					value:
+						"Interfaz íntegramente en español — rutas, textos y vocabulario de dominio",
 				},
 			],
 		},
 		{
 			index: 3,
-			title: "Feature areas",
-			meta: "27 pages · 37 routes",
+			title: "Áreas funcionales",
+			meta: "27 páginas · 37 rutas",
 			kind: "nameDesc",
 			items: [
 				{
 					name: "auth",
-					desc: "Login, password recovery (olvido-password), first-time password creation, temporary-access flow.",
+					desc: "Inicio de sesión, recuperación de contraseña (olvido-password), creación de contraseña inicial y flujo de acceso temporal.",
 				},
-				{ name: "profile", desc: "Member profile and personal data." },
+				{ name: "profile", desc: "Perfil del socio y datos personales." },
 				{
 					name: "suscripcion",
-					desc: "Subscription plan, status and billing detail.",
+					desc: "Plan de suscripción, estado y detalle de facturación.",
 				},
-				{ name: "accesos", desc: "Gym entry/exit history." },
+				{
+					name: "accesos",
+					desc: "Historial de entradas y salidas del gimnasio.",
+				},
 				{
 					name: "reservas",
-					desc: "Booking and cancelling classes across clubs, rooms and agendas; class detail pages.",
+					desc: "Reserva y cancelación de clases entre clubes, salas y agendas; páginas de detalle de cada clase.",
 				},
 				{
 					name: "cuadrante-actividades",
-					desc: "Activity timetable and class descriptions with intensity indicators.",
+					desc: "Cuadrante de actividades y descripciones de clases con indicadores de intensidad.",
 				},
-				{ name: "ventajas", desc: "Member perks and partner benefits." },
+				{
+					name: "ventajas",
+					desc: "Ventajas para socios y beneficios de partners.",
+				},
 				{
 					name: "entrenamientos",
-					desc: "Training programme sections, including GBody and GBox.",
+					desc: "Secciones de programas de entrenamiento, incluidos GBody y GBox.",
 				},
 				{
 					name: "club-corredor",
-					desc: "Runners-club content feed with category filtering, infinite scroll and detail views, gated by an entitlement check.",
+					desc: "Contenido del club de corredores con filtrado por categoría, scroll infinito y vistas de detalle, protegido por una comprobación de acceso.",
 				},
 				{
 					name: "noticias / contacto",
-					desc: "News feed and club contact form with map.",
+					desc: "Noticias y formulario de contacto del club con mapa.",
 				},
 			],
 		},
 		{
 			index: 4,
-			title: "Supporting services & delivery",
-			meta: "Mock API · CRA build",
+			title: "Servicios de apoyo y entrega",
+			meta: "API simulada · build de CRA",
 			kind: "cards",
 			columns: 2,
 			items: [
 				{
-					title: "Mock / proxy API",
+					title: "API simulada / proxy",
 					body: [
 						txt(
-							"Express 4 on Node, used to develop against a stable local surface while the third-party gym API was in flux. Hardened with Helmet, CORS whitelisting for local dev origins, ",
+							"Express 4 sobre Node, usado para desarrollar contra una superficie local estable mientras la API del gimnasio de terceros cambiaba. Reforzado con Helmet, lista blanca de CORS para los orígenes de desarrollo local, ",
 						),
 						mono("body-parser"),
-						txt(", Morgan request logging and "),
+						txt(", registro de peticiones con Morgan y "),
 						mono("request"),
 						txt(
-							" for upstream proxying, behind a Grunt + Nodemon watch pipeline with JSHint linting.",
+							" para hacer de proxy hacia el origen, todo tras un pipeline de vigilancia con Grunt y Nodemon y linting con JSHint.",
 						),
 					],
 				},
 				{
-					title: "Tooling & integration",
+					title: "Tooling e integración",
 					body: [
 						txt(
-							"Yarn with a committed lockfile and the CRA build pipeline producing a hashed static bundle served behind a web server. Integrated against two third-party services: the ",
+							"Yarn con lockfile versionado y el pipeline de build de CRA produciendo un bundle estático con hash servido tras un servidor web. Integrado contra dos servicios de terceros: el backend REST ",
 						),
 						mono("userapi"),
-						txt(" REST backend ("),
+						txt(" ("),
 						mono("/v2/…"),
 						txt(
-							", token-in-path auth with platform and API-key headers) and a separate media/file server for images and documents.",
+							", autenticación por token en la ruta con cabeceras de plataforma y API key) y un servidor de medios y ficheros aparte para imágenes y documentos.",
 						),
 					],
 				},
@@ -310,51 +316,51 @@ export const myaltafit: Project = {
 		},
 		{
 			index: 5,
-			title: "Engineering highlights",
-			meta: "Six decisions",
+			title: "Decisiones técnicas destacadas",
+			meta: "Seis decisiones",
 			kind: "cards",
 			columns: 2,
 			titleStyle: "kicker",
 			items: [
 				{
-					title: "One generic reducer for every endpoint",
-					body: "The FETCHING/FETCHED/ERROR action-type convention plus a reducer factory removed ~19 near-identical reducers and made every screen's loading and error handling identical by construction.",
+					title: "Un reducer genérico para todos los endpoints",
+					body: "La convención de tipos de acción FETCHING/FETCHED/ERROR junto a una factoría de reducers eliminó unos 19 reducers casi idénticos e hizo que la gestión de carga y error de cada pantalla fuese idéntica por construcción.",
 				},
 				{
-					title: "Centralized session-expiry handling",
-					body: "Token invalidation is caught once in the Redux middleware pipeline and turned into a clean global logout, rather than re-implemented in every page's error branch.",
+					title: "Gestión centralizada de la expiración de sesión",
+					body: "La invalidación del token se captura una sola vez en la cadena de middleware de Redux y se convierte en un logout global limpio, en lugar de reimplementarse en la rama de error de cada página.",
 				},
 				{
-					title: "Store-time session hydration",
-					body: "Reading localStorage before createStore means the app boots already authenticated, with no login flash or post-mount redirect.",
+					title: "Hidratación de la sesión al crear el store",
+					body: "Leer localStorage antes de createStore hace que la aplicación arranque ya autenticada, sin parpadeo de login ni redirección tras el montaje.",
 				},
 				{
-					title: "Themed styled-components at scale",
-					body: "A static Styles class supplies colors, breakpoints and helpers (such as a truncate(width) mixin) to 43 styled-component files, keeping a single source of visual truth without a CSS framework rewrite.",
+					title: "styled-components tematizados a escala",
+					body: "Una clase estática Styles suministra colores, breakpoints y helpers (como un mixin truncate(width)) a 43 ficheros de styled-components, manteniendo una única fuente de verdad visual sin reescribir el framework de CSS.",
 				},
 				{
-					title: "Adapter layer over a third-party API",
-					body: "Model classes and a wrapped Axios instance isolate the app from an external, Spanish-named, token-in-URL API whose shape the project did not control.",
+					title: "Capa adaptadora sobre una API de terceros",
+					body: "Las clases de modelo y una instancia de Axios envuelta aíslan la aplicación de una API externa, con nombres en español y token en la URL, cuya forma el proyecto no controlaba.",
 				},
 				{
-					title: "Infinite-scroll content feed",
-					body: "Category filtering and paginated fetches, backed by the same generic API-state machinery as every other screen.",
+					title: "Contenido con scroll infinito",
+					body: "Filtrado por categorías y peticiones paginadas, apoyados en la misma maquinaria genérica de estado de API que el resto de pantallas.",
 				},
 			],
 		},
 		{
 			index: 6,
-			title: "Retrospective",
-			meta: "Built 2018 – 2019",
+			title: "Retrospectiva",
+			meta: "Construido en 2018 – 2019",
 			kind: "prose",
 			paragraphs: [
 				[
 					txt(
-						"Built on the stack that was current then: React 16 class components, Redux with thunks and promise middleware, CRA 1.x, Bootstrap 4. Today's equivalents would be function components with hooks, TanStack Query or RTK Query in place of the hand-rolled request-state reducers, TypeScript for the API models, and Vite instead of ",
+						"Construido sobre el stack vigente entonces: componentes de clase de React 16, Redux con thunks y middleware de promesas, CRA 1.x y Bootstrap 4. Hoy los equivalentes serían componentes función con hooks, TanStack Query o RTK Query en lugar de los reducers de estado de petición hechos a mano, TypeScript para los modelos de la API y Vite en vez de ",
 					),
 					mono("react-scripts"),
 					txt(
-						" — the architectural separations (adapter layer, generic request state, middleware-level session handling) map cleanly onto those modern tools.",
+						" — las separaciones arquitectónicas (capa adaptadora, estado de petición genérico, gestión de sesión a nivel de middleware) se trasladan sin fricción a esas herramientas modernas.",
 					),
 				],
 			],
@@ -362,21 +368,21 @@ export const myaltafit: Project = {
 	],
 
 	gallery: [
-		{ placeholder: "Booking or timetable screen", ratio: "4 / 3" },
-		{ placeholder: "Mobile screen", ratio: "4 / 3" },
+		{ placeholder: "Pantalla de reservas o cuadrante", ratio: "4 / 3" },
+		{ placeholder: "Pantalla móvil", ratio: "4 / 3" },
 	],
 
 	card: {
 		kicker: "myaltafit.provis.es · 2018–2019",
 		title: "My Altafit",
-		body: "Member portal for a Spanish gym chain — booking, billing and access history over a third-party API, 27 pages across 37 routes.",
+		body: "Portal de socios para una cadena de gimnasios española — reservas, facturación e historial de accesos sobre una API de terceros, 27 páginas en 37 rutas.",
 		meta: "React · Redux · styled-components",
-		placeholder: "MyAltafit screenshot",
+		placeholder: "Captura de MyAltafit",
 	},
 
 	seo: {
 		title: "My Altafit",
 		description:
-			"A member portal for a Spanish gym chain — 27 pages across 37 routes on React 16 and Redux, with a reducer factory covering every endpoint and an adapter layer over a third-party API.",
+			"Un portal de socios para una cadena de gimnasios española — 27 páginas en 37 rutas sobre React 16 y Redux, con una factoría de reducers que cubre todos los endpoints y una capa adaptadora sobre una API de terceros.",
 	},
 };

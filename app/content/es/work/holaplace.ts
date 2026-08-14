@@ -1,65 +1,60 @@
-// TODO: translate to Spanish.
-// Copied verbatim from ../en so the site renders in both locales today. The
-// structure must stay identical to the English module — the `Content` type is
-// what keeps the two in step.
-
 import { bold, mono, type Project, txt } from "~/content/types";
 
 export const holaplace: Project = {
 	slug: "holaplace",
 	name: "HolaPlace",
-	kicker: "HolaPlace · Senior Software Developer · Jun 2020 – Dec 2023",
-	headline: ["A two-sided venue", "marketplace, from zero"],
-	lead: "Booking for event venues and add-on services — listings & onboarding, availability calendars with iCal sync, a booking request/negotiation flow, guest↔host chat, Stripe Connect split payments (deposits, holds, payouts, claims, refunds), supplier services, reviews, promo codes, invoicing and contracts, multi-language content, and CRM/marketing automation.",
+	kicker: "HolaPlace · Desarrollador de Software Senior · Jun 2020 – Dic 2023",
+	headline: ["Un marketplace de espacios", "de doble cara, desde cero"],
+	lead: "Reservas de espacios para eventos y servicios complementarios — publicación y alta de espacios, calendarios de disponibilidad con sincronización iCal, flujo de solicitud y negociación de reservas, chat entre huésped y anfitrión, pagos divididos con Stripe Connect (depósitos, retenciones, liquidaciones, reclamaciones, reembolsos), servicios de proveedores, reseñas, códigos promocionales, facturación y contratos, contenido multiidioma y automatización de CRM y marketing.",
 	link: { label: "holaplace.com", href: "https://holaplace.com" },
 	linkAsButton: true,
 
 	hero: {
-		placeholder: "Drop a HolaPlace screenshot",
+		placeholder: "Añade una captura de HolaPlace",
 		ratio: "16 / 9",
 	},
 
 	sheet: {
-		title: "HolaPlace — platform scale",
-		badges: ["4 repositories", "Sheet 01"],
-		note: "~228k lines of TypeScript across 4 repositories, plus ~3.3k lines of Terraform across three environments.",
+		title: "HolaPlace — escala de la plataforma",
+		badges: ["4 repositorios", "Hoja 01"],
+		note: "~228k líneas de TypeScript repartidas en 4 repositorios, más ~3,3k líneas de Terraform en tres entornos.",
 		stats: [
-			{ value: "~228k", label: "Lines of TypeScript" },
-			{ value: "399", label: "REST endpoints" },
-			{ value: "55", label: "Mongoose models" },
-			{ value: "152", label: "Migrations" },
-			{ value: "42", label: "API domain modules" },
-			{ value: "7", label: "Socket.IO gateways" },
-			{ value: "4", label: "Repositories" },
-			{ value: "3", label: "AWS environments" },
+			{ value: "~228k", label: "Líneas de TypeScript" },
+			{ value: "399", label: "Endpoints REST" },
+			{ value: "55", label: "Modelos de Mongoose" },
+			{ value: "152", label: "Migraciones" },
+			{ value: "42", label: "Módulos de dominio de la API" },
+			{ value: "7", label: "Gateways de Socket.IO" },
+			{ value: "4", label: "Repositorios" },
+			{ value: "3", label: "Entornos de AWS" },
 		],
 	},
 
 	sections: [
 		{
 			index: 1,
-			title: "My work",
-			meta: "Six-person team",
+			title: "Mi trabajo",
+			meta: "Equipo de seis personas",
 			kind: "bullets",
 			items: [
-				"Built holaplace.com platform from scratch using the MERN stack.",
-				"Developed a React SPA using Redux, React Router, XState for complex state management, and Socket.IO for real-time features.",
-				"Implemented backend services with NestJS and Express, integrating MongoDB, Elasticsearch, Stripe, Redis, and AWS S3.",
-				"Containerized services with Docker and Docker Compose; used AWS LocalStack for local cloud development.",
-				"Applied TDD with Jest, covering unit, integration, and end-to-end tests.",
-				"Managed repositories with Git and GitLab; automated deployments using Terraform.",
-				"Performed code reviews and collaborated in a 6-person cross-functional team.",
+				"Construí la plataforma holaplace.com desde cero con el stack MERN.",
+				"Desarrollé una SPA en React usando Redux, React Router, XState para el estado complejo y Socket.IO para las funcionalidades en tiempo real.",
+				"Implementé los servicios de backend con NestJS y Express, integrando MongoDB, Elasticsearch, Stripe, Redis y AWS S3.",
+				"Contenericé los servicios con Docker y Docker Compose; usé AWS LocalStack para desarrollo cloud en local.",
+				"Apliqué TDD con Jest, cubriendo tests unitarios, de integración y end-to-end.",
+				"Gestioné los repositorios con Git y GitLab; automaticé los despliegues con Terraform.",
+				"Realicé revisiones de código y colaboré en un equipo multidisciplinar de 6 personas.",
 			],
 		},
 		{
 			index: 2,
-			title: "Architecture",
-			meta: "Polyrepo · modular NestJS",
+			title: "Arquitectura",
+			meta: "Polyrepo · NestJS modular",
 			kind: "bullets",
 			items: [
 				[
 					bold("Polyrepo"),
-					txt(" — 4 independent GitLab repos ("),
+					txt(" — 4 repositorios independientes en GitLab ("),
 					mono("api"),
 					txt(", "),
 					mono("hola-place-front"),
@@ -68,49 +63,51 @@ export const holaplace: Project = {
 					txt(", "),
 					mono("holaplace-infra"),
 					txt(
-						") plus a separate admin front, each with its own pipeline and Docker image.",
+						") más un frontend de administración aparte, cada uno con su propio pipeline e imagen Docker.",
 					),
 				],
 				[
-					bold("Modular NestJS monolith"),
-					txt(" — 42 feature modules, a shared "),
+					bold("Monolito modular en NestJS"),
+					txt(" — 42 módulos de funcionalidad, un módulo compartido "),
 					mono("data_manager"),
 					txt(
-						" module owning every Mongoose model and repository, and a dedicated ",
+						" que concentra todos los modelos y repositorios de Mongoose, y un módulo ",
 					),
 					mono("api"),
-					txt(" module holding all HTTP controllers, guards and interceptors."),
-				],
-				[
-					bold("Externalized scheduling"),
 					txt(
-						" — a standalone NestJS scheduler service owns cron definitions and calls back into the API over signed HTTP, with per-run audit trails in DynamoDB, so no cron state lives inside the API.",
+						" dedicado que agrupa todos los controladores HTTP, guards e interceptores.",
 					),
 				],
 				[
-					bold("Realtime layer"),
+					bold("Planificación externalizada"),
 					txt(
-						" — 7 Socket.IO gateways (chat, notifications, payments, calendar sync, CRUD, presence) fanned out across API instances via a Redis adapter.",
+						" — un servicio NestJS independiente gestiona las definiciones de cron y llama de vuelta a la API por HTTP firmado, con trazas de auditoría por ejecución en DynamoDB, de modo que ningún estado de cron vive dentro de la API.",
 					),
 				],
 				[
-					bold("Resource-guard chain"),
-					txt(" — JWT/Passport auth → existence guards ("),
+					bold("Capa de tiempo real"),
+					txt(
+						" — 7 gateways de Socket.IO (chat, notificaciones, pagos, sincronización de calendario, CRUD, presencia) distribuidos entre instancias de la API mediante un adaptador de Redis.",
+					),
+				],
+				[
+					bold("Cadena de guards por recurso"),
+					txt(" — autenticación JWT/Passport → guards de existencia ("),
 					mono("exist_booking"),
 					txt(", "),
 					mono("exist_venue"),
-					txt("…) → ownership guards ("),
+					txt("…) → guards de propiedad ("),
 					mono("is_host_booking"),
 					txt(", "),
 					mono("is_supplier_service"),
 					txt(
-						"…) → field-level response interceptors that whitelist what each role may see.",
+						"…) → interceptores de respuesta a nivel de campo que filtran qué puede ver cada rol.",
 					),
 				],
 				[
-					bold("Bot-aware SEO edge"),
+					bold("Borde SEO consciente de los bots"),
 					txt(
-						" — Traefik routes crawler user-agents to a Bun prerender service that renders the SPA with headless Chromium and caches HTML in Redis.",
+						" — Traefik enruta los user-agents de rastreadores hacia un servicio de prerenderizado en Bun que renderiza la SPA con Chromium headless y cachea el HTML en Redis.",
 					),
 				],
 			],
@@ -127,82 +124,87 @@ export const holaplace: Project = {
 				},
 				{ label: "Framework", value: "NestJS 9, Express 4" },
 				{
-					label: "Database",
+					label: "Base de datos",
 					value:
-						"MongoDB 5 (replica set), Mongoose 6 + mongoose-autopopulate, mongo-migrate-ts (152 migrations)",
+						"MongoDB 5 (replica set), Mongoose 6 + mongoose-autopopulate, mongo-migrate-ts (152 migraciones)",
 				},
 				{
-					label: "Secondary stores",
+					label: "Almacenes secundarios",
 					value:
-						"DynamoDB (cookie-consent audit log), Redis 7 (ioredis, cache-manager-redis-store)",
+						"DynamoDB (registro de auditoría de consentimiento de cookies), Redis 7 (ioredis, cache-manager-redis-store)",
 				},
 				{
-					label: "Queues",
+					label: "Colas",
 					value:
-						"Bull 4 on Redis — factory-built queues with event subscribers",
+						"Bull 4 sobre Redis — colas construidas por factoría con suscriptores de eventos",
 				},
 				{
-					label: "Realtime",
+					label: "Tiempo real",
 					value: "Socket.IO (@nestjs/websockets) + @socket.io/redis-adapter",
 				},
 				{
-					label: "Auth",
+					label: "Autenticación",
 					value:
-						"Passport + passport-jwt, @nestjs/jwt, bcrypt, Facebook/Google social login",
+						"Passport + passport-jwt, @nestjs/jwt, bcrypt, login social con Facebook y Google",
 				},
 				{
-					label: "Validation",
+					label: "Validación",
 					value:
-						"class-validator / class-transformer DTOs, Joi for env-schema validation",
+						"DTOs con class-validator / class-transformer, Joi para el esquema de variables de entorno",
 				},
 				{
-					label: "Payments",
+					label: "Pagos",
 					value:
-						"Stripe 8 Connect — connected accounts, KYC person mapping, payment intents, manual payouts, transfers & reversals, deposit claims, dual webhook listeners (platform + connect)",
+						"Stripe 8 Connect — cuentas conectadas, mapeo de personas para KYC, payment intents, liquidaciones manuales, transferencias y reversiones, reclamaciones de depósito y listeners de webhook duales (plataforma y connect)",
 				},
 				{
-					label: "Email / CRM",
+					label: "Correo / CRM",
 					value:
-						"Sendinblue (Brevo) + EJS templates, Pipedrive deals, ClickUp bug intake, Slack Web API notifications",
+						"Sendinblue (Brevo) + plantillas EJS, deals de Pipedrive, entrada de bugs en ClickUp, notificaciones con la Web API de Slack",
 				},
 				{
-					label: "Messaging",
-					value: "WhatsApp & SMS services with per-domain message catalogs",
+					label: "Mensajería",
+					value:
+						"Servicios de WhatsApp y SMS con catálogos de mensajes por dominio",
 				},
 				{
-					label: "Storage / media",
+					label: "Almacenamiento / medios",
 					value:
-						"AWS S3, Sharp + Jimp image processing, express-fileupload, JSZip",
+						"AWS S3, procesamiento de imágenes con Sharp y Jimp, express-fileupload, JSZip",
 				},
 				{
-					label: "Documents",
+					label: "Documentos",
 					value:
-						"Puppeteer (invoice/contract PDFs from EJS views), csv-writer, ical-generator + node-ical",
+						"Puppeteer (PDFs de facturas y contratos desde vistas EJS), csv-writer, ical-generator + node-ical",
 				},
 				{
 					label: "Geo",
-					value: "Mapbox, geolib, geo-tz, city/province/country seed data",
+					value:
+						"Mapbox, geolib, geo-tz, datos semilla de ciudades, provincias y países",
 				},
 				{
-					label: "Scheduling",
+					label: "Planificación",
 					value:
-						"@nestjs/schedule for in-process tasks; sitemap generation task pushing to S3",
-				},
-				{ label: "API docs", value: "@nestjs/swagger → OpenAPI 3, Compodoc" },
-				{
-					label: "Observability",
-					value:
-						"Winston (nest-winston) with Loki + Slack-webhook transports, Morgan + rotating file streams, prom-client via @willsoto/nestjs-prometheus, OpenProfiling heap profiler",
+						"@nestjs/schedule para tareas en proceso; tarea de generación de sitemap que publica en S3",
 				},
 				{
-					label: "Security",
+					label: "Documentación de API",
+					value: "@nestjs/swagger → OpenAPI 3, Compodoc",
+				},
+				{
+					label: "Observabilidad",
 					value:
-						"Helmet, ip-range-check (webhook CIDR allowlisting), cookie-parser",
+						"Winston (nest-winston) con transports a Loki y webhook de Slack, Morgan con rotación de ficheros, prom-client vía @willsoto/nestjs-prometheus, profiler de heap con OpenProfiling",
+				},
+				{
+					label: "Seguridad",
+					value:
+						"Helmet, ip-range-check (lista blanca de CIDR para webhooks), cookie-parser",
 				},
 				{
 					label: "CLI",
 					value:
-						"nestjs-command — seeders and data-manager maintenance scripts (anonymization, backfills, S3 migration, payouts)",
+						"nestjs-command — seeders y scripts de mantenimiento del data manager (anonimización, backfills, migración a S3, liquidaciones)",
 				},
 				{
 					label: "Testing",
@@ -214,73 +216,76 @@ export const holaplace: Project = {
 		{
 			index: 4,
 			title: "Frontend",
-			meta: "React 18 · pnpm workspace",
+			meta: "React 18 · workspace pnpm",
 			kind: "rows",
 			rows: [
 				{
-					label: "Core",
+					label: "Núcleo",
 					value:
-						"React 18, TypeScript 4.7, Webpack 5 + Babel 7 (pnpm workspace on Node 22)",
+						"React 18, TypeScript 4.7, Webpack 5 + Babel 7 (workspace pnpm sobre Node 22)",
 				},
 				{
-					label: "Routing",
-					value: "React Router 5 — 22 lazy-loaded route bundles",
+					label: "Enrutado",
+					value: "React Router 5 — 22 bundles de ruta con carga perezosa",
 				},
 				{
-					label: "Styling",
+					label: "Estilos",
 					value:
 						"Tailwind CSS 3 + PostCSS/Sass, Material-UI 4 (core, lab, pickers) + @mui/base",
 				},
-				{ label: "Server state", value: "TanStack Query 4 (+ devtools)" },
+				{ label: "Estado de servidor", value: "TanStack Query 4 (+ devtools)" },
 				{
-					label: "Client state",
+					label: "Estado de cliente",
 					value: "Redux 4 + React Redux 8 + Redux Saga, Immer",
 				},
 				{
-					label: "State machines",
-					value: "XState 4 + @xstate/react (booking/checkout flows)",
+					label: "Máquinas de estado",
+					value: "XState 4 + @xstate/react (flujos de reserva y pago)",
 				},
 				{
-					label: "Forms",
+					label: "Formularios",
 					value:
 						"React Hook Form 7, @eduinlight/input-validator, validator, react-text-mask",
 				},
 				{
-					label: "Payments",
+					label: "Pagos",
 					value: "Stripe Elements (@stripe/react-stripe-js)",
 				},
 				{
-					label: "Maps",
+					label: "Mapas",
 					value:
-						"Leaflet + React Leaflet, Mapbox GL + mapbox-gl-leaflet, Google Places autocomplete",
+						"Leaflet + React Leaflet, Mapbox GL + mapbox-gl-leaflet, autocompletado de Google Places",
 				},
-				{ label: "Realtime", value: "socket.io-client" },
-				{ label: "Dates", value: "Day.js (+ @date-io/dayjs pickers adapter)" },
+				{ label: "Tiempo real", value: "socket.io-client" },
+				{
+					label: "Fechas",
+					value: "Day.js (+ adaptador de pickers @date-io/dayjs)",
+				},
 				{
 					label: "UI/UX",
 					value:
-						"Notistack, Downshift, react-beautiful-dnd, react-virtuoso, Slick/Slideshow carousels, react-avatar-edit, emoji picker, ScrollReveal, Lucide icons",
+						"Notistack, Downshift, react-beautiful-dnd, react-virtuoso, carruseles Slick/Slideshow, react-avatar-edit, selector de emojis, ScrollReveal, iconos de Lucide",
 				},
 				{
 					label: "SEO / meta",
 					value:
-						"react-helmet-async, react-snap prerendering, workbox service worker",
+						"react-helmet-async, prerenderizado con react-snap, service worker con workbox",
 				},
 				{
 					label: "Testing",
-					value: "Jest 29 + Testing Library + jsdom, Cypress 12 e2e",
+					value: "Jest 29 + Testing Library + jsdom, Cypress 12 end-to-end",
 				},
 				{
-					label: "Build / deploy",
+					label: "Build / despliegue",
 					value:
-						"Brotli + gzip compression plugins, webpack-s3-plugin (static assets → S3/CloudFront), served by Nginx",
+						"Plugins de compresión Brotli y gzip, webpack-s3-plugin (assets estáticos → S3/CloudFront), servido con Nginx",
 				},
 			],
 		},
 		{
 			index: 5,
-			title: "Satellite services",
-			meta: "SEO prerender · scheduler",
+			title: "Servicios satélite",
+			meta: "Prerender SEO · planificador",
 			kind: "cards",
 			columns: 2,
 			titleStyle: "mono",
@@ -288,14 +293,14 @@ export const holaplace: Project = {
 				{
 					title: "apps/seo",
 					body: [
-						txt("Bun 1.x + Hono 4, rendering with "),
+						txt("Bun 1.x + Hono 4, renderizando con "),
 						mono("puppeteer-core"),
 						txt(
-							" on system Chromium, Redis 7 caching the rendered HTML with an invalidation endpoint, Zod-validated config. A Traefik v3 ",
+							" sobre el Chromium del sistema, Redis 7 cacheando el HTML renderizado con un endpoint de invalidación y configuración validada con Zod. Una regla de Traefik v3 ",
 						),
 						mono("HeaderRegexp(User-Agent, …)"),
 						txt(
-							" rule routes ~30 crawler and AI-bot agents here; everything else goes to the SPA, with static assets proxied through.",
+							" enruta aquí a unos 30 rastreadores y bots de IA; el resto va a la SPA, con los assets estáticos servidos por proxy.",
 						),
 					],
 				},
@@ -303,11 +308,11 @@ export const holaplace: Project = {
 					title: "holaplace-scheduler",
 					body: [
 						txt(
-							"NestJS 8 on Node 16 with Croner 5 — a task registry of declarative cron expressions, task definitions and run records in DynamoDB, Axios + ",
+							"NestJS 8 sobre Node 16 con Croner 5 — un registro de tareas con expresiones cron declarativas, definiciones de tarea y registros de ejecución en DynamoDB, llamadas de vuelta a la API con Axios + ",
 						),
 						mono("axios-retry"),
 						txt(
-							" callbacks into the API through a token service, Joi-validated env plus AWS Secrets Manager, and Slack error reporting behind a health endpoint.",
+							" a través de un servicio de tokens, entorno validado con Joi más AWS Secrets Manager, y notificación de errores a Slack tras un endpoint de salud.",
 						),
 					],
 				},
@@ -315,146 +320,146 @@ export const holaplace: Project = {
 		},
 		{
 			index: 6,
-			title: "Infrastructure & DevOps",
+			title: "Infraestructura y DevOps",
 			meta: "Terraform · AWS eu-west-3",
 			kind: "bullets",
 			items: [
 				[
 					bold("Terraform ≥ 1.1.4"),
-					txt(", AWS provider 4.29, region "),
+					txt(", proveedor de AWS 4.29, región "),
 					mono("eu-west-3"),
-					txt(", state in a GitLab-hosted HTTP backend, three environments ("),
+					txt(", estado en un backend HTTP alojado en GitLab, tres entornos ("),
 					mono("dev"),
 					txt(" / "),
 					mono("stage"),
 					txt(" / "),
 					mono("prod"),
-					txt(") composed from a single reusable "),
+					txt(") compuestos desde un único módulo reutilizable "),
 					mono("environment"),
-					txt(" module plus small "),
+					txt(" más pequeños módulos "),
 					mono("components"),
-					txt(" modules."),
+					txt("."),
 				],
 				[
-					bold("EC2 Auto Scaling Groups per service"),
+					bold("Auto Scaling Groups de EC2 por servicio"),
 					txt(
-						" (front, api, admin, scheduler, db, elk) built from launch templates and ",
+						" (front, api, admin, scheduler, db, elk) construidos desde launch templates y scripts de arranque ",
 					),
 					mono("user_data"),
-					txt(" bootstrap scripts that pull a "),
-					mono("docker-compose-<service>.yml"),
+					txt(" que descargan un "),
+					mono("docker-compose-<servicio>.yml"),
 					txt(
-						" from S3 and start the ECR image; lifecycle hooks for graceful drain, instance-refresh deploys.",
+						" desde S3 y arrancan la imagen de ECR; hooks de ciclo de vida para el drenado ordenado y despliegues por instance refresh.",
 					),
 				],
 				[
-					bold("Networking"),
+					bold("Redes"),
 					txt(
-						" — public and internal ALBs, 9 target groups and listener rules, ACM certs with Route53 DNS validation, a Route53 public zone plus ",
+						" — ALBs públicos e internos, 9 target groups y reglas de listener, certificados ACM con validación DNS en Route53, una zona pública de Route53 más ",
 					),
 					mono("holaplace.internal"),
-					txt(", a WAFv2 web ACL and 8 security groups."),
+					txt(", un web ACL de WAFv2 y 8 security groups."),
 				],
 				[
 					bold("CloudFront"),
 					txt(
-						" for static assets with a long-cache policy and Lambda@Edge (viewer-request + origin-request) that routed bot traffic to Prerender.io — since superseded by the self-hosted Bun/Traefik prerender path.",
+						" para los assets estáticos con política de caché larga y Lambda@Edge (viewer-request y origin-request) que enrutaba el tráfico de bots a Prerender.io — después sustituido por el prerenderizado autoalojado con Bun y Traefik.",
 					),
 				],
 				[
-					bold("Managed data services"),
+					bold("Servicios de datos gestionados"),
 					txt(
-						" — ElastiCache Redis, 3 DynamoDB tables (scheduler tasks, run events, cookie-consent log), EFS mounted by the API instances, S3 buckets (uploads, static assets, sitemaps, mongo dumps, ALB access logs) and SSM Parameter Store for runtime config.",
+						" — ElastiCache Redis, 3 tablas de DynamoDB (tareas del planificador, eventos de ejecución, registro de consentimiento de cookies), EFS montado por las instancias de la API, buckets de S3 (subidas, assets estáticos, sitemaps, volcados de mongo, logs de acceso del ALB) y SSM Parameter Store para la configuración en ejecución.",
 					),
 				],
 				[
-					bold("Self-hosted MongoDB"),
+					bold("MongoDB autoalojado"),
 					txt(
-						" on EC2 with an attached data volume, a DLM snapshot lifecycle policy and nightly ",
+						" en EC2 con un volumen de datos adjunto, una política de ciclo de vida de snapshots con DLM y ",
 					),
 					mono("mongodump"),
-					txt(" to S3; "),
+					txt(" nocturno a S3; "),
 					bold("ELK"),
 					txt(
-						" (Elasticsearch / Logstash / Kibana) on its own instance alongside the CloudWatch agent, with Grafana Loki and Prometheus metrics from the API.",
+						" (Elasticsearch / Logstash / Kibana) en su propia instancia junto al agente de CloudWatch, con Grafana Loki y métricas de Prometheus desde la API.",
 					),
 				],
 				[
-					bold("GitLab CI/CD per repo"),
+					bold("GitLab CI/CD por repositorio"),
 					txt(" — test ("),
 					mono("tsc"),
 					txt(
-						" + lint) → multi-stage Docker build with per-environment build args → push to a private ECR → deploy by terminating/refreshing ASG instances, with separate migration-runner scripts for the API; a self-hosted GitLab Runner on Lightsail and the registry are their own Terraform stacks.",
+						" y lint) → build Docker multi-etapa con build args por entorno → publicación en un ECR privado → despliegue terminando o refrescando las instancias del ASG, con scripts separados para ejecutar las migraciones de la API; un GitLab Runner autoalojado en Lightsail y el registro son sus propios stacks de Terraform.",
 					),
 				],
 				[
-					bold("Local dev"),
+					bold("Desarrollo local"),
 					txt(
-						" — Docker Compose stacks with a Mongo replica set and auto-restored S3 dump, Mongo Express, Redis, LocalStack (Terraform-provisioned AWS mocks), two Stripe CLI webhook listeners, and Traefik v3 in the front repo to reproduce the production SPA/SEO split.",
+						" — entornos con Docker Compose con un replica set de Mongo restaurado automáticamente desde un volcado en S3, Mongo Express, Redis, LocalStack (mocks de AWS aprovisionados con Terraform), dos listeners de webhook de la CLI de Stripe y Traefik v3 en el repositorio del frontend para reproducir la separación SPA/SEO de producción.",
 					),
 				],
 			],
 		},
 		{
 			index: 7,
-			title: "Engineering highlights",
-			meta: "Eight decisions",
+			title: "Decisiones técnicas destacadas",
+			meta: "Ocho decisiones",
 			kind: "cards",
 			columns: 2,
 			titleStyle: "kicker",
 			items: [
 				{
-					title: "Stripe Connect money flow",
-					body: "The full marketplace lifecycle: deposit holds, split charges, transfers and reversals, manual payouts, deposit-claim adjudication with its own money service, and separate platform/connect webhook processors.",
+					title: "Flujo de dinero con Stripe Connect",
+					body: "El ciclo completo del marketplace: retenciones de depósito, cargos divididos, transferencias y reversiones, liquidaciones manuales, resolución de reclamaciones de depósito con su propio servicio de dinero y procesadores de webhook separados para plataforma y connect.",
 				},
 				{
-					title: "Externalized cron",
-					body: "The scheduler service holds every recurring job as a registry entry, invokes the API over authenticated callbacks, and writes an auditable run history to DynamoDB, so API instances stay stateless and horizontally scalable.",
+					title: "Cron externalizado",
+					body: "El servicio de planificación mantiene cada trabajo recurrente como una entrada de registro, invoca la API mediante callbacks autenticados y escribe un histórico auditable de ejecuciones en DynamoDB, de modo que las instancias de la API permanecen sin estado y escalan horizontalmente.",
 				},
 				{
-					title: "Bot-aware rendering split at the proxy",
-					body: "Traefik user-agent matching sends crawlers to a Bun + Hono + Puppeteer renderer with a Redis HTML cache and an invalidation API, replacing a paid Lambda@Edge / Prerender.io setup.",
+					title: "Separación del renderizado en el proxy según el bot",
+					body: "El emparejado de user-agent en Traefik envía los rastreadores a un renderizador Bun + Hono + Puppeteer con caché de HTML en Redis y API de invalidación, sustituyendo una configuración de pago con Lambda@Edge y Prerender.io.",
 				},
 				{
-					title: "Two-way calendar sync",
-					body: "iCal generation plus node-ical/CalDAV ingestion, with a dedicated realtime gateway pushing availability changes to connected clients.",
+					title: "Sincronización de calendario bidireccional",
+					body: "Generación de iCal más ingesta con node-ical/CalDAV, con un gateway de tiempo real dedicado que envía los cambios de disponibilidad a los clientes conectados.",
 				},
 				{
-					title: "Runtime translation model",
-					body: "A response interceptor and @Lang() decorator localize payloads per request without duplicating endpoints.",
+					title: "Modelo de traducción en tiempo de ejecución",
+					body: "Un interceptor de respuesta y un decorador @Lang() localizan los payloads por petición sin duplicar endpoints.",
 				},
 				{
-					title: "Field-level response shaping",
-					body: "A family of pick-*/omit-fields interceptors projects entity responses per role and context, keeping host, guest and admin views on one controller.",
+					title: "Modelado de respuestas a nivel de campo",
+					body: "Una familia de interceptores pick-*/omit-fields proyecta las respuestas de cada entidad según el rol y el contexto, manteniendo las vistas de anfitrión, huésped y administración sobre un mismo controlador.",
 				},
 				{
-					title: "Immutable infrastructure on plain EC2",
-					body: "No ECS or EKS — ASGs boot from S3-hosted compose files and deploys are instance refreshes, giving container-style rollout on a low-cost footprint.",
+					title: "Infraestructura inmutable sobre EC2 puro",
+					body: "Sin ECS ni EKS — los ASG arrancan desde ficheros compose alojados en S3 y los despliegues son instance refreshes, logrando un despliegue al estilo contenedor sobre una infraestructura de bajo coste.",
 				},
 				{
-					title: "Data-manager script suite",
-					body: "One-off maintenance commands (anonymization, timezone/geo backfills, upload→S3 migration, balance payouts) versioned alongside the 152-file migration history.",
+					title: "Suite de scripts del data manager",
+					body: "Comandos de mantenimiento puntuales (anonimización, backfills de zona horaria y geolocalización, migración de subidas a S3, liquidaciones de saldo) versionados junto al histórico de 152 migraciones.",
 				},
 			],
 		},
 	],
 
 	gallery: [
-		{ placeholder: "Second screenshot", ratio: "4 / 3" },
-		{ placeholder: "Third screenshot", ratio: "4 / 3" },
+		{ placeholder: "Segunda captura", ratio: "4 / 3" },
+		{ placeholder: "Tercera captura", ratio: "4 / 3" },
 	],
 
 	card: {
 		kicker: "holaplace.com · 2020–2023",
 		title: "HolaPlace",
-		body: "Two-sided venue marketplace built from scratch — 399 endpoints, Stripe Connect split payments, iCal sync and 7 realtime gateways.",
+		body: "Marketplace de espacios de doble cara construido desde cero — 399 endpoints, pagos divididos con Stripe Connect, sincronización iCal y 7 gateways de tiempo real.",
 		meta: "NestJS · React · Stripe Connect",
-		placeholder: "HolaPlace screenshot",
+		placeholder: "Captura de HolaPlace",
 	},
 
 	seo: {
 		title: "HolaPlace",
 		description:
-			"A two-sided venue marketplace built from zero — 399 REST endpoints on NestJS and MongoDB, Stripe Connect split payments, seven realtime gateways and immutable AWS infrastructure in Terraform.",
+			"Un marketplace de espacios de doble cara construido desde cero — 399 endpoints REST sobre NestJS y MongoDB, pagos divididos con Stripe Connect, siete gateways de tiempo real e infraestructura inmutable en AWS con Terraform.",
 	},
 };

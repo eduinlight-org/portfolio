@@ -1,93 +1,90 @@
-// TODO: translate to Spanish.
-// Copied verbatim from ../en so the site renders in both locales today. The
-// structure must stay identical to the English module — the `Content` type is
-// what keeps the two in step.
-
 import type { ProfileContent } from "~/content/types";
 
 export const profile: ProfileContent = {
 	name: "Eduin Garcia",
 
 	hero: {
-		headline: ["Senior software", "engineer & devops"],
-		lead: "Ten years building web, mobile and desktop applications — and the cloud-native infrastructure they run on. I take products from an empty repository to a running platform, and I keep them running.",
+		headline: ["Ingeniero de software", "senior y devops"],
+		lead: "Diez años construyendo aplicaciones web, móviles y de escritorio — y la infraestructura cloud-native sobre la que funcionan. Llevo productos desde un repositorio vacío hasta una plataforma en producción, y me encargo de que siga funcionando.",
 		figure: {
-			placeholder: "Drop your headshot",
+			placeholder: "Añade tu foto",
 			ratio: "4 / 5",
+			src: "/headshot.jpeg",
+			alt: "Eduin Garcia",
 		},
 	},
 
 	profile: {
-		heading: { index: 1, title: "Profile", meta: "Valencia, Spain" },
+		heading: { index: 1, title: "Perfil", meta: "Valencia, España" },
 		summary:
-			"Senior Software Engineer with 10+ years of experience building web, mobile, and desktop applications. Strong background in MERN stack, cloud-native architectures, and DevOps practices. Proven ability to build platforms from scratch, lead technical initiatives, review code, and collaborate in cross-functional teams. Passionate about scalable systems, real-time applications, and clean, testable code.",
+			"Ingeniero de Software Senior con más de 10 años de experiencia construyendo aplicaciones web, móviles y de escritorio. Sólida base en stack MERN, arquitecturas cloud-native y prácticas DevOps. Capacidad demostrada para levantar plataformas desde cero, liderar iniciativas técnicas, revisar código y colaborar en equipos multidisciplinares. Me apasionan los sistemas escalables, las aplicaciones en tiempo real y el código limpio y testeable.",
 		facts: [
-			{ label: "Role", value: "Senior Software Engineer / DevOps" },
-			{ label: "Based", value: "Valencia, Spain · remote" },
-			{ label: "Languages", value: "Spanish (native), English (professional)" },
+			{ label: "Rol", value: "Ingeniero de Software Senior / DevOps" },
+			{ label: "Ubicación", value: "Valencia, España · en remoto" },
+			{ label: "Idiomas", value: "Español (nativo), inglés (profesional)" },
 			{
-				label: "Education",
-				value: "B.Sc. Computer Software Engineering, Granma University",
+				label: "Formación",
+				value: "Ingeniería Informática, Universidad de Granma",
 			},
 		],
 	},
 
 	record: {
 		sheet: {
-			title: "Eduin Garcia — engineering record",
-			badges: ["Sheet 01", "2016 – 2026"],
-			note: "Figures current as of 2026. Detail per role in section 04.",
+			title: "Eduin Garcia — historial técnico",
+			badges: ["Hoja 01", "2016 – 2026"],
+			note: "Datos actualizados a 2026. Detalle por puesto en la sección 04.",
 		},
 		measures: [
 			{
 				no: "01",
-				measure: "Years building software",
+				measure: "Años construyendo software",
 				value: "10+",
-				remark: "Frontend, mobile, desktop, backend, platform",
+				remark: "Frontend, móvil, escritorio, backend, plataforma",
 			},
 			{
 				no: "02",
-				measure: "Products in production",
+				measure: "Productos en producción",
 				value: "6",
-				remark: "Two built from an empty repository",
+				remark: "Dos levantados desde un repositorio vacío",
 			},
 			{
 				no: "03",
-				measure: "Public repositories",
+				measure: "Repositorios públicos",
 				value: "112",
 				remark: "github.com/eduinlight",
 			},
 			{
 				no: "04",
-				measure: "ACM-ICPC contests",
+				measure: "Concursos ACM-ICPC",
 				value: "5",
-				remark: "Caribbean local 2011–13, national 2011–12",
+				remark: "Caribe local 2011–13, nacional 2011–12",
 			},
 		],
 	},
 
 	capabilities: {
-		heading: { index: 2, title: "Capabilities", meta: "Four practices" },
+		heading: { index: 2, title: "Capacidades", meta: "Cuatro prácticas" },
 		items: [
 			{
 				index: "01",
-				title: "Product front ends",
-				body: "React and Remix applications with server-side rendering, complex state handled with Redux and XState, real-time updates over WebSockets and server-sent events.",
+				title: "Front ends de producto",
+				body: "Aplicaciones React y Remix con renderizado en servidor, estado complejo gestionado con Redux y XState, y actualizaciones en tiempo real sobre WebSockets y server-sent events.",
 			},
 			{
 				index: "02",
-				title: "Mobile & desktop apps",
-				body: "One codebase across platforms — React Native for iOS and Android, Rust and Dioxus for desktop and mobile, QT and QML for native work.",
+				title: "Apps móviles y de escritorio",
+				body: "Una sola base de código para todas las plataformas — React Native para iOS y Android, Rust y Dioxus para escritorio y móvil, QT y QML para desarrollo nativo.",
 			},
 			{
 				index: "03",
-				title: "APIs & platforms from scratch",
-				body: "Node.js, NestJS and Express services over PostgreSQL, MongoDB, Redis and Elasticsearch — CQRS where it earns its keep, built test-first and documented for handover.",
+				title: "APIs y plataformas desde cero",
+				body: "Servicios en Node.js, NestJS y Express sobre PostgreSQL, MongoDB, Redis y Elasticsearch — CQRS donde aporta valor, construido con tests desde el principio y documentado para el traspaso.",
 			},
 			{
 				index: "04",
-				title: "DevOps & infrastructure",
-				body: "GitOps pipelines and CI/CD, Docker Swarm and Kubernetes with Kustomize, Terraform on AWS and Proxmox, observability on the LGTM stack.",
+				title: "DevOps e infraestructura",
+				body: "Pipelines GitOps y CI/CD, Docker Swarm y Kubernetes con Kustomize, Terraform sobre AWS y Proxmox, observabilidad con el stack LGTM.",
 			},
 		],
 	},
@@ -95,8 +92,8 @@ export const profile: ProfileContent = {
 	work: {
 		heading: {
 			index: 3,
-			title: "Selected work",
-			meta: "Six products · a page each",
+			title: "Proyectos destacados",
+			meta: "Seis productos · una página cada uno",
 		},
 		order: [
 			"lightnotes",
@@ -109,66 +106,66 @@ export const profile: ProfileContent = {
 	},
 
 	experience: {
-		heading: { index: 4, title: "Experience", meta: "2016 – 2026" },
+		heading: { index: 4, title: "Experiencia", meta: "2016 – 2026" },
 		roles: [
 			{
-				period: "Jan 2024 — Apr 2026",
+				period: "Ene 2024 — Abr 2026",
 				company: "Qollabi",
-				title: "Senior Software Developer / DevOps",
+				title: "Desarrollador de Software Senior / DevOps",
 				bullets: [
-					"Developed the new Qollabi AI product using the Remix framework.",
-					"Created Docker setup for development and UAT/production deployment pipelines.",
-					"Developed and maintained AWS Lambda functions and ActivePieces infrastructure.",
-					"Built Salesforce data migration scripts for clients.",
-					"Implemented server-side events client using PostgreSQL LISTEN/NOTIFY API.",
-					"Maintained Terraform code and Docker Swarm cluster.",
-					"Managed AWS services: Route53, RDS, MQ, S3, IAM.",
-					"Maintained and extended a legacy SPA with a Symfony backend.",
-					"Introduced micro-frontend architecture on legacy project.",
-					"Set up VPN and tunnel for development usage.",
+					"Desarrollé el nuevo producto Qollabi AI con el framework Remix.",
+					"Creé el entorno Docker para desarrollo y los pipelines de despliegue a UAT y producción.",
+					"Desarrollé y mantuve funciones AWS Lambda y la infraestructura de ActivePieces.",
+					"Construí scripts de migración de datos desde Salesforce para clientes.",
+					"Implementé un cliente de server-sent events usando la API LISTEN/NOTIFY de PostgreSQL.",
+					"Mantuve el código Terraform y el clúster de Docker Swarm.",
+					"Gestioné servicios de AWS: Route53, RDS, MQ, S3, IAM.",
+					"Mantuve y amplié una SPA heredada con backend en Symfony.",
+					"Introduje una arquitectura de micro-frontends en el proyecto heredado.",
+					"Configuré la VPN y el túnel para el entorno de desarrollo.",
 				],
 			},
 			{
-				period: "Jun 2020 — Dec 2023",
+				period: "Jun 2020 — Dic 2023",
 				company: "HolaPlace",
-				title: "Senior Software Developer",
+				title: "Desarrollador de Software Senior",
 				bullets: [
-					"Built holaplace.com platform from scratch using the MERN stack.",
-					"Developed a React SPA using Redux, React Router, XState for complex state management, and Socket.IO for real-time features.",
-					"Implemented backend services with NestJS and Express, integrating MongoDB, Elasticsearch, Stripe, Redis, and AWS S3.",
-					"Containerized services with Docker and Docker Compose; used AWS LocalStack for local cloud development.",
-					"Applied TDD with Jest, covering unit, integration, and end-to-end tests.",
-					"Managed repositories with Git and GitLab; automated deployments using Terraform.",
-					"Performed code reviews and collaborated in a 6-person cross-functional team.",
+					"Construí la plataforma holaplace.com desde cero con el stack MERN.",
+					"Desarrollé una SPA en React usando Redux, React Router, XState para el estado complejo y Socket.IO para las funcionalidades en tiempo real.",
+					"Implementé los servicios de backend con NestJS y Express, integrando MongoDB, Elasticsearch, Stripe, Redis y AWS S3.",
+					"Contenericé los servicios con Docker y Docker Compose; usé AWS LocalStack para desarrollo cloud en local.",
+					"Apliqué TDD con Jest, cubriendo tests unitarios, de integración y end-to-end.",
+					"Gestioné los repositorios con Git y GitLab; automaticé los despliegues con Terraform.",
+					"Realicé revisiones de código y colaboré en un equipo multidisciplinar de 6 personas.",
 				],
 			},
 			{
 				period: "Nov 2019 — Jun 2020",
 				company: "Front10",
-				title: "Software Developer",
+				title: "Desarrollador de Software",
 				bullets: [
-					"Maintained and extended a React component library for airline applications.",
-					"Implemented automated testing and deployment with GitLab CI/CD.",
-					"Wrote unit and e2e tests using Jest and Cypress.",
-					"Contributed to the company-wide migration from JavaScript to TypeScript.",
+					"Mantuve y amplié una librería de componentes React para aplicaciones de aerolíneas.",
+					"Implementé testing y despliegue automatizados con GitLab CI/CD.",
+					"Escribí tests unitarios y end-to-end con Jest y Cypress.",
+					"Contribuí a la migración de JavaScript a TypeScript en toda la empresa.",
 				],
 			},
 			{
 				period: "Mar 2016 — Oct 2019",
 				company: "Melkart Outsourcing & Business",
-				title: "Full Stack Software Engineer",
+				title: "Ingeniero de Software Full Stack",
 				bullets: [
-					"Developed multiple web applications using the MERN stack.",
-					"Delivered one full project using Clojure and ClojureScript.",
-					"Built backend services with Node.js, Express, and SailsJS.",
-					"Managed and delivered 3-4 concurrent projects while meeting deadlines.",
+					"Desarrollé múltiples aplicaciones web con el stack MERN.",
+					"Entregué un proyecto completo usando Clojure y ClojureScript.",
+					"Construí servicios de backend con Node.js, Express y SailsJS.",
+					"Gestioné y entregué 3-4 proyectos simultáneos cumpliendo los plazos.",
 				],
 			},
 		],
 	},
 
 	skills: {
-		heading: { index: 5, title: "Skills", meta: "Six groups" },
+		heading: { index: 5, title: "Tecnologías", meta: "Seis grupos" },
 		groups: [
 			{
 				name: "Frontend",
@@ -186,16 +183,16 @@ export const profile: ProfileContent = {
 				],
 			},
 			{
-				name: "Mobile & desktop",
+				name: "Móvil y escritorio",
 				items: ["React Native", "Rust", "Dioxus", "QT", "QML", "C++", "C"],
 			},
 			{
-				name: "Backend & data",
+				name: "Backend y datos",
 				items: [
 					"Node.js",
 					"NestJS",
 					"Express",
-					"REST APIs",
+					"APIs REST",
 					"WebSockets",
 					"GraphQL",
 					"CQRS",
@@ -211,7 +208,7 @@ export const profile: ProfileContent = {
 				],
 			},
 			{
-				name: "DevOps & platform",
+				name: "DevOps y plataforma",
 				items: [
 					"GitOps",
 					"CI/CD",
@@ -222,7 +219,7 @@ export const profile: ProfileContent = {
 					"Terraform",
 					"AWS",
 					"Proxmox",
-					"LGTM stack",
+					"Stack LGTM",
 					"Keycloak",
 					"WireGuard",
 					"TLS / OpenSSL",
@@ -231,15 +228,15 @@ export const profile: ProfileContent = {
 			},
 			{ name: "Testing", items: ["Jest", "Vitest", "Cypress", "TDD"] },
 			{
-				name: "Practice",
+				name: "Metodología",
 				items: [
 					"Clean Architecture",
-					"Design Patterns",
-					"Algorithms",
-					"Data Structures",
-					"Internationalization",
+					"Patrones de diseño",
+					"Algoritmos",
+					"Estructuras de datos",
+					"Internacionalización",
 					"Monorepos",
-					"Code Reviews",
+					"Revisiones de código",
 					"Agile / Scrum",
 				],
 			},
@@ -249,118 +246,118 @@ export const profile: ProfileContent = {
 	openSource: {
 		heading: {
 			index: 6,
-			title: "Open source",
+			title: "Código abierto",
 			meta: "github.com/eduinlight",
 		},
-		allReposLabel: "All 112 repositories →",
+		allReposLabel: "Los 112 repositorios →",
 		allReposUrl: "https://github.com/eduinlight?tab=repositories",
 		repos: [
 			{
 				name: "tel-bot-youtube-downloader",
 				tag: "Bot",
-				desc: "Telegram bot that downloads media from YouTube.",
+				desc: "Bot de Telegram que descarga contenido de YouTube.",
 				url: "https://github.com/eduinlight/tel-bot-youtube-downloader",
 			},
 			{
 				name: "gitlab-devops-helpers",
 				tag: "DevOps",
-				desc: "Helper tooling for GitLab CI/CD and DevOps workflows.",
+				desc: "Herramientas de apoyo para flujos de CI/CD y DevOps en GitLab.",
 				url: "https://github.com/eduinlight/gitlab-devops-helpers",
 			},
 			{
 				name: "hono-htmx-app",
 				tag: "Web",
-				desc: "Web application built with Hono and htmx.",
+				desc: "Aplicación web construida con Hono y htmx.",
 				url: "https://github.com/eduinlight/hono-htmx-app",
 			},
 			{
 				name: "actix_web-htmx-tera-alpinejs-tailwindcss-template",
-				tag: "Rust template",
-				desc: "Starter template pairing Actix Web with htmx, Tera, Alpine.js and Tailwind CSS.",
+				tag: "Plantilla Rust",
+				desc: "Plantilla inicial que combina Actix Web con htmx, Tera, Alpine.js y Tailwind CSS.",
 				url: "https://github.com/eduinlight/actix_web-htmx-tera-alpinejs-tailwindcss-template",
 			},
 			{
 				name: "event-driven-nest",
 				tag: "Backend",
-				desc: "Event-driven architecture with NestJS.",
+				desc: "Arquitectura orientada a eventos con NestJS.",
 				url: "https://github.com/eduinlight/event-driven-nest",
 			},
 			{
 				name: "kafka-poc",
 				tag: "Backend",
-				desc: "Proof of concept for messaging with Apache Kafka.",
+				desc: "Prueba de concepto de mensajería con Apache Kafka.",
 				url: "https://github.com/eduinlight/kafka-poc",
 			},
 			{
 				name: "c-web-server",
-				tag: "Systems",
-				desc: "A web server written in C.",
+				tag: "Sistemas",
+				desc: "Un servidor web escrito en C.",
 				url: "https://github.com/eduinlight/c-web-server",
 			},
 			{
 				name: "c-raylib-hot-reloading",
-				tag: "Systems",
-				desc: "Hot-reloading setup for C projects using raylib.",
+				tag: "Sistemas",
+				desc: "Configuración de hot-reloading para proyectos en C usando raylib.",
 				url: "https://github.com/eduinlight/c-raylib-hot-reloading",
 			},
 			{
 				name: "cpp-boilerplate-make",
-				tag: "Systems",
-				desc: "C++ project boilerplate with a Make build.",
+				tag: "Sistemas",
+				desc: "Plantilla base de proyecto C++ con build en Make.",
 				url: "https://github.com/eduinlight/cpp-boilerplate-make",
 			},
 			{
 				name: "battery_notifier",
-				tag: "Desktop",
-				desc: "Battery level notifier for the desktop.",
+				tag: "Escritorio",
+				desc: "Notificador del nivel de batería para el escritorio.",
 				url: "https://github.com/eduinlight/battery_notifier",
 			},
 			{
 				name: "kubernetes-devspace-vite-development",
 				tag: "Kubernetes",
-				desc: "Kubernetes development workflow with DevSpace for a Vite app.",
+				desc: "Flujo de desarrollo en Kubernetes con DevSpace para una app Vite.",
 				url: "https://github.com/eduinlight/kubernetes-devspace-vite-development",
 			},
 			{
 				name: "lego-route53-auto",
-				tag: "Infrastructure",
-				desc: "Automated TLS certificate issuing and renewal with lego and AWS Route53.",
+				tag: "Infraestructura",
+				desc: "Emisión y renovación automática de certificados TLS con lego y AWS Route53.",
 				url: "https://github.com/eduinlight/lego-route53-auto",
 			},
 			{
 				name: "wireguard-server",
-				tag: "Infrastructure",
-				desc: "WireGuard server with an Access Control List, built on wg-easy, allowing or denying VPN users' access to specific IPs.",
+				tag: "Infraestructura",
+				desc: "Servidor WireGuard con lista de control de acceso, sobre wg-easy, que permite o deniega a los usuarios de la VPN el acceso a IPs concretas.",
 				url: "https://github.com/eduinlight/wireguard-server",
 			},
 			{
 				name: "private-public-encrypt-test",
-				tag: "Security",
-				desc: "Experiments with public and private key encryption.",
+				tag: "Seguridad",
+				desc: "Experimentos con cifrado de clave pública y privada.",
 				url: "https://github.com/eduinlight/private-public-encrypt-test",
 			},
 			{
 				name: "file-service-backend",
 				tag: "Backend",
-				desc: "A file server for my local PC — the Clojure API behind the file-service front end.",
+				desc: "Un servidor de ficheros para mi PC local — la API en Clojure detrás de file-service.",
 				url: "https://github.com/eduinlight/file-service-backend",
 			},
 			{
 				name: "file-service-frontend",
 				tag: "Frontend",
-				desc: "A file server for a local machine, with a ClojureScript front end served on localhost.",
+				desc: "Un servidor de ficheros para una máquina local, con front end en ClojureScript servido en localhost.",
 				url: "https://github.com/eduinlight/file-service-frontend",
 			},
 			{
 				name: "formValidator",
-				tag: "Library",
-				desc: "A validation library for JavaScript.",
+				tag: "Librería",
+				desc: "Una librería de validación para JavaScript.",
 				url: "https://github.com/eduinlight/formValidator",
 			},
 			{
 				name: "my-wife-star",
-				tag: "Graphics",
-				desc: "Drawing a star with HTML5 canvas.",
+				tag: "Gráficos",
+				desc: "Dibujando una estrella con canvas de HTML5.",
 				url: "https://github.com/eduinlight/my-wife-star",
 			},
 		],
@@ -369,33 +366,33 @@ export const profile: ProfileContent = {
 	background: {
 		heading: {
 			index: 7,
-			title: "Background",
-			meta: "Education · honors · references",
+			title: "Trayectoria",
+			meta: "Formación · premios · referencias",
 		},
 		cards: [
 			{
-				kicker: "Education",
-				title: "B.Sc. Computer Software Engineering",
-				body: "Granma University · September 2009 – June 2014",
+				kicker: "Formación",
+				title: "Ingeniería Informática",
+				body: "Universidad de Granma · septiembre 2009 – junio 2014",
 			},
 			{
-				kicker: "Honors & awards",
+				kicker: "Premios y reconocimientos",
 				title: "ACM-ICPC",
-				body: "Caribbean Local Contest — 2011, 2012, 2013. Caribbean National Contest — 2011, 2012.",
+				body: "Concurso Local del Caribe — 2011, 2012, 2013. Concurso Nacional del Caribe — 2011, 2012.",
 			},
 			{
-				kicker: "References — to fill in",
+				kicker: "Referencias — pendiente",
 				title: "",
-				body: "Send two LinkedIn recommendations or client quotes — text, name and role — and they print here as pull quotes.",
+				body: "Envía dos recomendaciones de LinkedIn o citas de clientes — texto, nombre y cargo — y aparecerán aquí como testimonios.",
 				pending: true,
 			},
 		],
 	},
 
 	contact: {
-		heading: { index: 8, title: "Contact" },
-		headline: ["Let's build", "something solid"],
-		lead: "Open to senior engineering and DevOps work across frontend, mobile, desktop and platform. Based in Valencia, Spain, working remotely.",
+		heading: { index: 8, title: "Contacto" },
+		headline: ["Construyamos algo", "sólido"],
+		lead: "Disponible para trabajos senior de ingeniería y DevOps en frontend, móvil, escritorio y plataforma. Con base en Valencia, España, trabajando en remoto.",
 		email: "eduinlight@gmail.com",
 		phone: "+34 662638746",
 		showPhone: true,
@@ -406,13 +403,13 @@ export const profile: ProfileContent = {
 	},
 
 	footer: {
-		left: "Eduin Garcia — Senior Software Engineer / DevOps",
-		right: "Valencia, Spain · 2026",
+		left: "Eduin Garcia — Ingeniero de Software Senior / DevOps",
+		right: "Valencia, España · 2026",
 	},
 
 	seo: {
 		title: "Eduin Garcia",
 		description:
-			"Senior Software Engineer and DevOps with 10+ years building web, mobile and desktop applications and the cloud-native infrastructure they run on. Based in Valencia, Spain.",
+			"Ingeniero de Software Senior y DevOps con más de 10 años construyendo aplicaciones web, móviles y de escritorio y la infraestructura cloud-native sobre la que funcionan. Con base en Valencia, España.",
 	},
 };

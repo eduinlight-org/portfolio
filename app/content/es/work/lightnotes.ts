@@ -1,54 +1,49 @@
-// TODO: translate to Spanish.
-// Copied verbatim from ../en so the site renders in both locales today. The
-// structure must stay identical to the English module — the `Content` type is
-// what keeps the two in step.
-
 import { bold, mono, type Project, txt } from "~/content/types";
 
 export const lightnotes: Project = {
 	slug: "lightnotes",
 	name: "lightnotes",
-	kicker: "eduinlight-org · personal product · open source (MIT)",
-	headline: ["One rust codebase", "Six platforms"],
-	lead: "LightNotes is a local-first notes & diary app with a WYSIWYG Markdown editor, folders & tags, reminders, offline-first encrypted local storage, and background sync to a self-hosted REST + SSE API, deployed to Kubernetes via GitOps.",
+	kicker: "eduinlight-org · producto personal · código abierto (MIT)",
+	headline: ["Una base de código rust", "seis plataformas"],
+	lead: "LightNotes es una app local-first de notas y diario con editor WYSIWYG de Markdown, carpetas y etiquetas, recordatorios, almacenamiento local cifrado con prioridad offline y sincronización en segundo plano contra una API REST + SSE autoalojada, desplegada en Kubernetes mediante GitOps.",
 	link: {
-		label: "Source on GitHub",
+		label: "Código en GitHub",
 		href: "https://github.com/eduinlight-org/lightnotes",
 	},
 	linkAsButton: true,
 
 	hero: {
-		placeholder: "Drop a LightNotes screenshot",
+		placeholder: "Añade una captura de LightNotes",
 		ratio: "16 / 9",
 	},
 
 	sheet: {
-		title: "LightNotes — workspace scale",
-		badges: ["Rust 2021", "Sheet 01"],
-		note: "~22k lines of Rust across 317 files. Six platform targets: Web/WASM, macOS, Windows, Linux, Android, iOS.",
+		title: "LightNotes — escala del workspace",
+		badges: ["Rust 2021", "Hoja 01"],
+		note: "~22k líneas de Rust repartidas en 317 ficheros. Seis plataformas de destino: web/WASM, macOS, Windows, Linux, Android e iOS.",
 		stats: [
-			{ value: "6", label: "Platform targets" },
-			{ value: "11", label: "Crates (5 apps + 6 shared)" },
-			{ value: "77", label: "UI components" },
-			{ value: "~22k", label: "Lines of Rust" },
-			{ value: "12", label: "REST / SSE endpoints" },
+			{ value: "6", label: "Plataformas de destino" },
+			{ value: "11", label: "Crates (5 apps + 6 compartidos)" },
+			{ value: "77", label: "Componentes de UI" },
+			{ value: "~22k", label: "Líneas de Rust" },
+			{ value: "12", label: "Endpoints REST / SSE" },
 			{ value: "78", label: "Tests" },
-			{ value: "9", label: "CI/CD workflows" },
-			{ value: "400", label: "i18n message keys" },
+			{ value: "9", label: "Workflows de CI/CD" },
+			{ value: "400", label: "Claves de traducción" },
 		],
 	},
 
 	sections: [
 		{
 			index: 1,
-			title: "Architecture",
-			meta: "Cargo workspace monorepo",
+			title: "Arquitectura",
+			meta: "Monorepo con Cargo workspace",
 			kind: "bullets",
 			items: [
 				[
-					bold("Cargo workspace monorepo"),
+					bold("Monorepo con Cargo workspace"),
 					txt(
-						" — 5 application crates + 6 shared crates, one source tree compiled to five binaries via Cargo feature flags (",
+						" — 5 crates de aplicación + 6 crates compartidos, un único árbol de fuentes compilado a cinco binarios mediante feature flags de Cargo (",
 					),
 					mono("web"),
 					txt(" / "),
@@ -57,31 +52,31 @@ export const lightnotes: Project = {
 					mono("mobile"),
 					txt(" / "),
 					mono("server"),
-					txt(") and "),
+					txt(") y tablas de dependencias con "),
 					mono("cfg(target_os)"),
 					txt(" / "),
 					mono("cfg(target_arch)"),
-					txt(" dependency tables."),
+					txt("."),
 				],
 				[
-					bold("Thin platform shells"),
+					bold("Envoltorios finos por plataforma"),
 					txt(" — "),
 					mono("apps/web"),
 					txt(", "),
 					mono("apps/desktop"),
-					txt(" and "),
+					txt(" y "),
 					mono("apps/mobile"),
-					txt(" are ~50-line binaries around a shared "),
+					txt(" son binarios de unas 50 líneas alrededor de un "),
 					mono("packages/app"),
 					txt(
-						"; the layout adapts per platform (sidebar + top bar on desktop, compact header + bottom tabs on mobile).",
+						" compartido; el layout se adapta a cada plataforma (barra lateral y superior en escritorio, cabecera compacta y pestañas inferiores en móvil).",
 					),
 				],
 				[
-					bold("Hexagonal API with a CQRS split"),
+					bold("API hexagonal con separación CQRS"),
 					txt(" — "),
 					mono("domain/"),
-					txt(" (entities + port traits) → "),
+					txt(" (entidades y traits de puerto) → "),
 					mono("application/"),
 					txt(" ("),
 					mono("commands/"),
@@ -89,183 +84,190 @@ export const lightnotes: Project = {
 					mono("queries/"),
 					txt(") → "),
 					mono("infrastructure/"),
-					txt(" (Mongo repositories, auth, telemetry, migrations) → "),
+					txt(
+						" (repositorios Mongo, autenticación, telemetría, migraciones) → ",
+					),
 					mono("interface/http/"),
-					txt("; the HTTP layer never touches MongoDB directly."),
+					txt("; la capa HTTP nunca toca MongoDB directamente."),
 				],
 				[
-					bold("Shared DTO crate as the sync contract"),
+					bold("Crate de DTO compartido como contrato de sincronización"),
 					txt(" — "),
 					mono("sync-dto"),
 					txt(
-						" is compiled verbatim into both client and server, so the wire format cannot drift; ",
+						" se compila literalmente tanto en cliente como en servidor, de modo que el formato de transmisión no puede divergir; ",
 					),
 					mono("api-sdk"),
-					txt(" is the typed client over it."),
+					txt(" es el cliente tipado que lo envuelve."),
 				],
 				[
-					bold("Local-first by default"),
+					bold("Local-first por defecto"),
 					txt(
-						" — every read is served from the on-device database; sync is a background reconciliation loop, and the app is fully functional with the API unreachable.",
+						" — cada lectura se sirve desde la base de datos del dispositivo; la sincronización es un bucle de reconciliación en segundo plano y la app es plenamente funcional con la API inaccesible.",
 					),
 				],
 				[
-					bold("Convention-driven component layout"),
-					txt(" — every component is a directory ("),
+					bold("Estructura de componentes por convención"),
+					txt(" — cada componente es un directorio ("),
 					mono("component.rs"),
-					txt(" renders, "),
+					txt(" renderiza, "),
 					mono("use_component.rs"),
-					txt(" owns state and handlers), with an explicit "),
+					txt(
+						" gestiona estado y manejadores), con un patrón explícito de struct ",
+					),
 					mono("FooProps"),
-					txt(" struct pattern enforced repo-wide."),
+					txt(" aplicado en todo el repositorio."),
 				],
 			],
 		},
 		{
 			index: 2,
-			title: "Crates in the workspace",
-			meta: "5 apps · 6 packages",
+			title: "Crates del workspace",
+			meta: "5 apps · 6 paquetes",
 			kind: "nameDesc",
 			items: [
 				{
 					name: "apps/web",
-					desc: "Notes app, WASM SPA shell (nginx-served in production).",
+					desc: "App de notas, SPA en WASM (servida con nginx en producción).",
 				},
 				{
 					name: "apps/desktop",
-					desc: "Notes app, native shell for macOS / Windows / Linux.",
+					desc: "App de notas, envoltorio nativo para macOS / Windows / Linux.",
 				},
-				{ name: "apps/mobile", desc: "Notes app, Android / iOS shell." },
+				{
+					name: "apps/mobile",
+					desc: "App de notas, envoltorio Android / iOS.",
+				},
 				{
 					name: "apps/landing",
-					desc: "SSR marketing site (Dioxus fullstack, standalone server binary).",
+					desc: "Web de marketing con SSR (Dioxus fullstack, binario de servidor independiente).",
 				},
 				{
 					name: "apps/api",
-					desc: "Axum REST + SSE sync backend over MongoDB.",
+					desc: "Backend de sincronización REST + SSE en Axum sobre MongoDB.",
 				},
 				{
 					name: "packages/app",
-					desc: "Shared routes, views, 32 app components, and global state (sync, session, scheduler, reminders).",
+					desc: "Rutas, vistas, 32 componentes de aplicación y estado global compartidos (sincronización, sesión, planificador, recordatorios).",
 				},
 				{
 					name: "packages/ui",
-					desc: "45 generic, app-agnostic presentational components + theme.",
+					desc: "45 componentes de presentación genéricos e independientes de la app, más el tema.",
 				},
 				{
 					name: "packages/editor",
-					desc: "Rich-text / Markdown editor engine.",
+					desc: "Motor del editor de texto enriquecido / Markdown.",
 				},
 				{
 					name: "packages/store-sdk",
-					desc: "Encrypted on-device persistence and change queue.",
+					desc: "Persistencia cifrada en el dispositivo y cola de cambios.",
 				},
-				{ name: "packages/api-sdk", desc: "Typed REST + SSE client." },
+				{ name: "packages/api-sdk", desc: "Cliente REST + SSE tipado." },
 				{
 					name: "packages/sync-dto",
-					desc: "Shared client/server sync contract types.",
+					desc: "Tipos del contrato de sincronización compartidos entre cliente y servidor.",
 				},
 			],
 		},
 		{
 			index: 3,
-			title: "Client — shared Rust UI",
+			title: "Cliente — UI compartida en Rust",
 			meta: "Dioxus 0.7",
 			kind: "rows",
 			rows: [
 				{
-					label: "Core",
+					label: "Núcleo",
 					value:
 						"Rust 2021 (stable), Dioxus 0.7 — signals, RSX, #[component], hooks, context",
 				},
 				{
-					label: "Routing",
+					label: "Enrutado",
 					value:
-						"Dioxus Router — type-safe #[derive(Routable)] enum, 4 levels of nested #[layout]",
+						"Dioxus Router — enum #[derive(Routable)] con tipado seguro, 4 niveles de #[layout] anidados",
 				},
 				{
-					label: "Render targets",
+					label: "Destinos de render",
 					value:
 						"WebAssembly (wasm32-unknown-unknown), WKWebView, WebView2, WebKitGTK",
 				},
 				{
 					label: "SSR",
 					value:
-						"Dioxus Fullstack — server-side rendering + hydration for the landing site",
+						"Dioxus Fullstack — renderizado en servidor e hidratación para la landing",
 				},
 				{
-					label: "Components",
+					label: "Componentes",
 					value:
-						"dioxus-primitives (headless/accessible) wrapped into a 45-component in-house design system (packages/ui)",
+						"dioxus-primitives (headless y accesibles) envueltos en un sistema de diseño propio de 45 componentes (packages/ui)",
 				},
 				{
-					label: "Styling",
+					label: "Estilos",
 					value:
-						"Tailwind CSS 4 — compiled by the Dioxus CLI from Rust sources, no Node/npm step; dark/light themes + 6 accent colors",
+						"Tailwind CSS 4 — compilado por la CLI de Dioxus desde las fuentes Rust, sin paso por Node/npm; temas claro y oscuro + 6 colores de acento",
 				},
 				{
 					label: "Editor",
 					value:
-						"taino-edit (core + extensions) — ProseMirror-style schema, 14 extensions, WYSIWYG round-tripping to Markdown",
+						"taino-edit (núcleo + extensiones) — esquema estilo ProseMirror, 14 extensiones, WYSIWYG con ida y vuelta a Markdown",
 				},
 				{
 					label: "i18n",
 					value:
-						"dioxus-i18n + unic-langid + Fluent — 400 message keys, English & Spanish",
+						"dioxus-i18n + unic-langid + Fluent — 400 claves de traducción, inglés y español",
 				},
-				{ label: "Icons / time", value: "dioxus-icons, time, web-time" },
+				{ label: "Iconos / tiempo", value: "dioxus-icons, time, web-time" },
 				{
-					label: "JS interop",
+					label: "Interoperación JS",
 					value:
-						"document::eval bridges for Google Sign-In (web), splash screen, timezone offset, accent theming",
+						"Puentes con document::eval para Google Sign-In (web), splash screen, desfase horario y tematización del acento",
 				},
 				{
-					label: "Notifications",
+					label: "Notificaciones",
 					value:
-						"notify-rust (Linux), windows + WinRT toasts, objc2-user-notifications (macOS/iOS), jni + ndk-context (Android)",
+						"notify-rust (Linux), windows + toasts de WinRT, objc2-user-notifications (macOS/iOS), jni + ndk-context (Android)",
 				},
 				{
 					label: "Testing",
 					value:
-						"dioxus-ssr component render tests, unit tests across app / ui / sync-dto",
+						"Tests de render de componentes con dioxus-ssr, tests unitarios en app / ui / sync-dto",
 				},
 			],
 		},
 		{
 			index: 4,
-			title: "Local-first storage & sync",
-			meta: "Encrypted at rest",
+			title: "Almacenamiento local-first y sincronización",
+			meta: "Cifrado en reposo",
 			kind: "rows",
 			rows: [
 				{
-					label: "Database",
+					label: "Base de datos",
 					value:
-						"SQLite via sqlx 0.9 — async pooled queries, WAL, PRAGMA user_version schema versioning",
+						"SQLite mediante sqlx 0.9 — consultas asíncronas con pool, WAL, versionado de esquema con PRAGMA user_version",
 				},
 				{
-					label: "Encryption",
+					label: "Cifrado",
 					value:
-						"SQLCipher (libsqlite3-sys, bundled + vendored OpenSSL) — full DB encrypted at rest under a random 256-bit key, with a plaintext → encrypted migration path",
+						"SQLCipher (libsqlite3-sys, con OpenSSL empaquetado) — base de datos completa cifrada en reposo bajo una clave aleatoria de 256 bits, con ruta de migración de texto plano a cifrado",
 				},
 				{
-					label: "Key custody",
+					label: "Custodia de claves",
 					value:
-						"keyring — Keychain (macOS/iOS), Credential Manager (Windows), Secret Service (Linux), app-private storage (Android)",
+						"keyring — Llavero (macOS/iOS), Administrador de credenciales (Windows), Secret Service (Linux), almacenamiento privado de la app (Android)",
 				},
 				{
-					label: "Sync engine",
+					label: "Motor de sincronización",
 					value:
-						"Custom change-log reconciliation: offline pending-change queue, debounced batching, cursor-based catch-up, exponential-backoff reconnect, last-write-wins conflict resolution, manual offline toggle",
+						"Reconciliación propia por registro de cambios: cola de cambios pendientes offline, agrupación con debounce, puesta al día por cursor, reconexión con backoff exponencial, resolución de conflictos por última escritura y conmutador manual de modo offline",
 				},
 				{
-					label: "Transport",
+					label: "Transporte",
 					value:
-						"api-sdk — hand-rolled REST + SSE client (reqwest/rustls, async-stream, futures-util) compiling for both native and wasm",
+						"api-sdk — cliente REST + SSE hecho a mano (reqwest/rustls, async-stream, futures-util) que compila tanto para nativo como para wasm",
 				},
 				{
-					label: "Scheduling",
+					label: "Planificación",
 					value:
-						"tokio timers on native, gloo-timers on wasm; local reminder scheduler feeding OS notification centers",
+						"Temporizadores de tokio en nativo, gloo-timers en wasm; planificador local de recordatorios que alimenta los centros de notificaciones del sistema",
 				},
 			],
 		},
@@ -277,222 +279,226 @@ export const lightnotes: Project = {
 			rows: [
 				{
 					label: "Runtime",
-					value: "Rust 2021, Tokio 1 (multi-thread, signal handling)",
+					value: "Rust 2021, Tokio 1 (multihilo, gestión de señales)",
 				},
 				{
 					label: "Framework",
-					value: "Axum 0.8, Tower / tower-http (CORS, body limits, tracing)",
-				},
-				{
-					label: "Database",
 					value:
-						"MongoDB 7 — mongodb driver + mongodm, hand-written versioned index/collection migrations",
+						"Axum 0.8, Tower / tower-http (CORS, límites de cuerpo, tracing)",
 				},
 				{
-					label: "Realtime",
+					label: "Base de datos",
 					value:
-						"Server-Sent Events, fanned out in-process via tokio::broadcast + tokio-stream",
+						"MongoDB 7 — driver mongodb + mongodm, migraciones versionadas de índices y colecciones escritas a mano",
 				},
 				{
-					label: "Auth",
+					label: "Tiempo real",
 					value:
-						"Google OAuth 2.0 / OIDC — web ID-token flow and native authorization-code flow with PKCE, plus short-lived auth tickets",
+						"Server-Sent Events, difundidos en proceso vía tokio::broadcast + tokio-stream",
 				},
 				{
-					label: "Sessions",
+					label: "Autenticación",
 					value:
-						"JWT (jsonwebtoken, RustCrypto backend) — access/refresh rotation, revocation, TTL-configurable",
+						"Google OAuth 2.0 / OIDC — flujo de ID token en web y flujo de código de autorización con PKCE en nativo, más tickets de autenticación de corta duración",
 				},
 				{
-					label: "Security",
+					label: "Sesiones",
 					value:
-						"axum-helmet security headers, 2 MB request body limit, rustls-only TLS, fail-fast secret validation at startup",
+						"JWT (jsonwebtoken, backend RustCrypto) — rotación de access/refresh, revocación, TTL configurable",
 				},
 				{
-					label: "Observability",
+					label: "Seguridad",
 					value:
-						"OpenTelemetry (OTLP HTTP/protobuf) — traces, metrics & logs; tracing + tracing-subscriber + tracing-opentelemetry, JSON output, log rotation",
+						"Cabeceras de seguridad con axum-helmet, límite de 2 MB por petición, TLS solo con rustls, validación de secretos al arranque con fallo temprano",
 				},
 				{
-					label: "Metrics",
+					label: "Observabilidad",
 					value:
-						"http.server.request.duration, http.server.active_requests, db.client.operation.duration, lightnotes.sse.active_streams, lightnotes.changes.processed, lightnotes.auth.attempts, plus process CPU/memory/uptime",
+						"OpenTelemetry (OTLP HTTP/protobuf) — trazas, métricas y logs; tracing + tracing-subscriber + tracing-opentelemetry, salida JSON, rotación de logs",
 				},
 				{
-					label: "Health",
+					label: "Métricas",
 					value:
-						"/healthz liveness, /readyz MongoDB-backed readiness; graceful SIGTERM drain + telemetry flush",
+						"http.server.request.duration, http.server.active_requests, db.client.operation.duration, lightnotes.sse.active_streams, lightnotes.changes.processed, lightnotes.auth.attempts, además de CPU, memoria y uptime del proceso",
 				},
 				{
-					label: "Config",
-					value: "dotenvy, environment-driven, serde / serde_json throughout",
+					label: "Salud",
+					value:
+						"/healthz para liveness, /readyz para readiness contra MongoDB; drenado ordenado ante SIGTERM y volcado de telemetría",
+				},
+				{
+					label: "Configuración",
+					value:
+						"dotenvy, dirigida por entorno, serde / serde_json en todo el proyecto",
 				},
 			],
 		},
 		{
 			index: 6,
-			title: "Infrastructure & DevOps",
+			title: "Infraestructura y DevOps",
 			meta: "k3s · ArgoCD · 9 workflows",
 			kind: "bullets",
 			items: [
 				[
-					bold("Kubernetes (k3s) with ArgoCD GitOps"),
-					txt(" — a separate "),
+					bold("Kubernetes (k3s) con GitOps mediante ArgoCD"),
+					txt(" — un repositorio aparte, "),
 					mono("lightnotes-cd"),
-					txt(" repo holds "),
+					txt(", contiene "),
 					mono("AppProject"),
 					txt(" + "),
 					mono("Application"),
 					txt(
-						" and 12 Kustomize-managed manifests, with automated sync, prune, self-heal, server-side apply and retry backoff.",
+						" y 12 manifiestos gestionados con Kustomize, con sincronización, poda y autorreparación automáticas, server-side apply y reintentos con backoff.",
 					),
 				],
 				[
-					bold("Kustomize image bumps from CI"),
-					txt(" — app-repo pushes build and push "),
+					bold("Actualización de imágenes en Kustomize desde CI"),
+					txt(" — los pushes al repositorio de la app construyen y publican "),
 					mono("ghcr.io/…:<sha>"),
-					txt(", then a reusable "),
+					txt(", y después un workflow reutilizable "),
 					mono("cd-bump"),
-					txt(" workflow runs "),
+					txt(" ejecuta "),
 					mono("kustomize edit set image"),
 					txt(
-						" against the CD repo (shared concurrency group, rebase-and-retry); ArgoCD picks it up on the next poll.",
+						" sobre el repositorio de CD (grupo de concurrencia compartido, rebase y reintento); ArgoCD lo recoge en el siguiente sondeo.",
 					),
 				],
 				[
-					bold("frp reverse tunnel"),
+					bold("Túnel inverso con frp"),
 					txt(
-						" — three services exposed publicly from a cluster with no ingress controller and no open inbound port; TLS terminates at the edge.",
+						" — tres servicios expuestos públicamente desde un clúster sin controlador de ingress y sin ningún puerto de entrada abierto; el TLS termina en el borde.",
 					),
 				],
 				[
 					bold("Docker / Docker Compose"),
-					txt(" — slim runtime images ("),
+					txt(" — imágenes de ejecución ligeras ("),
 					mono("debian:trixie-slim"),
-					txt(" for Rust binaries, "),
+					txt(" para los binarios Rust, "),
 					mono("nginx:1.27-alpine"),
-					txt(" for the SPA with "),
+					txt(" para la SPA con fallback "),
 					mono("try_files"),
 					txt(
-						" fallback, gzip and hashed-asset cache tiers); Compose brings up MongoDB and mongo-express locally.",
+						", gzip y niveles de caché por hash de asset); Compose levanta MongoDB y mongo-express en local.",
 					),
 				],
 				[
 					bold("GitHub Actions — 9 workflows"),
 					txt(
-						" — CI matrix (Linux/macOS/Windows plus a wasm target check), 3 deploy pipelines, 4 desktop-release workflows and 1 reusable CD-bump, with ",
+						" — matriz de CI (Linux/macOS/Windows más una comprobación del target wasm), 3 pipelines de despliegue, 4 workflows de release de escritorio y 1 cd-bump reutilizable, con ",
 					),
 					mono("rust-cache"),
-					txt(", pinned toolchains and "),
+					txt(", toolchains fijadas y distribución mediante "),
 					mono("workflow_call"),
-					txt(" fan-out."),
+					txt("."),
 				],
 				[
-					bold("Self-hosted containerized runner"),
-					txt(" — a homelab runner built from "),
+					bold("Runner autoalojado en contenedor"),
+					txt(" — un runner en homelab construido desde "),
 					mono("ubuntu:22.04"),
 					txt(
-						" with WebKitGTK deps baked in, which is what pins the shipped glibc floor.",
+						" con las dependencias de WebKitGTK incluidas, que es lo que fija el mínimo de glibc de las builds publicadas.",
 					),
 				],
 				[
-					bold("Tag-driven multi-platform releases"),
+					bold("Releases multiplataforma dirigidas por tags"),
 					txt(
-						" — one tag produces one draft GitHub Release containing per-arch ",
+						" — una etiqueta produce una única GitHub Release en borrador con ",
 					),
 					mono(".dmg"),
 					txt(", "),
 					mono(".msi"),
-					txt(", NSIS "),
-					mono(".exe"),
 					txt(", "),
+					mono(".exe"),
+					txt(" de NSIS, "),
 					mono(".AppImage"),
 					txt(", "),
 					mono(".deb"),
 					txt(", "),
 					mono(".rpm"),
-					txt(" and "),
+					txt(" y "),
 					mono("SHA256SUMS"),
-					txt("; it publishes nothing unless every platform succeeds."),
+					txt(
+						" por arquitectura; no publica nada salvo que todas las plataformas terminen correctamente.",
+					),
 				],
 				[
-					bold("Code signing"),
+					bold("Firma de código"),
 					txt(
-						" — Apple Developer ID signing, notarization and stapling (hardened runtime with JIT entitlements for JavaScriptCore), Windows Authenticode with RFC 3161 timestamping, and Android APK/AAB via a Gradle post-processing step with generated icon sets.",
+						" — firma con Apple Developer ID, notarización y stapling (hardened runtime con permisos JIT para JavaScriptCore), Authenticode de Windows con sellado de tiempo RFC 3161, y APK/AAB de Android mediante un paso de posprocesado en Gradle con juegos de iconos generados.",
 					),
 				],
 				[
 					bold("Grafana / Tempo / Prometheus / Loki"),
 					txt(" ("),
 					mono("grafana/otel-lgtm"),
-					txt(") as the telemetry backend, with W3C "),
+					txt(") como backend de telemetría, con propagación W3C "),
 					mono("traceparent"),
-					txt(" propagation and semconv-named spans; "),
+					txt(" y spans nombrados según semconv; "),
 					bold("make"),
 					txt(
-						" is the single entry point for every dev, build and bundle target.",
+						" es el único punto de entrada para cualquier tarea de desarrollo, build o empaquetado.",
 					),
 				],
 			],
 		},
 		{
 			index: 7,
-			title: "Engineering highlights",
-			meta: "Seven decisions",
+			title: "Decisiones técnicas destacadas",
+			meta: "Siete decisiones",
 			kind: "cards",
 			columns: 2,
 			titleStyle: "kicker",
 			items: [
 				{
-					title: "Encrypted local database",
-					body: "Encrypted at rest with OS-keychain key custody, including a one-way migration that re-encrypts an existing plaintext database in place while preserving its schema version.",
+					title: "Base de datos local cifrada",
+					body: "Cifrada en reposo con custodia de la clave en el llavero del sistema, incluyendo una migración unidireccional que recifra una base de datos existente en texto plano conservando su versión de esquema.",
 				},
 				{
-					title: "Offline as the default state",
-					body: "The pending-change queue, debounce window, backoff reconnect and cursor catch-up all live client-side, so the server stays a dumb append-only change log.",
+					title: "El modo offline como estado por defecto",
+					body: "La cola de cambios pendientes, la ventana de debounce, la reconexión con backoff y la puesta al día por cursor viven en el cliente, de modo que el servidor sigue siendo un simple registro de cambios de solo anexado.",
 				},
 				{
-					title: "One UI tree, six platforms",
-					body: "Platform differences are isolated to per-target dependency tables and a handful of cfg blocks; notifications are the only subsystem with four native implementations behind one trait.",
+					title: "Un árbol de UI, seis plataformas",
+					body: "Las diferencias entre plataformas quedan aisladas en tablas de dependencias por destino y un puñado de bloques cfg; las notificaciones son el único subsistema con cuatro implementaciones nativas tras un mismo trait.",
 				},
 				{
-					title: "Build-time API base URL",
-					body: "option_env! bakes the endpoint into the WASM bundle, with the cache-busting caveat documented — a deliberate trade of runtime configurability for a fully static SPA image.",
+					title: "URL base de la API en tiempo de compilación",
+					body: "option_env! incrusta el endpoint en el bundle WASM, con la salvedad de la invalidación de caché documentada — un intercambio deliberado de configurabilidad en ejecución a cambio de una imagen SPA totalmente estática.",
 				},
 				{
-					title: "Single-replica API by design",
-					body: "SSE fan-out is in-process tokio::broadcast; scaling out is documented as requiring Redis or Mongo change streams first, rather than left as an accidental constraint.",
+					title: "API de una sola réplica por diseño",
+					body: "La difusión SSE usa tokio::broadcast en proceso; escalar horizontalmente está documentado como algo que exige antes Redis o change streams de Mongo, en lugar de quedar como una limitación accidental.",
 				},
 				{
-					title: "Telemetry opt-in by env var",
-					body: "Export is entirely off unless OTEL_EXPORTER_OTLP_ENDPOINT is set, so dev and CI behave identically to a pre-instrumentation build.",
+					title: "Telemetría opcional por variable de entorno",
+					body: "La exportación está completamente desactivada salvo que se defina OTEL_EXPORTER_OTLP_ENDPOINT, así que desarrollo y CI se comportan igual que una build sin instrumentar.",
 				},
 				{
-					title: "Release integrity as a hard gate",
-					body: "The workflow fails when a tag disagrees with Cargo.toml, because bundlers stamp the version independently of the artifact filename.",
+					title: "La integridad de la release como barrera dura",
+					body: "El workflow falla cuando una etiqueta no coincide con Cargo.toml, porque los empaquetadores sellan la versión con independencia del nombre del artefacto.",
 				},
 			],
 		},
 	],
 
 	gallery: [
-		{ placeholder: "Desktop screenshot", ratio: "4 / 3" },
-		{ placeholder: "Mobile screenshot", ratio: "4 / 3" },
+		{ placeholder: "Captura de escritorio", ratio: "4 / 3" },
+		{ placeholder: "Captura de móvil", ratio: "4 / 3" },
 	],
 
 	card: {
-		kicker: "Featured · open source (MIT)",
+		kicker: "Destacado · código abierto (MIT)",
 		title: "lightnotes",
-		body: "A local-first notes app built with Dioxus 0.7 — one Rust codebase shipping to web, desktop, and mobile, with a rich Markdown editor, folders & tags, and background sync to a self-hosted API.",
-		meta: "Rust · Dioxus 0.7 · Web / desktop / mobile",
-		placeholder: "lightnotes screenshot",
+		body: "Una app de notas local-first construida con Dioxus 0.7 — una base de código Rust que se publica en web, escritorio y móvil, con editor Markdown enriquecido, carpetas y etiquetas, y sincronización en segundo plano contra una API autoalojada.",
+		meta: "Rust · Dioxus 0.7 · Web / escritorio / móvil",
+		placeholder: "Captura de lightnotes",
 		featured: true,
-		tags: ["Rust", "Dioxus 0.7", "Web / desktop / mobile"],
+		tags: ["Rust", "Dioxus 0.7", "Web / escritorio / móvil"],
 	},
 
 	seo: {
 		title: "lightnotes",
 		description:
-			"A local-first notes and diary app in one Rust codebase shipping to six platforms — Dioxus 0.7, encrypted SQLite, an Axum REST + SSE sync API and ArgoCD GitOps on k3s.",
+			"Una app local-first de notas y diario en una sola base de código Rust que llega a seis plataformas — Dioxus 0.7, SQLite cifrado, una API de sincronización REST + SSE en Axum y GitOps con ArgoCD sobre k3s.",
 	},
 };

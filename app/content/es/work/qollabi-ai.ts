@@ -1,18 +1,14 @@
-// TODO: translate to Spanish.
-// Copied verbatim from ../en so the site renders in both locales today. The
-// structure must stay identical to the English module — the `Content` type is
-// what keeps the two in step.
-
 import { bold, em, mono, type Project, txt } from "~/content/types";
 
 export const qollabiAi: Project = {
 	slug: "qollabi-ai",
 	name: "Qollabi 2.0",
-	kicker: "Qollabi · Senior Software Developer / DevOps · Jan 2024 – Apr 2026",
-	headline: ["Qollabi 2.0 — the", "greenfield rewrite"],
+	kicker:
+		"Qollabi · Desarrollador de Software Senior / DevOps · Ene 2024 – Abr 2026",
+	headline: ["Qollabi 2.0 — la", "reescritura desde cero"],
 	lead: [
 		txt(
-			"Multi-tenant B2B SaaS for partner & channel management — workspaces, partner and customer entities, opportunities, key metrics (OKRs), campaigns with a visual email builder, smart lists, shared partner spaces, CSV import and a taxonomy/attribute system. A ground-up TypeScript rewrite of the legacy PHP/React platform, deployed under the internal project name ",
+			"SaaS B2B multi-tenant para gestión de partners y canal — espacios de trabajo, entidades de partner y cliente, oportunidades, métricas clave (OKR), campañas con editor visual de correo, listas inteligentes, espacios compartidos con partners, importación CSV y un sistema de taxonomías y atributos. Una reescritura íntegra en TypeScript de la plataforma heredada en PHP/React, desplegada bajo el nombre interno de proyecto ",
 		),
 		mono("qollabi-ai"),
 		txt("."),
@@ -21,146 +17,149 @@ export const qollabiAi: Project = {
 	linkAsButton: true,
 
 	hero: {
-		placeholder: "Drop a Qollabi 2.0 screenshot",
+		placeholder: "Añade una captura de Qollabi 2.0",
 		ratio: "16 / 9",
 	},
 
 	sheet: {
-		title: "Qollabi 2.0 — platform scale",
-		badges: ["Bun workspaces", "Sheet 01"],
+		title: "Qollabi 2.0 — escala de la plataforma",
+		badges: ["Bun workspaces", "Hoja 01"],
 		stats: [
-			{ value: "~205k", label: "Lines of TypeScript" },
-			{ value: "7 + 26", label: "Apps & shared packages" },
-			{ value: "77", label: "PostgreSQL tables" },
-			{ value: "64", label: "Migrations" },
-			{ value: "163", label: "Command handlers" },
-			{ value: "545", label: "Route modules" },
-			{ value: "81", label: "Design-system components" },
-			{ value: "19", label: "Background jobs" },
+			{ value: "~205k", label: "Líneas de TypeScript" },
+			{ value: "7 + 26", label: "Apps y paquetes compartidos" },
+			{ value: "77", label: "Tablas de PostgreSQL" },
+			{ value: "64", label: "Migraciones" },
+			{ value: "163", label: "Manejadores de comandos" },
+			{ value: "545", label: "Módulos de ruta" },
+			{ value: "81", label: "Componentes del sistema de diseño" },
+			{ value: "19", label: "Trabajos en segundo plano" },
 		],
 	},
 
 	sections: [
 		{
 			index: 1,
-			title: "My work",
-			meta: "Product · pipelines · cloud",
+			title: "Mi trabajo",
+			meta: "Producto · pipelines · cloud",
 			kind: "bullets",
 			items: [
-				"Developed the new Qollabi AI product using the Remix framework.",
-				"Created Docker setup for development and UAT/production deployment pipelines.",
-				"Developed and maintained AWS Lambda functions and ActivePieces infrastructure.",
-				"Implemented server-side events client using PostgreSQL LISTEN/NOTIFY API.",
-				"Maintained Terraform code and Docker Swarm cluster.",
-				"Managed AWS services: Route53, RDS, MQ, S3, IAM.",
-				"Built Salesforce data migration scripts for clients.",
-				"Set up VPN and tunnel for development usage.",
+				"Desarrollé el nuevo producto Qollabi AI con el framework Remix.",
+				"Creé el entorno Docker para desarrollo y los pipelines de despliegue a UAT y producción.",
+				"Desarrollé y mantuve funciones AWS Lambda y la infraestructura de ActivePieces.",
+				"Implementé un cliente de server-sent events usando la API LISTEN/NOTIFY de PostgreSQL.",
+				"Mantuve el código Terraform y el clúster de Docker Swarm.",
+				"Gestioné servicios de AWS: Route53, RDS, MQ, S3, IAM.",
+				"Construí scripts de migración de datos desde Salesforce para clientes.",
+				"Configuré la VPN y el túnel para el entorno de desarrollo.",
 			],
 		},
 		{
 			index: 2,
-			title: "Architecture",
-			meta: "Bloom · CQRS · RLS tenancy",
+			title: "Arquitectura",
+			meta: "Bloom · CQRS · tenancy con RLS",
 			kind: "bullets",
 			items: [
 				[
-					bold("Bun workspaces monorepo"),
+					bold("Monorepo con Bun workspaces"),
 					txt(
-						" — end-to-end TypeScript with no build step between packages; apps import backend logic directly as a workspace dependency rather than over HTTP.",
+						" — TypeScript de extremo a extremo sin paso de compilación entre paquetes; las apps importan la lógica de backend directamente como dependencia del workspace en lugar de hacerlo por HTTP.",
 					),
 				],
 				[
-					bold("“Bloom” — a homegrown application framework"),
-					txt(" — a "),
+					bold("«Bloom» — un framework de aplicación propio"),
+					txt(" — un "),
 					mono("Kernel"),
 					txt(
-						" with a build/boot plugin lifecycle, a typed DI service container, Zod-validated per-plugin env schemas and recursive plugin dependency resolution; every capability (CQRS, queue, KV, auth, wizard, emitter) ships as a Bloom plugin.",
+						" con ciclo de vida de plugins en build y boot, contenedor de inyección de dependencias tipado, esquemas de entorno por plugin validados con Zod y resolución recursiva de dependencias entre plugins; cada capacidad (CQRS, colas, KV, autenticación, asistentes, emisor de eventos) se distribuye como un plugin de Bloom.",
 					),
 				],
 				[
-					bold("CQRS + domain events"),
-					txt(" — "),
+					bold("CQRS y eventos de dominio"),
+					txt(" — primitivas "),
 					mono("Command"),
 					txt(" / "),
 					mono("CommandHandler"),
 					txt(" / "),
 					mono("DomainEvent"),
-					txt(" primitives with an extensible "),
+					txt(" con un sistema extensible de metadatos "),
 					em("stamp"),
-					txt(" metadata system ("),
+					txt(" ("),
 					mono("eventId"),
 					txt(", "),
 					mono("aggregateId"),
 					txt(", "),
 					mono("occurredOn"),
 					txt(
-						", versioning) and an event recorder that only dispatches events once the command commits, so failed requests never emit side effects.",
+						", versionado) y un registrador de eventos que solo los despacha una vez que el comando ha confirmado, de modo que las peticiones fallidas nunca provocan efectos secundarios.",
 					),
 				],
 				[
-					bold("Multi-tenancy via PostgreSQL Row-Level Security"),
+					bold("Multi-tenancy mediante Row-Level Security de PostgreSQL"),
 					txt(
-						" — a Hono middleware opens a pooled connection, starts a transaction, sets ",
+						" — un middleware de Hono abre una conexión del pool, inicia una transacción, fija ",
 					),
 					mono("SET LOCAL ROLE tenant_user"),
-					txt(" and "),
+					txt(" y "),
 					mono("app.current_workspace_id"),
-					txt(" from the JWT, and pins the transaction into "),
+					txt(" a partir del JWT, y ancla la transacción en "),
 					mono("AsyncLocalStorage"),
 					txt(
-						" so every repository call inside the request is tenant-scoped automatically; a separate non-isolated middleware exists solely for the cross-workspace admin dashboard.",
+						" para que toda llamada a repositorio dentro de la petición quede acotada al tenant automáticamente; existe un middleware separado sin aislamiento únicamente para el panel de administración entre espacios de trabajo.",
 					),
 				],
 				[
-					bold("Backend-as-a-library"),
+					bold("El backend como librería"),
 					txt(" — "),
 					mono("@qollabi/backend"),
 					txt(
-						" exposes no HTTP API of its own; the Remix apps, webhooks service and worker each mount it and dispatch commands/queries in-process.",
+						" no expone ninguna API HTTP propia; las apps Remix, el servicio de webhooks y el worker lo montan y despachan comandos y consultas en proceso.",
 					),
 				],
 				[
-					bold("Postgres as the only infrastructure dependency"),
+					bold("Postgres como única dependencia de infraestructura"),
 					txt(
-						" — relational store, job queue (Graphile Worker), KV store (Keyv) and pub/sub (a reconnecting ",
+						" — almacén relacional, cola de trabajos (Graphile Worker), almacén KV (Keyv) y pub/sub (un emisor ",
 					),
 					mono("LISTEN"),
 					txt("/"),
 					mono("NOTIFY"),
-					txt(" emitter) all run on the same database."),
+					txt(" con reconexión) corren todos sobre la misma base de datos."),
 				],
 			],
 		},
 		{
 			index: 3,
-			title: "Apps in the monorepo",
-			meta: "Seven deployables",
+			title: "Apps del monorepo",
+			meta: "Siete desplegables",
 			kind: "nameDesc",
 			items: [
 				{
 					name: "shelf",
-					desc: "Customer-facing Remix SPA/SSR app for partnerships, opportunities and key metrics (473 route modules).",
+					desc: "App Remix SPA/SSR de cara al cliente para partnerships, oportunidades y métricas clave (473 módulos de ruta).",
 				},
 				{
 					name: "dashboard",
-					desc: "Internal admin app for organizations, workspaces and campaign/smart-list templates.",
+					desc: "App interna de administración para organizaciones, espacios de trabajo y plantillas de campañas y listas inteligentes.",
 				},
-				{ name: "spaces", desc: "Externally shared partner spaces app." },
+				{
+					name: "spaces",
+					desc: "App de espacios compartidos externamente con partners.",
+				},
 				{
 					name: "backend",
-					desc: "The domain layer: schemas, repositories, commands, events and jobs, consumed in-process by the apps.",
+					desc: "La capa de dominio: esquemas, repositorios, comandos, eventos y trabajos, consumidos en proceso por las apps.",
 				},
 				{
 					name: "worker",
-					desc: "Graphile Worker process (3 replicas locally) plus a React Email preview server.",
+					desc: "Proceso de Graphile Worker (3 réplicas en local) más un servidor de vista previa de React Email.",
 				},
 				{
 					name: "webhooks",
-					desc: "Standalone Hono service for inbound webhooks (Postmark, integrations).",
+					desc: "Servicio Hono independiente para webhooks entrantes (Postmark, integraciones).",
 				},
 				{
 					name: "public-api",
-					desc: "Pylon GraphQL surface for third-party integrations.",
+					desc: "Superficie GraphQL con Pylon para integraciones de terceros.",
 				},
 			],
 		},
@@ -173,67 +172,68 @@ export const qollabiAi: Project = {
 				{ label: "Runtime", value: "Bun 1.2 / Node 22, TypeScript 5.5" },
 				{
 					label: "Framework",
-					value: "Bloom (in-house kernel + plugin system), Hono 4",
+					value: "Bloom (kernel y sistema de plugins propios), Hono 4",
 				},
 				{
-					label: "Database",
+					label: "Base de datos",
 					value:
-						"PostgreSQL 17, Drizzle ORM 0.36 + drizzle-zod, postgres / pg drivers",
+						"PostgreSQL 17, Drizzle ORM 0.36 + drizzle-zod, drivers postgres / pg",
 				},
 				{
-					label: "Migrations",
+					label: "Migraciones",
 					value:
-						"Custom @bloom/drizzle-migrations CLI on Drizzle Kit — generate, up/down, status, rebase, validate, fresh, refresh (Jest-tested)",
+						"CLI propia @bloom/drizzle-migrations sobre Drizzle Kit — generate, up/down, status, rebase, validate, fresh, refresh (con tests en Jest)",
 				},
 				{
-					label: "Auth",
+					label: "Autenticación",
 					value:
-						"Keycloak 26 (OIDC) via remix-auth-oauth2, jsonwebtoken, Keycloak Admin Client SDK wrapper, bcrypt-edge",
+						"Keycloak 26 (OIDC) vía remix-auth-oauth2, jsonwebtoken, envoltorio del SDK de administración de Keycloak, bcrypt-edge",
 				},
 				{
-					label: "Queues / jobs",
+					label: "Colas y trabajos",
 					value:
-						"Graphile Worker (Postgres-backed), typed job registry, 19 background jobs",
+						"Graphile Worker (respaldado por Postgres), registro de trabajos tipado, 19 trabajos en segundo plano",
 				},
 				{
 					label: "Pub/Sub",
 					value:
-						"@bloom/postgres-emitter — LISTEN/NOTIFY client with channel mapping, auto-reconnect and backoff",
+						"@bloom/postgres-emitter — cliente LISTEN/NOTIFY con mapeo de canales, reconexión automática y backoff",
 				},
 				{
-					label: "KV / cache",
-					value: "Keyv with a PostgreSQL adapter (@keyv/postgres)",
+					label: "KV / caché",
+					value: "Keyv con adaptador de PostgreSQL (@keyv/postgres)",
 				},
 				{
-					label: "Validation",
+					label: "Validación",
 					value:
-						"Zod 3 everywhere — command schemas, env schemas, @hono/zod-validator, zod-validation-error",
+						"Zod 3 en todas partes — esquemas de comandos, esquemas de entorno, @hono/zod-validator, zod-validation-error",
 				},
 				{
-					label: "Email",
+					label: "Correo",
 					value:
-						"Postmark (transactional + inbound webhooks), React Email for templates, Maily for the customer-facing drag-and-drop builder",
+						"Postmark (transaccional y webhooks entrantes), React Email para las plantillas y Maily para el editor de arrastrar y soltar de cara al cliente",
 				},
 				{
-					label: "Storage",
-					value: "AWS S3 SDK v3 + presigned URLs (LocalStack in dev)",
-				},
-				{
-					label: "Data import",
+					label: "Almacenamiento",
 					value:
-						"Streaming CSV pipeline — csv-parser, chardet + iconv-lite encoding detection, S3 staging, chunked job processing",
+						"SDK v3 de AWS S3 + URLs prefirmadas (LocalStack en desarrollo)",
+				},
+				{
+					label: "Importación de datos",
+					value:
+						"Pipeline CSV en streaming — csv-parser, detección de codificación con chardet + iconv-lite, staging en S3, procesamiento por lotes en trabajos",
 				},
 				{
 					label: "i18n",
 					value:
-						"i18next + remix-i18next, per-module translation catalogs (en / fr / nl)",
+						"i18next + remix-i18next, catálogos de traducción por módulo (en / fr / nl)",
 				},
-				{ label: "Logging", value: "Pino (pino-pretty in dev)" },
-				{ label: "Errors", value: "Sentry (toucan-js) and Rollbar" },
+				{ label: "Logging", value: "Pino (pino-pretty en desarrollo)" },
+				{ label: "Errores", value: "Sentry (toucan-js) y Rollbar" },
 				{
-					label: "Public API",
+					label: "API pública",
 					value:
-						"@getcronit/pylon — GraphQL generated from plain TypeScript functions (early scaffold)",
+						"@getcronit/pylon — GraphQL generado a partir de funciones TypeScript planas (esqueleto inicial)",
 				},
 			],
 		},
@@ -244,186 +244,187 @@ export const qollabiAi: Project = {
 			kind: "rows",
 			rows: [
 				{
-					label: "Core",
+					label: "Núcleo",
 					value: "React 18.3, TypeScript 5.5, Remix 2 (Vite 5), SSR",
 				},
 				{
-					label: "Routing",
+					label: "Enrutado",
 					value:
-						"remix-flat-routes, typed search params via nuqs, remix-hono server adapter",
+						"remix-flat-routes, parámetros de búsqueda tipados con nuqs, adaptador de servidor remix-hono",
 				},
 				{
-					label: "Components",
+					label: "Componentes",
 					value:
-						"shadcn/ui on Radix UI primitives (~22 packages) — shared @bloom/ui-web with 81 components + blocks, hooks and themes",
+						"shadcn/ui sobre primitivas de Radix UI (~22 paquetes) — @bloom/ui-web compartido con 81 componentes y bloques, hooks y temas",
 				},
 				{
-					label: "Styling",
+					label: "Estilos",
 					value:
-						"Tailwind CSS 3.4, tailwindcss-animate, class-variance-authority, clsx, tailwind-merge, Poppins via Fontsource",
+						"Tailwind CSS 3.4, tailwindcss-animate, class-variance-authority, clsx, tailwind-merge, Poppins vía Fontsource",
 				},
 				{
-					label: "Forms",
-					value: "React Hook Form 7 + remix-hook-form + Zod resolvers",
+					label: "Formularios",
+					value: "React Hook Form 7 + remix-hook-form + resolvers de Zod",
 				},
 				{
-					label: "Client state",
-					value: "Redux Toolkit + React Redux (shelf), nuqs for URL state",
-				},
-				{
-					label: "Tables & lists",
+					label: "Estado de cliente",
 					value:
-						"react-virtuoso (virtualized lists), react-easy-sort, emblor (tag input)",
+						"Redux Toolkit + React Redux (shelf), nuqs para el estado en la URL",
 				},
-				{ label: "Charts", value: "Recharts 2" },
-				{ label: "Maps", value: "Mapbox GL / MapLibre GL via react-map-gl" },
 				{
-					label: "Rich text",
-					value: "TipTap 3 (inside the Maily email editor)",
-				},
-				{ label: "Dates", value: "date-fns + date-fns-tz, react-day-picker" },
-				{
-					label: "Multi-step forms",
+					label: "Tablas y listas",
 					value:
-						"@bloom/wizard — type-safe wizards with pluggable cookie / KV / memory storage backends and automatic namespaced state",
+						"react-virtuoso (listas virtualizadas), react-easy-sort, emblor (entrada de etiquetas)",
 				},
-				{ label: "Icons", value: "Lucide, FontAwesome Pro" },
+				{ label: "Gráficas", value: "Recharts 2" },
+				{ label: "Mapas", value: "Mapbox GL / MapLibre GL vía react-map-gl" },
 				{
-					label: "Misc",
+					label: "Texto enriquecido",
+					value: "TipTap 3 (dentro del editor de correo Maily)",
+				},
+				{ label: "Fechas", value: "date-fns + date-fns-tz, react-day-picker" },
+				{
+					label: "Formularios por pasos",
+					value:
+						"@bloom/wizard — asistentes con tipado seguro y backends de almacenamiento intercambiables (cookie / KV / memoria) y estado con espacio de nombres automático",
+				},
+				{ label: "Iconos", value: "Lucide, FontAwesome Pro" },
+				{
+					label: "Varios",
 					value:
 						"Sonner, Vaul, cmdk, Embla, Motion, input-otp, react-phone-number-input, react-currency-input-field, next-themes, NProgress",
 				},
 				{
-					label: "Mobile",
+					label: "Móvil",
 					value:
-						"@bloom/ui-mobile — React Native primitives (@rn-primitives, NativeWind-style CVA) and an Expo tsconfig/CI workflow, prepared for a mobile client",
+						"@bloom/ui-mobile — primitivas de React Native (@rn-primitives, CVA al estilo NativeWind) y un tsconfig y workflow de CI para Expo, preparados para un cliente móvil",
 				},
 			],
 		},
 		{
 			index: 6,
-			title: "Infrastructure & DevOps",
-			meta: "Swarm · GitLab CI · ephemeral UAT",
+			title: "Infraestructura y DevOps",
+			meta: "Swarm · GitLab CI · UAT efímeros",
 			kind: "bullets",
 			items: [
 				[
-					bold("Docker Compose + Makefile"),
+					bold("Docker Compose y Makefile"),
 					txt(
-						" — the full local stack in one command: 3 Remix apps, worker (×3), webhooks, PostgreSQL 17 (multi-database init), Keycloak 26 with a custom theme, LocalStack S3, pgAdmin, Drizzle Studio and a React Email preview server; ",
+						" — todo el entorno local en un solo comando: 3 apps Remix, worker (×3), webhooks, PostgreSQL 17 (init multi-base de datos), Keycloak 26 con tema propio, LocalStack S3, pgAdmin, Drizzle Studio y un servidor de vista previa de React Email; ",
 					),
 					mono("make install / start / reinstall / uninstall"),
-					txt(" wrap the whole lifecycle."),
+					txt(" cubren todo el ciclo de vida."),
 				],
 				[
 					bold("GitLab CI/CD"),
 					txt(
-						" — Biome CI → migration validation → multi-target image build (shelf, spaces, dashboard, worker, webhooks, commands, migrations) → ",
+						" — Biome CI → validación de migraciones → construcción de imágenes multi-destino (shelf, spaces, dashboard, worker, webhooks, commands, migrations) → ",
 					),
 					mono("docker stack deploy"),
 					txt(
-						" → automated post-deploy image-digest validation, gated by UAT/PRD tag formats.",
+						" → validación automática del digest de la imagen tras el despliegue, con control por formato de etiqueta UAT/PRD.",
 					),
 				],
 				[
-					bold("Per-branch ephemeral UAT environments"),
+					bold("Entornos UAT efímeros por rama"),
 					txt(
-						" — the pipeline parses the ticket ID from the tag, provisions a dedicated ",
+						" — el pipeline extrae el identificador de ticket de la etiqueta, aprovisiona una base de datos dedicada ",
 					),
 					mono("qollabi_db_<ticket>"),
 					txt(
-						" database, rewrites every Postgres URL (app, KV, queue, notifier) to point at it, deploys an isolated Swarm stack, and tears down the stack, Keycloak realm and database on cleanup.",
+						", reescribe todas las URLs de Postgres (app, KV, cola, notificador) para apuntar a ella, despliega un stack aislado de Swarm y elimina el stack, el realm de Keycloak y la base de datos al limpiar.",
 					),
 				],
 				[
 					bold("Docker Swarm"),
 					txt(
-						" production/UAT stacks with a single multi-stage Dockerfile producing 7 targets from shared install/build layers, plus the AWS RDS TLS bundle baked in.",
+						" — stacks de producción y UAT con un único Dockerfile multi-etapa que produce 7 destinos a partir de capas compartidas de instalación y build, además del bundle TLS de AWS RDS incorporado.",
 					),
 				],
 				[
-					bold("Playwright end-to-end suite"),
-					txt(" with a Keycloak login setup project and a dedicated "),
+					bold("Suite end-to-end con Playwright"),
+					txt(" con un proyecto de setup de login en Keycloak y un entorno "),
 					mono("docker-compose-test.yaml"),
-					txt(" environment ("),
+					txt(" dedicado ("),
 					mono("make e2e"),
 					txt(" / "),
 					mono("e2e-ui"),
 					txt(
-						"); GitHub Actions run alongside GitLab for code quality, backend, dashboard and Expo checks.",
+						"); GitHub Actions corre en paralelo a GitLab para calidad de código, backend, dashboard y comprobaciones de Expo.",
 					),
 				],
 				[
 					bold("Biome"),
-					txt(" (format + lint + CI), Husky hooks, "),
+					txt(" (formato, lint y CI), hooks de Husky, "),
 					mono("@manypkg/cli"),
 					txt(
-						" and dependency-version consistency checks to keep workspace versions aligned; ",
+						" y comprobaciones de consistencia de versiones para mantener alineado el workspace; túneles inversos con ",
 					),
 					mono("frpc"),
-					txt(" reverse tunneling for exposing local environments."),
+					txt(" para exponer entornos locales."),
 				],
 			],
 		},
 		{
 			index: 7,
-			title: "Engineering highlights",
-			meta: "Eight decisions",
+			title: "Decisiones técnicas destacadas",
+			meta: "Ocho decisiones",
 			kind: "cards",
 			columns: 2,
 			titleStyle: "kicker",
 			items: [
 				{
-					title: "An in-house framework, not a framework-shaped folder",
-					body: "Bloom's kernel, plugin lifecycle, DI container and CQRS bus are versioned packages with their own docs, letting six deployables share one composition model.",
+					title: "Un framework propio, no una carpeta con forma de framework",
+					body: "El kernel de Bloom, su ciclo de vida de plugins, el contenedor de inyección de dependencias y el bus CQRS son paquetes versionados con documentación propia, lo que permite que seis desplegables compartan un mismo modelo de composición.",
 				},
 				{
-					title: "RLS + AsyncLocalStorage tenancy",
-					body: "Tenant scoping is enforced by the database inside a per-request transaction rather than by query-building convention, so a forgotten where clause cannot leak data across workspaces.",
+					title: "Tenancy con RLS y AsyncLocalStorage",
+					body: "El acotado por tenant lo impone la base de datos dentro de una transacción por petición, no una convención al construir consultas, de modo que un where olvidado no puede filtrar datos entre espacios de trabajo.",
 				},
 				{
-					title: "Transactional event dispatch",
-					body: "The event recorder buffers domain events and flushes them only on successful command completion, eliminating the “email sent for a rolled-back write” class of bug.",
+					title: "Despacho transaccional de eventos",
+					body: "El registrador de eventos almacena los eventos de dominio y solo los emite cuando el comando se completa correctamente, eliminando la clase de error del «correo enviado por una escritura revertida».",
 				},
 				{
-					title: "Custom migration tooling",
-					body: "Validation runs in CI, and rebase resolves the migration-ordering conflicts that plague long-lived branches on a shared Drizzle schema.",
+					title: "Herramientas propias de migración",
+					body: "La validación corre en CI, y rebase resuelve los conflictos de orden de migraciones que afectan a las ramas de larga vida sobre un esquema Drizzle compartido.",
 				},
 				{
-					title: "Ephemeral per-ticket environments",
-					body: "Full database and identity-provider isolation, provisioned and destroyed by the pipeline.",
+					title: "Entornos efímeros por ticket",
+					body: "Aislamiento completo de base de datos y proveedor de identidad, aprovisionados y destruidos por el pipeline.",
 				},
 				{
-					title: "Postgres-only infrastructure",
-					body: "Queue, KV and pub/sub all ride the primary database, removing Redis and a broker from the operational surface while keeping jobs transactional with the data they touch.",
+					title: "Infraestructura solo con Postgres",
+					body: "Cola, KV y pub/sub van sobre la base de datos principal, lo que elimina Redis y un broker de la superficie operativa manteniendo los trabajos transaccionales junto a los datos que tocan.",
 				},
 				{
-					title: "Two-sided email system",
-					body: "A Maily/TipTap drag-and-drop builder for customer campaigns and React Email templates for system mail, both rendered through a shared @bloom/maily-renderer package.",
+					title: "Sistema de correo de doble cara",
+					body: "Un editor de arrastrar y soltar con Maily/TipTap para las campañas de los clientes y plantillas de React Email para el correo del sistema, ambos renderizados mediante un paquete compartido @bloom/maily-renderer.",
 				},
 				{
-					title: "AI-assisted development conventions",
-					body: ".cursor/rules and .prompts encode backend and frontend scaffolding conventions in the repo, so generated code matches the architecture.",
+					title: "Convenciones de desarrollo asistido por IA",
+					body: ".cursor/rules y .prompts codifican en el repositorio las convenciones de andamiaje de backend y frontend, para que el código generado se ajuste a la arquitectura.",
 				},
 			],
 		},
 	],
 
 	gallery: [
-		{ placeholder: "Second screenshot", ratio: "4 / 3" },
-		{ placeholder: "Third screenshot", ratio: "4 / 3" },
+		{ placeholder: "Segunda captura", ratio: "4 / 3" },
+		{ placeholder: "Tercera captura", ratio: "4 / 3" },
 	],
 
 	card: {
 		kicker: "qollabi.com · 2024–2026",
 		title: "Qollabi 2.0",
-		body: "Greenfield TypeScript rewrite of the platform on Remix — ~205k lines across 7 apps, Postgres RLS tenancy and an in-house application framework.",
+		body: "Reescritura íntegra de la plataforma en TypeScript sobre Remix — ~205k líneas repartidas en 7 apps, tenancy con RLS de Postgres y un framework de aplicación propio.",
 		meta: "Remix · Bun · Postgres RLS",
-		placeholder: "Qollabi AI screenshot",
+		placeholder: "Captura de Qollabi AI",
 	},
 
 	seo: {
 		title: "Qollabi 2.0",
 		description:
-			"A greenfield TypeScript rewrite of a multi-tenant B2B partner-management platform — Remix, Bun workspaces, an in-house application framework and PostgreSQL row-level security across seven deployables.",
+			"Reescritura íntegra en TypeScript de una plataforma B2B multi-tenant de gestión de partners — Remix, Bun workspaces, un framework de aplicación propio y row-level security de PostgreSQL en siete desplegables.",
 	},
 };

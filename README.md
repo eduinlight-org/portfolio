@@ -55,8 +55,10 @@ Adding a project is a new file in `app/content/<locale>/work/` plus an entry in 
 
 ## Images
 
-Every image region currently renders as a labelled blueprint placeholder. Drop a file into `public/` and set `src` on the matching `Figure` in the content module to swap it in — the frame, aspect ratio and duotone treatment stay as they are.
+The hero headshot is wired up; every other image region renders as a labelled blueprint placeholder. Drop a file into `public/` and set `src` on the matching `Figure` in the content module to swap it in — the frame, aspect ratio and duotone treatment stay as they are.
+
+Photographs are washed into the steel accent by the design system's `.duotone` wrapper. To show one at its natural colours, drop the `duotone` class from `ImageSlot` in `app/components/common/image-slot.tsx`.
 
 ## Languages
 
-English and Spanish, selected by the `portfolio_lang` cookie and read server-side so the first paint is already in the right language. The Spanish content modules are currently verbatim copies of the English ones, marked `// TODO: translate`.
+English and Spanish, selected by the `portfolio_lang` cookie and read server-side so the first paint is already in the right language. Both locales are fully written — `app/content/en/` and `app/content/es/` hold the copy, and a test asserts the two trees stay structurally identical.

@@ -9,6 +9,8 @@ export const profile: ProfileContent = {
 		figure: {
 			placeholder: "Drop your headshot",
 			ratio: "4 / 5",
+			src: "/headshot.jpeg",
+			alt: "Eduin Garcia",
 		},
 	},
 

@@ -107,7 +107,9 @@ Two mechanisms, split by what they are good at:
 - **UI chrome** (nav labels, buttons, aria text) goes through i18next — `app/lib/translations/{en,es}.ts`, read with `useAppTranslation()`.
 - **Long-form structured content** goes in `app/content/<locale>/`, because i18next has no good story for arrays of typed objects.
 
-Never hard-code user-facing text in a component. When you add a key, add it to both catalogs — `es.ts` is typed against `en.ts`, so a missing key fails the build. When you add content, add it to both `en/` and `es/`; `app/content/content.test.ts` asserts the two trees stay structurally identical.
+Never hard-code user-facing text in a component. When you add a key, add it to both catalogs — `es.ts` is typed against `en.ts`, so a missing key fails the build. When you add content, write it in both `en/` and `es/`; `app/content/content.test.ts` asserts the two trees stay structurally identical. Both locales are fully translated — do not leave a new section English-only in `es/`.
+
+Route-level `meta` exports **replace** the root's rather than merging, so anything document-level (charSet, viewport) has to be repeated. `generateMeta()` in `app/lib/seo.ts` already does this; use it rather than hand-rolling a `meta` export.
 
 Language lives in the `portfolio_lang` cookie, read in the root loader by `getLocale()`. That is what lets SSR emit the right language with no hydration flash — do not move it to `localStorage`. It is read straight off the request header rather than through `createCookie`, which base64-JSON-encodes its values and so cannot read the plain value the toggle writes.
 

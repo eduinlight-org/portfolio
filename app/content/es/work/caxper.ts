@@ -1,110 +1,105 @@
-// TODO: translate to Spanish.
-// Copied verbatim from ../en so the site renders in both locales today. The
-// structure must stay identical to the English module — the `Content` type is
-// what keeps the two in step.
-
 import { bold, mono, type Project, txt } from "~/content/types";
 
 export const caxper: Project = {
 	slug: "caxper",
 	name: "Caxper",
-	kicker: "Co-founder & solo developer · Multi-tenant SaaS",
+	kicker: "Cofundador y desarrollador único · SaaS multi-tenant",
 	headline: ["Caxper"],
-	lead: "Multi-tenant SaaS for independent insurance agents — client & policy management, commission/income ledger, expenses, tax reporting, renewals, licensing/CE tracking, and Stripe-billed subscriptions.",
+	lead: "SaaS multi-tenant para agentes de seguros independientes — gestión de clientes y pólizas, libro de comisiones e ingresos, gastos, informes fiscales, renovaciones, seguimiento de licencias y formación continua, y suscripciones facturadas con Stripe.",
 	sublead:
-		"Built and shipped end to end as the sole developer, co-founded with a partner in the US.",
+		"Construido y puesto en producción de principio a fin como desarrollador único, cofundado con un socio en Estados Unidos.",
 	link: { label: "caxper.eduindev.com", href: "https://caxper.eduindev.com/" },
 
 	hero: {
-		placeholder: "Drop a Caxper screenshot",
+		placeholder: "Añade una captura de Caxper",
 		ratio: "16 / 9",
-		caption: "Fig. 01 — Agent dashboard",
+		caption: "Fig. 01 — Panel del agente",
 	},
 
 	band: [
-		{ value: "150k", label: "Lines of TypeScript" },
-		{ value: "217", label: "REST endpoints" },
-		{ value: "62", label: "Database entities" },
-		{ value: "44", label: "Migrations" },
-		{ value: "5 + 9", label: "Apps & shared packages" },
+		{ value: "150k", label: "Líneas de TypeScript" },
+		{ value: "217", label: "Endpoints REST" },
+		{ value: "62", label: "Entidades de base de datos" },
+		{ value: "44", label: "Migraciones" },
+		{ value: "5 + 9", label: "Apps y paquetes compartidos" },
 	],
 
 	sections: [
 		{
 			index: 1,
-			title: "Architecture",
-			meta: "pnpm workspaces monorepo",
+			title: "Arquitectura",
+			meta: "Monorepo con pnpm workspaces",
 			kind: "bullets",
 			items: [
 				[
-					bold("pnpm workspaces monorepo"),
+					bold("Monorepo con pnpm workspaces"),
 					txt(
-						" — 5 applications + 9 internal packages, fully typed end-to-end.",
+						" — 5 aplicaciones + 9 paquetes internos, completamente tipado de extremo a extremo.",
 					),
 				],
 				[
 					bold("CQRS"),
-					txt(" with "),
+					txt(" con "),
 					mono("@nestjs/cqrs"),
 					txt(
-						" — thin controllers dispatching to Command/Query buses, event-driven side effects via ",
+						" — controladores finos que despachan a buses de comandos y consultas, con efectos secundarios orientados a eventos vía ",
 					),
 					mono("EventBus"),
 					txt("."),
 				],
 				[
-					bold("Multi-tenancy via PostgreSQL Row-Level Security"),
-					txt(" — every read/write scoped by an "),
+					bold("Multi-tenancy mediante Row-Level Security de PostgreSQL"),
+					txt(" — cada lectura y escritura queda acotada por una GUC "),
 					mono("app.current_tenant_id"),
 					txt(
-						" GUC set per-request inside a transaction; a tenant-aware repository layer auto-stamps tenant IDs.",
+						" fijada por petición dentro de una transacción; una capa de repositorios consciente del tenant sella automáticamente el identificador.",
 					),
 				],
 				[
-					bold("Layered guard chain"),
+					bold("Cadena de guards por capas"),
 					txt(
-						" — Keycloak auth → tenant resolution → RBAC permissions → subscription status → plan entitlements.",
+						" — autenticación con Keycloak → resolución del tenant → permisos RBAC → estado de la suscripción → derechos del plan.",
 					),
 				],
 				[
-					bold("Contract-first API"),
+					bold("API contract-first"),
 					txt(
-						" — OpenAPI spec generated from NestJS, consumed by Orval to auto-generate a fully typed Axios + React Query SDK shared by every frontend.",
+						" — especificación OpenAPI generada desde NestJS y consumida por Orval para autogenerar un SDK Axios + React Query completamente tipado que comparten todos los frontends.",
 					),
 				],
 			],
 		},
 		{
 			index: 2,
-			title: "Apps in the monorepo",
-			meta: "5 apps · 9 packages",
+			title: "Apps del monorepo",
+			meta: "5 apps · 9 paquetes",
 			kind: "cards",
 			columns: 3,
 			items: [
 				{
 					title: "app",
-					body: "Main agent-facing SPA (React Router 7, Vite).",
+					body: "SPA principal para el agente (React Router 7, Vite).",
 				},
-				{ title: "admin", body: "Internal back-office SPA." },
+				{ title: "admin", body: "SPA interna de back-office." },
 				{
 					title: "website",
-					body: "SSR marketing site (React Router 7 + @react-router/serve).",
+					body: "Web de marketing con SSR (React Router 7 + @react-router/serve).",
 				},
-				{ title: "api", body: "NestJS API." },
+				{ title: "api", body: "API en NestJS." },
 				{
 					title: "worker",
-					body: "BullMQ worker + React Email preview server.",
+					body: "Worker de BullMQ + servidor de vista previa de React Email.",
 				},
 				{
 					title: "docs",
-					body: "VitePress developer documentation site (Vue 3).",
+					body: "Sitio de documentación para desarrolladores en VitePress (Vue 3).",
 				},
 			],
 		},
 		{
 			index: 3,
 			title: "Stack",
-			meta: "TypeScript end to end",
+			meta: "TypeScript de extremo a extremo",
 			kind: "tagGroups",
 			groups: [
 				{
@@ -150,82 +145,82 @@ export const caxper: Project = {
 					],
 				},
 				{
-					name: "Infrastructure & DevOps",
+					name: "Infraestructura y DevOps",
 					items: [
 						"Docker Compose",
 						"Docker Swarm",
 						"GitLab CI/CD",
 						"Nginx",
-						"frp tunneling",
+						"Túneles frp",
 						"Makefile",
-						"Custom Keycloak image",
+						"Imagen propia de Keycloak",
 						"Biome",
 						"Husky",
 					],
 				},
 				{
-					name: "Delivery pipeline",
+					name: "Pipeline de entrega",
 					body: [
 						txt(
-							"Install → SDK generation → lint + test → tagged image build & push to a private registry → ",
+							"Instalación → generación del SDK → lint y tests → construcción y publicación de imágenes etiquetadas en un registro privado → ",
 						),
 						mono("docker stack deploy"),
-						txt(" → automated post-deploy health validation."),
+						txt(" → validación automática de salud tras el despliegue."),
 					],
 				},
 			],
 		},
 		{
 			index: 4,
-			title: "Engineering highlights",
-			meta: "Six decisions",
+			title: "Decisiones técnicas destacadas",
+			meta: "Seis decisiones",
 			kind: "cards",
 			columns: 2,
 			items: [
 				{
 					body: [
 						txt(
-							"Postgres RLS as the tenancy boundary, with an auto-injector that adds ",
+							"RLS de Postgres como frontera de tenancy, con un inyector que añade automáticamente las llamadas ",
 						),
 						mono("enable_rls()"),
-						txt(" calls into generated migrations."),
+						txt(" a las migraciones generadas."),
 					],
 				},
 				{
-					body: "Rule-based automation engine for idempotent commission/income generation with dedup keys.",
+					body: "Motor de automatización basado en reglas para generar comisiones e ingresos de forma idempotente mediante claves de deduplicación.",
 				},
 				{
-					body: "Plan-change state machine covering every plan × billing-interval transition, with Stripe proration and entitlement side effects.",
+					body: "Máquina de estados de cambio de plan que cubre cada transición plan × periodo de facturación, con prorrateo de Stripe y efectos sobre los derechos del plan.",
 				},
 				{
-					body: "Pluggable PDF import adapters that normalize carrier exports into the same wizard pipeline as CSV/XLSX.",
+					body: "Adaptadores de importación de PDF intercambiables que normalizan los exportes de las aseguradoras hacia el mismo asistente que CSV y XLSX.",
 				},
 				{
-					body: "Runtime-extensible translation model (3-table normalized) — adding a locale requires no schema change.",
+					body: "Modelo de traducciones extensible en tiempo de ejecución (3 tablas normalizadas) — añadir un idioma no requiere cambios de esquema.",
 				},
 				{
-					body: "Forecast layer (residuals) that replays the income calculator read-only, never writing to the ledger.",
+					body: "Capa de previsión (residuales) que reejecuta el calculador de ingresos en modo solo lectura, sin escribir nunca en el libro contable.",
 				},
 			],
 		},
 	],
 
 	gallery: [
-		{ placeholder: "Policies or ledger view", ratio: "4 / 3" },
-		{ placeholder: "Reporting or billing view", ratio: "4 / 3" },
+		{ placeholder: "Vista de pólizas o del libro contable", ratio: "4 / 3" },
+		{ placeholder: "Vista de informes o facturación", ratio: "4 / 3" },
 	],
 
 	card: {
-		kicker: "caxper.eduindev.com · co-founder",
+		kicker: "caxper.eduindev.com · cofundador",
 		title: "Caxper",
-		body: "Multi-tenant SaaS for independent insurance agents — policies, commission ledger, tax reporting and Stripe billing, built solo.",
+		body: "SaaS multi-tenant para agentes de seguros independientes — pólizas, libro de comisiones, informes fiscales y facturación con Stripe, construido en solitario.",
 		meta: "NestJS · React 19 · Postgres RLS",
-		placeholder: "Caxper screenshot",
+		placeholder: "Captura de Caxper",
 	},
 
 	seo: {
 		title: "Caxper",
 		description:
-			"Multi-tenant SaaS for independent insurance agents — policies, commission ledger, tax reporting and Stripe billing. NestJS, React 19 and PostgreSQL row-level security, built solo.",
+			"SaaS multi-tenant para agentes de seguros independientes — pólizas, libro de comisiones, informes fiscales y facturación con Stripe. NestJS, React 19 y row-level security de PostgreSQL, construido en solitario.",
 	},
 };

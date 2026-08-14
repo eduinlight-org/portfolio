@@ -1,115 +1,115 @@
-// TODO: translate to Spanish.
-// Copied verbatim from ../en so the site renders in both locales today. The
-// structure must stay identical to the English module — the `Content` type is
-// what keeps the two in step.
-
 import { bold, em, mono, type Project, txt } from "~/content/types";
 
 export const qollabi: Project = {
 	slug: "qollabi",
 	name: "Qollabi",
-	kicker: "Qollabi · Senior Software Developer / DevOps · Jan 2024 – Apr 2026",
-	headline: ["Strangling a 268k-line", "legacy platform"],
-	lead: "Qollabi is multi-tenant B2B SaaS for channel & partner sales teams — account planning, OKR tracking, joint business plans shared with partners, activities & campaigns, reporting periods, benchmarks, smart updates, bulk import/export and CRM integrations.",
+	kicker:
+		"Qollabi · Desarrollador de Software Senior / DevOps · Ene 2024 – Abr 2026",
+	headline: ["Estrangulando una plataforma", "heredada de 268k líneas"],
+	lead: "Qollabi es un SaaS B2B multi-tenant para equipos de venta de canal y partners — planificación de cuentas, seguimiento de OKR, planes de negocio conjuntos compartidos con partners, actividades y campañas, periodos de reporte, benchmarks, actualizaciones inteligentes, importación y exportación masivas e integraciones con CRM.",
 	link: { label: "qollabi.com", href: "https://qollabi.com" },
 	linkAsButton: true,
 
 	hero: {
-		placeholder: "Drop a Qollabi screenshot",
+		placeholder: "Añade una captura de Qollabi",
 		ratio: "16 / 9",
 	},
 
 	sheet: {
-		title: "Qollabi — platform scale",
-		badges: ["3 repositories", "Sheet 01"],
-		note: "~268k lines of PHP across 3,700+ files, ~49k lines of TypeScript in the federated frontend, ~142k lines of JavaScript in the legacy frontend.",
+		title: "Qollabi — escala de la plataforma",
+		badges: ["3 repositorios", "Hoja 01"],
+		note: "~268k líneas de PHP en más de 3.700 ficheros, ~49k líneas de TypeScript en el frontend federado y ~142k líneas de JavaScript en el frontend heredado.",
 		stats: [
-			{ value: "230", label: "GraphQL queries" },
-			{ value: "331", label: "GraphQL mutations" },
-			{ value: "273", label: "GraphQL types" },
-			{ value: "47", label: "Event-sourced aggregates" },
-			{ value: "65", label: "MongoDB documents" },
-			{ value: "163", label: "Database migrations" },
-			{ value: "60+", label: "Console commands" },
-			{ value: "170+", label: "Test files" },
+			{ value: "230", label: "Consultas GraphQL" },
+			{ value: "331", label: "Mutaciones GraphQL" },
+			{ value: "273", label: "Tipos GraphQL" },
+			{ value: "47", label: "Agregados con event sourcing" },
+			{ value: "65", label: "Documentos de MongoDB" },
+			{ value: "163", label: "Migraciones de base de datos" },
+			{ value: "60+", label: "Comandos de consola" },
+			{ value: "170+", label: "Ficheros de test" },
 		],
 	},
 
 	sections: [
 		{
 			index: 1,
-			title: "My work",
-			meta: "Frontend · backend · platform",
+			title: "Mi trabajo",
+			meta: "Frontend · backend · plataforma",
 			kind: "bullets",
 			items: [
-				"Maintained and extended a legacy SPA with a Symfony backend.",
-				"Introduced micro-frontend architecture on legacy project.",
-				"Created Docker setup for development and UAT/production deployment pipelines.",
-				"Maintained Terraform code and Docker Swarm cluster.",
-				"Managed AWS services: Route53, RDS, MQ, S3, IAM.",
-				"Built Salesforce data migration scripts for clients.",
-				"Set up VPN and tunnel for development usage.",
+				"Mantuve y amplié una SPA heredada con backend en Symfony.",
+				"Introduje una arquitectura de micro-frontends en el proyecto heredado.",
+				"Creé el entorno Docker para desarrollo y los pipelines de despliegue a UAT y producción.",
+				"Mantuve el código Terraform y el clúster de Docker Swarm.",
+				"Gestioné servicios de AWS: Route53, RDS, MQ, S3, IAM.",
+				"Construí scripts de migración de datos desde Salesforce para clientes.",
+				"Configuré la VPN y el túnel para el entorno de desarrollo.",
 			],
 		},
 		{
 			index: 2,
-			title: "Architecture",
-			meta: "Strangler fig, enforced in CI",
+			title: "Arquitectura",
+			meta: "Strangler fig, verificado en CI",
 			kind: "bullets",
 			items: [
 				[
-					bold("Micro-frontend via Webpack 5 Module Federation"),
-					txt(" — a new React 18 + TypeScript "),
+					bold("Micro-frontend con Module Federation de Webpack 5"),
+					txt(" — un nuevo "),
 					em("remote"),
 					txt(
-						" exposes routes and components consumed at runtime by the React 16 legacy ",
+						" en React 18 y TypeScript expone rutas y componentes que consume en tiempo de ejecución el ",
 					),
 					em("host"),
-					txt(", letting both codebases ship independently."),
+					txt(
+						" heredado en React 16, permitiendo que ambas bases de código se publiquen de forma independiente.",
+					),
 				],
 				[
-					bold("Strangler Fig migration, enforced in CI"),
-					txt(" — "),
+					bold("Migración Strangler Fig, verificada en CI"),
+					txt(" — tests de arquitectura con "),
 					mono("phpat"),
-					txt(" architecture tests ("),
+					txt(" ("),
 					mono("StranglerFigTest"),
 					txt(", "),
 					mono("LayeredArchitectureTest"),
 					txt(", "),
 					mono("LegacyArchitectureTest"),
-					txt(") fail the build when new code depends on legacy layers."),
-				],
-				[
-					bold("Shadow DOM isolation"),
 					txt(
-						" — federated modules mount inside a shadow root with their own style tree, so Mantine and Tailwind never collide with the legacy Ant Design/Less stylesheet.",
+						") hacen fallar la build cuando el código nuevo depende de capas heredadas.",
 					),
 				],
 				[
-					bold("CQRS + Event Sourcing"),
+					bold("Aislamiento con Shadow DOM"),
 					txt(
-						" — EventSauce aggregates behind Tactician command/query buses, with dedicated projectors rebuilding MongoDB read models from the event stream.",
+						" — los módulos federados se montan dentro de un shadow root con su propio árbol de estilos, de modo que Mantine y Tailwind nunca colisionan con la hoja de estilos heredada de Ant Design y Less.",
 					),
 				],
 				[
-					bold("Database-per-tenant multi-tenancy"),
+					bold("CQRS y Event Sourcing"),
 					txt(
-						" — each customer gets its own MongoDB database, resolved per request from an ",
+						" — agregados de EventSauce tras los buses de comandos y consultas de Tactician, con proyectores dedicados que reconstruyen las vistas de lectura en MongoDB a partir del flujo de eventos.",
+					),
+				],
+				[
+					bold("Multi-tenancy con base de datos por cliente"),
+					txt(
+						" — cada cliente tiene su propia base de datos MongoDB, resuelta por petición desde una cabecera ",
 					),
 					mono("X-Tenant-Id"),
-					txt(" header via a resettable Doctrine document manager."),
+					txt(" mediante un document manager de Doctrine reinicializable."),
 				],
 				[
-					bold("GraphQL-first API"),
+					bold("API GraphQL-first"),
 					txt(
-						" — a custom Symfony GraphQL bundle serves the schema; the federated frontend consumes it through a GraphQL Mesh gateway with fully typed generated documents.",
+						" — un bundle propio de GraphQL para Symfony sirve el esquema; el frontend federado lo consume a través de una pasarela GraphQL Mesh con documentos generados completamente tipados.",
 					),
 				],
 			],
 		},
 		{
 			index: 3,
-			title: "Repositories",
+			title: "Repositorios",
 			meta: "Backend · remote · host",
 			kind: "cards",
 			columns: 3,
@@ -117,24 +117,26 @@ export const qollabi: Project = {
 			items: [
 				{
 					title: "qollabi-sfa-core",
-					body: "Symfony/GraphQL backend, event store, projections, workers, CLI, cron.",
+					body: "Backend Symfony/GraphQL, almacén de eventos, proyecciones, workers, CLI y cron.",
 				},
 				{
 					title: "qollabi-rja-federation",
 					body: [
-						txt("Module Federation remote: "),
+						txt("Remote de Module Federation: shell "),
 						mono("app"),
 						txt(
-							" shell, feature modules (integration-layer, smart-updates, tableau-demo, common), shared packages and Storybook.",
+							", módulos de funcionalidad (integration-layer, smart-updates, tableau-demo, common), paquetes compartidos y Storybook.",
 						),
 					],
 				},
 				{
 					title: "qollabi-rja-brm",
 					body: [
-						txt("Mounted as "),
+						txt("Montado como "),
 						mono("legacy/"),
-						txt(" — the original React 16 SPA, now the federation host."),
+						txt(
+							" — la SPA original en React 16, ahora convertida en el host de la federación.",
+						),
 					],
 				},
 			],
@@ -148,283 +150,287 @@ export const qollabi: Project = {
 				{ label: "Runtime", value: "PHP 8.2, PHP-FPM" },
 				{
 					label: "Framework",
-					value: "Symfony 5.4 (Flex, Framework/Security/Twig bundles)",
+					value: "Symfony 5.4 (Flex, bundles de Framework/Security/Twig)",
 				},
 				{
-					label: "Database",
+					label: "Base de datos",
 					value:
 						"MongoDB 7 (replica set), Doctrine MongoDB ODM 2, devture/mongodb-migrations",
 				},
 				{
 					label: "API",
 					value:
-						"GraphQL — custom qollabi/sfx-graphql-bundle, field-level authorization voters",
+						"GraphQL — bundle propio qollabi/sfx-graphql-bundle, voters de autorización a nivel de campo",
 				},
 				{
 					label: "CQRS",
 					value:
-						"League Tactician (command/query/event buses) + Symfony Messenger with per-bus middleware",
+						"League Tactician (buses de comandos, consultas y eventos) + Symfony Messenger con middleware por bus",
 				},
 				{
 					label: "Event sourcing",
 					value:
-						"EventSauce 0.8 + Doctrine message repository, projector layer for read models",
+						"EventSauce 0.8 + repositorio de mensajes en Doctrine, capa de proyectores para las vistas de lectura",
 				},
 				{
-					label: "Queues",
+					label: "Colas",
 					value:
-						"RabbitMQ 3 (ext-amqp, kcs/messenger-extra) — quorum queues, dead-letter exchanges, delivery limits, dedicated integration-layer transport",
+						"RabbitMQ 3 (ext-amqp, kcs/messenger-extra) — colas quorum, exchanges de dead-letter, límites de entrega y transporte dedicado para la capa de integración",
 				},
 				{
-					label: "Cache / locks",
-					value: "Redis 5 (predis, snc/redis-bundle), Symfony Lock & Cache",
+					label: "Caché y bloqueos",
+					value: "Redis 5 (predis, snc/redis-bundle), Symfony Lock y Cache",
 				},
 				{
-					label: "Auth",
+					label: "Autenticación",
 					value:
-						"Auth0 (auth0-php, Management API), firebase/php-jwt, S3-distributed JWT certs",
+						"Auth0 (auth0-php, Management API), firebase/php-jwt, certificados JWT distribuidos por S3",
 				},
 				{
-					label: "Storage",
+					label: "Almacenamiento",
 					value:
-						"AWS SDK for PHP + Flysystem (S3 adapter, oneup/flysystem-bundle)",
+						"SDK de AWS para PHP + Flysystem (adaptador de S3, oneup/flysystem-bundle)",
 				},
 				{
-					label: "Email",
+					label: "Correo",
 					value:
-						"Symfony Mailer + SendGrid, Twig with Inky, CSS inliner and Markdown extras",
+						"Symfony Mailer + SendGrid, Twig con Inky, inliner de CSS y extras de Markdown",
 				},
 				{
-					label: "Spreadsheets",
+					label: "Hojas de cálculo",
 					value:
-						"PhpSpreadsheet — bulk account/objective import & export pipelines",
+						"PhpSpreadsheet — pipelines de importación y exportación masiva de cuentas y objetivos",
 				},
 				{
 					label: "i18n",
 					value:
-						"php-translation/symfony-bundle + willdurand/js-translation-bundle (catalogs shared with the frontend)",
+						"php-translation/symfony-bundle + willdurand/js-translation-bundle (catálogos compartidos con el frontend)",
 				},
 				{
 					label: "Feature flags",
 					value: "Opensoft Rollout (qollabi/phx-rollout-bundle)",
 				},
 				{
-					label: "Observability",
-					value: "Rollbar, Monolog, Blackfire SDK, Symfony Stopwatch/Profiler",
+					label: "Observabilidad",
+					value:
+						"Rollbar, Monolog, SDK de Blackfire, Stopwatch/Profiler de Symfony",
 				},
 				{
-					label: "Quality",
+					label: "Calidad",
 					value:
-						"PHPSpec 7, PHPUnit, Symfony Panther, PHPStan level 6, phpat architecture rules, PHP-CS-Fixer, Rector",
+						"PHPSpec 7, PHPUnit, Symfony Panther, PHPStan nivel 6, reglas de arquitectura phpat, PHP-CS-Fixer, Rector",
 				},
 			],
 		},
 		{
 			index: 5,
-			title: "Federated app",
+			title: "App federada",
 			meta: "React 18 · TypeScript 5.3",
 			kind: "rows",
 			rows: [
-				{ label: "Core", value: "React 18, TypeScript 5.3, Webpack 5" },
+				{ label: "Núcleo", value: "React 18, TypeScript 5.3, Webpack 5" },
 				{
-					label: "Federation",
+					label: "Federación",
 					value:
-						"@module-federation/enhanced — remote exposing modules & components to the legacy host",
+						"@module-federation/enhanced — remote que expone módulos y componentes al host heredado",
 				},
 				{
 					label: "Monorepo",
 					value:
-						"Yarn workspaces — 4 feature modules, 11 shared packages, 6 shared build configs, 1 Storybook workspace",
+						"Yarn workspaces — 4 módulos de funcionalidad, 11 paquetes compartidos, 6 configuraciones de build compartidas y 1 workspace de Storybook",
 				},
 				{
-					label: "Components",
+					label: "Componentes",
 					value:
-						"Mantine 7 (core, dates, hooks, notifications), mantine-datatable, PrimeReact 10 — wrapped in a shared @qollabi/ui design system",
+						"Mantine 7 (core, dates, hooks, notifications), mantine-datatable, PrimeReact 10 — envueltos en un sistema de diseño compartido @qollabi/ui",
 				},
 				{
-					label: "Styling",
+					label: "Estilos",
 					value:
 						"Tailwind CSS 3, PostCSS (postcss-preset-mantine), Sass, class-variance-authority, clsx, tailwind-merge",
 				},
 				{
-					label: "Server state",
+					label: "Estado de servidor",
 					value:
-						"TanStack Query 5 (suspense queries) over graphql-request + TypedDocumentNode generated documents",
+						"TanStack Query 5 (consultas con suspense) sobre graphql-request y documentos generados con TypedDocumentNode",
 				},
-				{ label: "Client state", value: "Zustand 5" },
-				{ label: "Forms", value: "React Hook Form 7 + Yup resolvers" },
+				{ label: "Estado de cliente", value: "Zustand 5" },
+				{ label: "Formularios", value: "React Hook Form 7 + resolvers de Yup" },
 				{
 					label: "i18n",
-					value: "i18next + react-i18next (shared @qollabi/i18n)",
+					value: "i18next + react-i18next (@qollabi/i18n compartido)",
 				},
-				{ label: "Dates", value: "Day.js and Luxon" },
+				{ label: "Fechas", value: "Day.js y Luxon" },
 				{
-					label: "Icons",
+					label: "Iconos",
 					value: "FontAwesome Pro (light/regular/solid), Tabler Icons",
 				},
 				{
-					label: "Misc",
+					label: "Varios",
 					value:
-						"react-error-boundary, notistack, SortableJS, Zod (build-time env-var validation)",
+						"react-error-boundary, notistack, SortableJS, Zod (validación de variables de entorno en build)",
 				},
 				{
 					label: "Tooling",
 					value:
-						"Storybook 7, Jest + ts-jest, ESLint + Prettier shared configs, Husky",
+						"Storybook 7, Jest + ts-jest, configuraciones compartidas de ESLint y Prettier, Husky",
 				},
 			],
 		},
 		{
 			index: 6,
-			title: "Legacy app",
-			meta: "React 16 · the federation host",
+			title: "App heredada",
+			meta: "React 16 · el host de la federación",
 			kind: "rows",
 			rows: [
 				{
-					label: "Core",
+					label: "Núcleo",
 					value:
-						"React 16, Webpack 5 (migrated off CRA), Babel, partial Flow typing",
+						"React 16, Webpack 5 (migrado desde CRA), Babel, tipado parcial con Flow",
 				},
 				{
-					label: "Data",
+					label: "Datos",
 					value:
-						"Apollo Client 2 / react-apollo 3, GraphQL, 70 .graphql documents, batched HTTP link",
+						"Apollo Client 2 / react-apollo 3, GraphQL, 70 documentos .graphql, enlace HTTP por lotes",
 				},
 				{
-					label: "Components",
-					value: "Ant Design 3 (Less theming), PrimeReact 5",
+					label: "Componentes",
+					value: "Ant Design 3 (tematización con Less), PrimeReact 5",
 				},
-				{ label: "Routing", value: "React Router 5" },
+				{ label: "Enrutado", value: "React Router 5" },
 				{
-					label: "Forms",
+					label: "Formularios",
 					value:
 						"Final Form + react-final-form (arrays, focus, field-data), React Hook Form 5, Yup, validator",
 				},
 				{
-					label: "Rich text",
-					value: "TipTap 2 (mentions, links, lists) and Slate 0.82",
+					label: "Texto enriquecido",
+					value: "TipTap 2 (menciones, enlaces, listas) y Slate 0.82",
 				},
 				{
-					label: "Interaction",
+					label: "Interacción",
 					value:
 						"react-beautiful-dnd, react-dnd, react-sortable-hoc, react-virtualized, react-dates",
 				},
-				{ label: "Charts", value: "Recharts 1" },
+				{ label: "Gráficas", value: "Recharts 1" },
 				{
-					label: "Dates",
+					label: "Fechas",
 					value: "Moment + moment-timezone + moment-range, @vvo/tzdb",
 				},
-				{ label: "Auth", value: "Auth0 React SDK, jsonwebtoken" },
 				{
-					label: "Analytics",
+					label: "Autenticación",
+					value: "SDK de Auth0 para React, jsonwebtoken",
+				},
+				{
+					label: "Analítica",
 					value: "Rollbar, FullStory, Smartlook, Intercom",
 				},
 				{
 					label: "Testing",
-					value: "Cypress 4 + Mocha JUnit reporters, Storybook 7",
+					value: "Cypress 4 + reporters JUnit de Mocha, Storybook 7",
 				},
 			],
 		},
 		{
 			index: 7,
-			title: "Infrastructure & DevOps",
+			title: "Infraestructura y DevOps",
 			meta: "Swarm · GitLab CI · Ansible",
 			kind: "bullets",
 			items: [
 				[
-					bold("Docker Compose local stacks driven by Makefile targets"),
+					bold("Entornos locales con Docker Compose dirigidos por Makefile"),
 					txt(
-						" — PHP-FPM, Nginx, MongoDB replica set, RabbitMQ, Redis and mongo-express on the backend; remote + legacy dev servers, Storybook, and a tunnel container for Auth0 callbacks on the frontend.",
+						" — PHP-FPM, Nginx, replica set de MongoDB, RabbitMQ, Redis y mongo-express en el backend; servidores de desarrollo del remote y del heredado, Storybook y un contenedor de túnel para los callbacks de Auth0 en el frontend.",
 					),
 				],
 				[
 					bold("GitLab CI/CD"),
 					txt(
-						" — install → lint → PHPStan → PHPSpec/PHPUnit with coverage → tagged multi-image build (php, nginx, cron) → deploy → post-deploy validation, with UAT/PRD tag-format gating.",
+						" — instalación → lint → PHPStan → PHPSpec/PHPUnit con cobertura → construcción multi-imagen etiquetada (php, nginx, cron) → despliegue → validación posterior, con control por formato de etiqueta UAT/PRD.",
 					),
 				],
 				[
-					bold("Docker Swarm deployment"),
-					txt(" — "),
+					bold("Despliegue en Docker Swarm"),
+					txt(" — stacks "),
 					mono("prd.yaml"),
 					txt(" / "),
 					mono("uat.yaml"),
 					txt(
-						" stacks with separate images per role and dedicated start scripts for FPM, async workers, import workers, queue setup and migrations.",
+						" con imágenes separadas por rol y scripts de arranque dedicados para FPM, workers asíncronos, workers de importación, configuración de colas y migraciones.",
 					),
 				],
 				[
-					bold("Ansible + AWS CloudFormation"),
+					bold("Ansible y AWS CloudFormation"),
 					txt(
-						" — provisioning playbooks across nine production instances plus preprod, review and demo environments, with Supervisor-managed worker processes.",
+						" — playbooks de aprovisionamiento sobre nueve instancias de producción más los entornos de preproducción, revisión y demo, con procesos worker gestionados por Supervisor.",
 					),
 				],
 				[
-					bold("Cron image"),
+					bold("Imagen de cron"),
 					txt(
-						" running per-customer scheduled jobs (due-date emails, responsible-assignment notifications, hourly smart-update processing) with Slack log channels.",
+						" que ejecuta trabajos programados por cliente (correos de vencimiento, notificaciones de asignación de responsables, procesamiento horario de actualizaciones inteligentes) con canales de log en Slack.",
 					),
 				],
 				[
-					bold("Quality gates"),
+					bold("Controles de calidad"),
 					txt(
-						" — PHPStan baseline, architecture tests, CodeClimate, Husky + lint-staged and Prettier across both repos.",
+						" — baseline de PHPStan, tests de arquitectura, CodeClimate, Husky + lint-staged y Prettier en ambos repositorios.",
 					),
 				],
 			],
 		},
 		{
 			index: 8,
-			title: "Engineering highlights",
-			meta: "Six decisions",
+			title: "Decisiones técnicas destacadas",
+			meta: "Seis decisiones",
 			kind: "cards",
 			columns: 2,
 			titleStyle: "kicker",
 			items: [
 				{
-					title: "Runtime micro-frontend bridge",
-					body: "A remoteLazyComponent / remoteLazyModule HOC pair on the legacy side lazily pulls federated exports and injects host context (language, router history, tenant, translation mode), so new React 18 modules render as first-class citizens inside a React 16 app.",
+					title: "Puente de micro-frontend en tiempo de ejecución",
+					body: "Un par de HOC remoteLazyComponent / remoteLazyModule en el lado heredado carga de forma perezosa los exports federados e inyecta el contexto del host (idioma, historial del router, tenant, modo de traducción), de modo que los nuevos módulos en React 18 se renderizan como ciudadanos de primera dentro de una app en React 16.",
 				},
 				{
-					title: "Architecture tests as migration policy",
-					body: "The strangler-fig boundary is a build-breaking rule, not a convention, which keeps a 268k-line legacy codebase from re-entangling itself.",
+					title: "Tests de arquitectura como política de migración",
+					body: "La frontera del strangler fig es una regla que rompe la build, no una convención, lo que impide que una base heredada de 268k líneas vuelva a enredarse consigo misma.",
 				},
 				{
-					title: "Outbound integration layer",
-					body: "18 typed routing keys over a direct RabbitMQ exchange, each with quorum queues, dead-letter routing and a custom message serializer, pushing plans, objectives, activities and access control to external CRMs.",
+					title: "Capa de integración saliente",
+					body: "18 routing keys tipadas sobre un exchange directo de RabbitMQ, cada una con colas quorum, enrutado de dead-letter y un serializador de mensajes propio, que empujan planes, objetivos, actividades y control de acceso hacia CRMs externos.",
 				},
 				{
-					title: "Salesforce OAuth in the browser",
-					body: "The full flow runs client-side with credential encryption before the token ever reaches storage.",
+					title: "OAuth de Salesforce en el navegador",
+					body: "El flujo completo se ejecuta en el cliente, cifrando las credenciales antes de que el token llegue siquiera al almacenamiento.",
 				},
 				{
-					title: "Projection replay tooling",
-					body: "CLI commands to rebuild read models, replay benchmark history and repair event versions against a live event store.",
+					title: "Herramientas de reejecución de proyecciones",
+					body: "Comandos de CLI para reconstruir vistas de lectura, reejecutar el histórico de benchmarks y reparar versiones de eventos contra un almacén de eventos en vivo.",
 				},
 				{
-					title: "Per-customer batch orchestration",
-					body: "A single cron entry fans a console command across every tenant database, so scheduled work scales with customer count without extra infrastructure.",
+					title: "Orquestación de lotes por cliente",
+					body: "Una única entrada de cron distribuye un comando de consola sobre todas las bases de datos de clientes, de modo que el trabajo programado escala con el número de clientes sin infraestructura adicional.",
 				},
 			],
 		},
 	],
 
 	gallery: [
-		{ placeholder: "Second screenshot", ratio: "4 / 3" },
-		{ placeholder: "Third screenshot", ratio: "4 / 3" },
+		{ placeholder: "Segunda captura", ratio: "4 / 3" },
+		{ placeholder: "Tercera captura", ratio: "4 / 3" },
 	],
 
 	card: {
 		kicker: "qollabi.com · 2024–2026",
 		title: "Qollabi",
-		body: "Legacy SPA on a Symfony backend, maintained and extended — and moved toward a micro-frontend architecture.",
+		body: "SPA heredada sobre un backend Symfony, mantenida y ampliada — y encaminada hacia una arquitectura de micro-frontends.",
 		meta: "SPA · Symfony · Micro-frontends",
-		placeholder: "Qollabi screenshot",
+		placeholder: "Captura de Qollabi",
 	},
 
 	seo: {
 		title: "Qollabi",
 		description:
-			"Strangling a 268k-line Symfony and React 16 platform with Webpack Module Federation, event sourcing on MongoDB and a GraphQL-first API — with the migration boundary enforced by architecture tests in CI.",
+			"Estrangulando una plataforma de 268k líneas en Symfony y React 16 con Module Federation de Webpack, event sourcing sobre MongoDB y una API GraphQL-first — con la frontera de la migración impuesta por tests de arquitectura en CI.",
 	},
 };

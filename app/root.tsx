@@ -10,9 +10,15 @@ import {
 	ScrollRestoration,
 	useLoaderData,
 	useRouteError,
+	useRouteLoaderData,
 } from "react-router";
 import type { Locale } from "~/content/types";
-import { DEFAULT_LOCALE, I18nProvider } from "~/lib/i18n";
+import {
+	DEFAULT_LOCALE,
+	I18nProvider,
+	isLocale,
+	useAppTranslation,
+} from "~/lib/i18n";
 import { getLocale } from "~/lib/prefs.server";
 import stylesheet from "./styles.css?url";
 
@@ -63,32 +69,47 @@ export default function Root() {
 	);
 }
 
+function ErrorPage({ isNotFound }: { isNotFound: boolean }) {
+	const { t } = useAppTranslation();
+
+	return (
+		<main className="flex min-h-dvh items-center justify-center px-6">
+			<div className="text-center">
+				<h1 className="m-0 font-display font-bold text-[clamp(48px,8vw,92px)] uppercase leading-none tracking-[0.01em]">
+					{isNotFound ? "404" : t("error.genericTitle")}
+				</h1>
+				<p className="mt-5 text-[18px] text-ash-700">
+					{isNotFound ? t("error.notFoundBody") : t("error.genericBody")}
+				</p>
+				<Link
+					to="/"
+					className="mt-7 inline-block font-display font-semibold text-[13px] uppercase tracking-[0.14em]"
+				>
+					← {t("error.backHome")}
+				</Link>
+			</div>
+		</main>
+	);
+}
+
 export function ErrorBoundary() {
 	const error = useRouteError();
 	const isNotFound = isRouteErrorResponse(error) && error.status === 404;
+
+	// The root loader may itself be what failed, in which case there is no data
+	// to read — fall back to the default locale rather than crashing the boundary.
+	const rootData = useRouteLoaderData<typeof loader>("root");
+	const locale = isLocale(rootData?.locale) ? rootData.locale : DEFAULT_LOCALE;
 
 	if (!isNotFound && !isRouteErrorResponse(error)) {
 		console.error(error);
 	}
 
 	return (
-		<Document locale={DEFAULT_LOCALE}>
-			<main className="flex min-h-dvh items-center justify-center px-6">
-				<div className="text-center">
-					<h1 className="m-0 font-display font-bold text-[clamp(48px,8vw,92px)] uppercase leading-none tracking-[0.01em]">
-						{isNotFound ? "404" : "Error"}
-					</h1>
-					<p className="mt-5 text-[18px] text-ash-700">
-						{isNotFound ? "That page does not exist." : "Something went wrong."}
-					</p>
-					<Link
-						to="/"
-						className="mt-7 inline-block font-display font-semibold text-[13px] uppercase tracking-[0.14em]"
-					>
-						← Back to the profile
-					</Link>
-				</div>
-			</main>
+		<Document locale={locale}>
+			<I18nProvider language={locale}>
+				<ErrorPage isNotFound={isNotFound} />
+			</I18nProvider>
 		</Document>
 	);
 }

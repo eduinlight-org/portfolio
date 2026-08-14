@@ -38,12 +38,32 @@ echo "==> deploying $IMAGE"
 PREVIOUS="$(grep -E '^PORTFOLIO_IMAGE=' .env | cut -d= -f2- || true)"
 echo "    previous: ${PREVIOUS:-<none>}"
 
+# A registry token may arrive on stdin. GitHub creates GHCR packages private and
+# offers no API to publish them, so the deploy carries its own short-lived
+# credential over the ssh channel instead: it is used for this one pull, never
+# written to disk, and discarded on exit. With a public package, no token is
+# sent and the pull is anonymous.
+REGISTRY_TOKEN=""
+if [[ ! -t 0 ]]; then
+	REGISTRY_TOKEN="$(timeout 5 cat || true)"
+fi
+
+if [[ -n "$REGISTRY_TOKEN" ]]; then
+	trap 'docker logout ghcr.io >/dev/null 2>&1 || true' EXIT
+	if ! printf '%s' "$REGISTRY_TOKEN" |
+		docker login ghcr.io -u x-access-token --password-stdin >/dev/null 2>&1; then
+		echo "registry login failed" >&2
+		exit 1
+	fi
+	REGISTRY_TOKEN=""
+	echo "    registry: authenticated for this pull"
+fi
+
 if ! docker pull "$IMAGE"; then
 	cat >&2 <<-EOF
 
-		Pull failed. If this is a 401/denied, the GHCR package is still private.
-		Open the package settings for ${ALLOWED_IMAGE_REPO#ghcr.io/}
-		  -> Danger Zone -> Change visibility -> Public
+		Pull failed. If this is a 401/denied, either the deploy sent no registry
+		token or it lacked read access to ${ALLOWED_IMAGE_REPO#ghcr.io/}.
 	EOF
 	exit 1
 fi

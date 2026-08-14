@@ -61,13 +61,13 @@ Note that **Actions secrets do not survive a repository transfer** — re-add th
 | `DEPLOY_USER` | `admin` |
 | `DEPLOY_HOST_KEY` | The server's SSH host key line, for strict host-key checking |
 
-## One-time setup
+## The registry credential
 
-The GHCR package is created private on first push, even though the repo is public. Until it is made public the server cannot pull it, and `deploy.sh` will say so explicitly.
+GHCR creates packages private, and GitHub exposes **no API to publish one** — the visibility toggle is UI-only. Rather than depend on that click, or park a long-lived read token on the host, the deploy carries its own credential:
 
-After the first successful `deploy` job, go to
-`https://github.com/orgs/eduinlight-org/packages/container/portfolio/settings`
-→ **Danger Zone** → **Change visibility** → **Public**.
+`GHCR_TOKEN` is the deploy job's built-in `secrets.GITHUB_TOKEN`. It travels over the ssh channel on stdin (never in the command line, an env var, or a file), is used for exactly one `docker login` → `docker pull`, and is discarded by a `trap` on exit. The job's token dies with the job, so nothing durable exists to leak — `~/.docker/config.json` on the host is left as `{"auths": {}}`.
+
+If the package is ever made public, this keeps working unchanged: `deploy.sh` treats an empty token as "pull anonymously".
 
 ## The deploy key is not a shell
 

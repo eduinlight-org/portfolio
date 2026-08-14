@@ -110,27 +110,34 @@ jobs:
           DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
           DEPLOY_HOST_KEY: ${{ secrets.DEPLOY_HOST_KEY }}
           IMAGE: ghcr.io/${{ github.repository_owner }}/portfolio:sha-${{ github.sha }}
+          # GHCR packages are created private and there is no API to publish
+          # them, so the deploy carries a read credential for the pull. This is
+          # the job's own token: it expires when the job ends and the server
+          # writes it nowhere, which keeps the host free of standing secrets.
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
 
           # The runner image has docker and git but no ssh client, so the deploy
           # runs from a throwaway container.
           #
-          # The private key goes in on stdin rather than as a bind mount or an
-          # env var: a bind mount would resolve against the docker host rather
-          # than this container, and an env var stays readable through
-          # `docker inspect` for the life of the container.
+          # The private key goes in on the container's stdin rather than as a
+          # bind mount or an env var: a bind mount would resolve against the
+          # docker host rather than this container, and an env var stays
+          # readable through `docker inspect` for the life of the container.
+          # The registry token is then piped into ssh, which forwards it to the
+          # remote command's stdin.
           #
           # The key on the server is pinned to a forced command that accepts
           # only an image reference, so this is the whole deploy surface.
           printf '%s\n' "$DEPLOY_KEY" | docker run --rm -i \
-            -e DEPLOY_HOST -e DEPLOY_USER -e DEPLOY_HOST_KEY -e IMAGE \
+            -e DEPLOY_HOST -e DEPLOY_USER -e DEPLOY_HOST_KEY -e IMAGE -e GHCR_TOKEN \
             alpine:3.22 sh -euc '
               apk add --no-cache openssh-client >/dev/null
               mkdir -p /root/.ssh && chmod 700 /root/.ssh
               cat > /root/.ssh/id && chmod 600 /root/.ssh/id
               printf "%s\n" "$DEPLOY_HOST_KEY" > /root/.ssh/known_hosts
-              exec ssh -n -i /root/.ssh/id -o IdentitiesOnly=yes \
+              printf "%s" "$GHCR_TOKEN" | exec ssh -i /root/.ssh/id -o IdentitiesOnly=yes \
                 -o UserKnownHostsFile=/root/.ssh/known_hosts \
                 -o StrictHostKeyChecking=yes -o ConnectTimeout=20 \
                 "$DEPLOY_USER@$DEPLOY_HOST" "$IMAGE"

@@ -1,0 +1,59 @@
+services:
+  portfolio:
+    image: ${PORTFOLIO_IMAGE}
+    container_name: portfolio
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - HOST=0.0.0.0
+      - PORT=3000
+      - VITE_SITE_URL=${VITE_SITE_URL}
+    networks:
+      - traefik
+    # 1.9 GB box with no swap — cap the app so a leak can't take the host down.
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000/robots.txt').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=traefik'
+
+      # HTTPS. Priority must beat the frps catch-all (priority 0), which would
+      # otherwise swallow www.eduindev.com via its `^.+\.eduindev\.com$` rule.
+      - 'traefik.http.routers.portfolio.rule=Host(`eduindev.com`) || Host(`www.eduindev.com`)'
+      - 'traefik.http.routers.portfolio.entrypoints=websecure'
+      - 'traefik.http.routers.portfolio.tls.certresolver=letsencrypt'
+      - 'traefik.http.routers.portfolio.priority=50'
+      - 'traefik.http.routers.portfolio.middlewares=portfolio-www'
+      - 'traefik.http.services.portfolio.loadbalancer.server.port=3000'
+
+      # www -> apex. The regex simply does not match the apex, so the same
+      # middleware is a no-op there and one router can serve both hostnames.
+      - 'traefik.http.middlewares.portfolio-www.redirectregex.regex=^https?://www\.eduindev\.com/(.*)'
+      - 'traefik.http.middlewares.portfolio-www.redirectregex.replacement=https://eduindev.com/$${1}'
+      - 'traefik.http.middlewares.portfolio-www.redirectregex.permanent=true'
+
+      # HTTP -> HTTPS
+      - 'traefik.http.routers.portfolio-http.rule=Host(`eduindev.com`) || Host(`www.eduindev.com`)'
+      - 'traefik.http.routers.portfolio-http.entrypoints=web'
+      - 'traefik.http.routers.portfolio-http.priority=50'
+      - 'traefik.http.routers.portfolio-http.middlewares=portfolio-https-redirect'
+      - 'traefik.http.middlewares.portfolio-https-redirect.redirectscheme.scheme=https'
+      - 'traefik.http.middlewares.portfolio-https-redirect.redirectscheme.permanent=true'
+
+networks:
+  traefik:
+    external: true

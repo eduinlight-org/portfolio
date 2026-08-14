@@ -37,7 +37,9 @@ pnpm dev
 
 ## Deployment
 
-`deploy/Dockerfile` builds a four-stage production image that serves the app with `react-router-serve` on port 3000. Set `VITE_SITE_URL` at build time — it feeds the canonical links, Open Graph tags and the sitemap.
+Live at **https://eduindev.com**. Pushing to `main` runs the pipeline on a self-hosted runner: checks, then a production image pushed to GHCR and rolled out over SSH. See [deploy/README.md](./deploy/README.md) for the routing, the secrets and how to roll back.
+
+To build the image by hand — `VITE_SITE_URL` is baked in at build time, feeding the canonical links, Open Graph tags and the sitemap:
 
 ```sh
 docker build -f deploy/Dockerfile --build-arg VITE_SITE_URL=https://example.com -t portfolio .

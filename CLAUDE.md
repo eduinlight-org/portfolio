@@ -118,3 +118,9 @@ The i18next instance is created per render tree, not as a module singleton, so t
 ## Responsiveness
 
 The source design was drawn at desktop width with fixed grids and no media queries. Every grid here collapses to a single column below `md`, and the header's anchor nav becomes a native `<details>` disclosure — no JavaScript, so it works before hydration. Keep that pattern when adding sections.
+
+## Deployment
+
+The site runs at https://eduindev.com on a Lightsail box behind a shared Traefik. Pushing to `main` builds an image on a **self-hosted** runner, pushes it to GHCR and rolls it out over SSH — every workflow job is pinned to `runs-on: self-hosted`.
+
+`deploy/server/` mirrors what lives in `~/services/portfolio/` on the host; those files are not copied by the pipeline, so changing them here means scp-ing them across. Full detail, including why the Traefik router priority is 50 and how to roll back, is in [deploy/README.md](./deploy/README.md).

@@ -9,15 +9,26 @@ set -euo pipefail
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$DIR"
 
-IMAGE="${SSH_ORIGINAL_COMMAND:-}"
+# The repository this host will accept images from. Kept in .env rather than
+# hardcoded here so that moving the repo between owners or organisations is a
+# one-line config change on the box, not a code change.
+ALLOWED_IMAGE_REPO="$(grep -E '^ALLOWED_IMAGE_REPO=' .env | cut -d= -f2- || true)"
 
-if [[ -z "$IMAGE" ]]; then
-	echo "usage: ssh <host> 'ghcr.io/eduinlight/portfolio:<tag>'" >&2
+if [[ -z "$ALLOWED_IMAGE_REPO" ]]; then
+	echo "misconfigured: ALLOWED_IMAGE_REPO is not set in $DIR/.env" >&2
 	exit 2
 fi
 
-if [[ ! "$IMAGE" =~ ^ghcr\.io/eduinlight/portfolio:[A-Za-z0-9][A-Za-z0-9._-]*$ ]]; then
-	echo "refused: '$IMAGE' is not a ghcr.io/eduinlight/portfolio tag" >&2
+IMAGE="${SSH_ORIGINAL_COMMAND:-}"
+
+if [[ -z "$IMAGE" ]]; then
+	echo "usage: ssh <host> '${ALLOWED_IMAGE_REPO}:<tag>'" >&2
+	exit 2
+fi
+
+if [[ "$IMAGE" != "${ALLOWED_IMAGE_REPO}:"* ]] ||
+	[[ ! "${IMAGE#"${ALLOWED_IMAGE_REPO}:"}" =~ ^[A-Za-z0-9][A-Za-z0-9._-]*$ ]]; then
+	echo "refused: '$IMAGE' is not a ${ALLOWED_IMAGE_REPO} tag" >&2
 	exit 2
 fi
 
@@ -28,10 +39,10 @@ PREVIOUS="$(grep -E '^PORTFOLIO_IMAGE=' .env | cut -d= -f2- || true)"
 echo "    previous: ${PREVIOUS:-<none>}"
 
 if ! docker pull "$IMAGE"; then
-	cat >&2 <<-'EOF'
+	cat >&2 <<-EOF
 
-		Pull failed. If this is a 401/denied, the GHCR package is still private:
-		  https://github.com/users/eduinlight/packages/container/portfolio/settings
+		Pull failed. If this is a 401/denied, the GHCR package is still private.
+		Open the package settings for ${ALLOWED_IMAGE_REPO#ghcr.io/}
 		  -> Danger Zone -> Change visibility -> Public
 	EOF
 	exit 1

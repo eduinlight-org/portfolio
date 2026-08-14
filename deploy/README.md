@@ -6,7 +6,7 @@ The site runs at **https://eduindev.com** on the Lightsail box (`51.44.40.82`), 
 push to main
   └─ GitHub Actions (self-hosted runner)
        ├─ check   lint, typecheck, test, build
-       └─ deploy  build image ──► ghcr.io/eduinlight/portfolio:sha-<commit>
+       └─ deploy  build image ──► ghcr.io/eduinlight-org/portfolio:sha-<commit>
                   ssh ──────────► server runs ~/services/portfolio/deploy.sh
                                     docker pull → compose up → wait for healthy
 ```
@@ -42,6 +42,14 @@ Two details worth remembering:
 
 `www` 301s to the apex, and `http` 301s to `https`.
 
+## Owner
+
+The repo lives under the **`eduinlight-org`** organisation, so that the org's self-hosted runner can serve it.
+
+The workflow derives the image path from `${{ github.repository_owner }}`, so it follows the repo automatically. The host does not: it only accepts images from the repository named in `ALLOWED_IMAGE_REPO` in `~/services/portfolio/.env`. Moving the repo again means changing that one line.
+
+Note that **Actions secrets do not survive a repository transfer** — re-add the four below afterwards.
+
 ## Required repository secrets
 
 | Secret | Value |
@@ -56,7 +64,7 @@ Two details worth remembering:
 The GHCR package is created private on first push, even though the repo is public. Until it is made public the server cannot pull it, and `deploy.sh` will say so explicitly.
 
 After the first successful `deploy` job, go to
-`https://github.com/users/eduinlight/packages/container/portfolio/settings`
+`https://github.com/orgs/eduinlight-org/packages/container/portfolio/settings`
 → **Danger Zone** → **Change visibility** → **Public**.
 
 ## The deploy key is not a shell
@@ -67,7 +75,7 @@ The key is pinned in `~/.ssh/authorized_keys` with a forced command:
 command="/home/admin/services/portfolio/deploy.sh",restrict ssh-ed25519 AAAA…
 ```
 
-so it can only roll this one service to a named image. `deploy.sh` additionally refuses anything that is not a `ghcr.io/eduinlight/portfolio:<tag>` reference, and `restrict` disables port/agent/X11 forwarding and pty allocation. A leaked `DEPLOY_SSH_KEY` cannot read the filesystem, reach other containers, or touch the other services on the box.
+so it can only roll this one service to a named image. `deploy.sh` additionally refuses anything that is not a tag of the repository named by `ALLOWED_IMAGE_REPO` in the host's `.env`, and `restrict` disables port/agent/X11 forwarding and pty allocation. A leaked `DEPLOY_SSH_KEY` cannot read the filesystem, reach other containers, or touch the other services on the box.
 
 ## Rolling back
 
@@ -76,7 +84,7 @@ Images are tagged with the immutable commit sha, so any previous build can be re
 ```sh
 ssh admin@51.44.40.82
 cd ~/services/portfolio
-sed -i 's|^PORTFOLIO_IMAGE=.*|PORTFOLIO_IMAGE=ghcr.io/eduinlight/portfolio:sha-<older>|' .env
+sed -i 's|^PORTFOLIO_IMAGE=.*|PORTFOLIO_IMAGE=ghcr.io/eduinlight-org/portfolio:sha-<older>|' .env
 docker compose up -d
 ```
 

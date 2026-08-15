@@ -12,13 +12,12 @@ export const es: Translation = {
 		menu: "Menú",
 	},
 	actions: {
-		seeWork: "Ver proyectos",
+		seeWork: "Ver proyectos destacados",
 		downloadCv: "Descargar CV",
-		downloadCvPdf: "Descargar CV (PDF)",
-		sendEmail: "Enviar un correo",
+		sendEmail: "Escríbeme",
 		github: "GitHub",
 		linkedin: "LinkedIn",
-		openProject: "Abrir el proyecto →",
+		openProject: "Ver el caso →",
 		allWork: "← Todos los proyectos",
 		sourceOnGitHub: "Código en GitHub",
 		previous: "Anterior",
@@ -31,8 +30,8 @@ export const es: Translation = {
 	error: {
 		notFoundTitle: "No encontrado",
 		notFoundBody: "Esa página no existe.",
-		genericTitle: "¡Vaya!",
+		genericTitle: "Algo se ha roto",
 		genericBody: "Algo ha salido mal.",
-		backHome: "Volver al perfil",
+		backHome: "Volver al inicio",
 	},
 };

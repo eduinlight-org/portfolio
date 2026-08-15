@@ -17,13 +17,12 @@ export const en = {
 		menu: "Menu",
 	},
 	actions: {
-		seeWork: "See selected work",
+		seeWork: "View selected work",
 		downloadCv: "Download CV",
-		downloadCvPdf: "Download CV (PDF)",
-		sendEmail: "Send an email",
+		sendEmail: "Email me",
 		github: "GitHub",
 		linkedin: "LinkedIn",
-		openProject: "Open the project →",
+		openProject: "View case study →",
 		allWork: "← All work",
 		sourceOnGitHub: "Source on GitHub",
 		previous: "Previous",
@@ -36,9 +35,9 @@ export const en = {
 	error: {
 		notFoundTitle: "Not found",
 		notFoundBody: "That page does not exist.",
-		genericTitle: "Oops!",
+		genericTitle: "Something broke",
 		genericBody: "Something went wrong.",
-		backHome: "Back to the profile",
+		backHome: "Back to home",
 	},
 } as const;
 

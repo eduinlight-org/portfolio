@@ -4,15 +4,15 @@ export const myaltafit: Project = {
 	slug: "myaltafit",
 	name: "My Altafit",
 	kicker: "Proyecto freelance · Altafit Gym Club, España · 2018 – 2019",
-	headline: ["Un portal de socios", "para un gimnasio"],
+	headline: ["Un portal de socios para", "una cadena de gimnasios"],
 	lead: "Aplicación de página única orientada al socio de Altafit Gym Club — acceso y gestión de la cuenta, estado de la suscripción y la facturación, historial de accesos al gimnasio, reserva de clases con horario en vivo, cuadrante de actividades, ventajas para socios, programas de entrenamiento (GBody / GBox), el contenido del «Club Corredor», noticias y contacto con los clubes con mapas.",
 	sublead:
-		"Construido como proyecto freelance, fue el portal de socios en producción en su momento; el dominio aloja ahora una implementación posterior, no basada en React, de otro proveedor. El backend era una API de gestión de gimnasios de terceros — este proyecto abarca todo el cliente y la capa de integración contra ella.",
+		"El portal de socios en producción de Altafit Gym Club, construido en solitario como proyecto freelance en paralelo al trabajo a tiempo completo en Melkart. El backend era una API de gestión de gimnasios de terceros — construí todo el cliente y la capa de integración sobre ella.",
 	link: { label: "myaltafit.provis.es", href: "https://myaltafit.provis.es/" },
 	linkAsButton: true,
 
 	hero: {
-		placeholder: "Añade una captura de My Altafit",
+		placeholder: "Panel del socio — sin captura disponible",
 		ratio: "16 / 9",
 	},
 
@@ -24,11 +24,7 @@ export const myaltafit: Project = {
 			{ value: "27", label: "Páginas" },
 			{ value: "37", label: "Rutas" },
 			{ value: "19", label: "Endpoints REST consumidos" },
-			{ value: "15", label: "Reducers" },
-			{ value: "17", label: "Componentes reutilizables" },
 			{ value: "11", label: "Modelos de dominio" },
-			{ value: "104", label: "Ficheros" },
-			{ value: "43", label: "Ficheros de styled-components" },
 		],
 	},
 
@@ -354,9 +350,10 @@ export const myaltafit: Project = {
 			meta: "Construido en 2018 – 2019",
 			kind: "prose",
 			paragraphs: [
+				"El portal estuvo en producción para los socios de Altafit; el dominio aloja ahora una implementación posterior, no basada en React, de otro proveedor, y por eso esta página no lleva capturas.",
 				[
 					txt(
-						"Construido sobre el stack vigente entonces: componentes de clase de React 16, Redux con thunks y middleware de promesas, CRA 1.x y Bootstrap 4. Hoy los equivalentes serían componentes función con hooks, TanStack Query o RTK Query en lugar de los reducers de estado de petición hechos a mano, TypeScript para los modelos de la API y Vite en vez de ",
+						"Se construyó sobre el stack vigente entonces: componentes de clase de React 16, Redux con thunks y middleware de promesas, CRA 1.x y Bootstrap 4. Hoy los equivalentes serían componentes función con hooks, TanStack Query o RTK Query en lugar de los reducers de estado de petición propios, TypeScript para los modelos de la API y Vite en vez de ",
 					),
 					mono("react-scripts"),
 					txt(
@@ -368,8 +365,11 @@ export const myaltafit: Project = {
 	],
 
 	gallery: [
-		{ placeholder: "Pantalla de reservas o cuadrante", ratio: "4 / 3" },
-		{ placeholder: "Pantalla móvil", ratio: "4 / 3" },
+		{
+			placeholder: "Reserva de clases — sin captura disponible",
+			ratio: "4 / 3",
+		},
+		{ placeholder: "Vista móvil — sin captura disponible", ratio: "4 / 3" },
 	],
 
 	card: {
@@ -377,12 +377,12 @@ export const myaltafit: Project = {
 		title: "My Altafit",
 		body: "Portal de socios para una cadena de gimnasios española — reservas, facturación e historial de accesos sobre una API de terceros, 27 páginas en 37 rutas.",
 		meta: "React · Redux · styled-components",
-		placeholder: "Captura de MyAltafit",
+		placeholder: "My Altafit — sin captura",
 	},
 
 	seo: {
 		title: "My Altafit",
 		description:
-			"Un portal de socios para una cadena de gimnasios española — 27 páginas en 37 rutas sobre React 16 y Redux, con una factoría de reducers que cubre todos los endpoints y una capa adaptadora sobre una API de terceros.",
+			"Un portal de socios para una cadena de gimnasios española — 27 páginas en 37 rutas sobre React 16 y Redux, sobre una API de gestión de gimnasios de terceros.",
 	},
 };

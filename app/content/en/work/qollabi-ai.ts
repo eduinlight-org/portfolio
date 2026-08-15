@@ -3,11 +3,12 @@ import { bold, em, mono, type Project, txt } from "~/content/types";
 export const qollabiAi: Project = {
 	slug: "qollabi-ai",
 	name: "Qollabi 2.0",
-	kicker: "Qollabi · Senior Software Developer / DevOps · Jan 2024 – Apr 2026",
-	headline: ["Qollabi 2.0 — the", "greenfield rewrite"],
+	kicker:
+		"Qollabi · Senior Software Developer & DevOps Engineer · Jan 2024 – Apr 2026",
+	headline: ["Qollabi 2.0 — a", "ground-up rewrite"],
 	lead: [
 		txt(
-			"Multi-tenant B2B SaaS for partner & channel management — workspaces, partner and customer entities, opportunities, key metrics (OKRs), campaigns with a visual email builder, smart lists, shared partner spaces, CSV import and a taxonomy/attribute system. A ground-up TypeScript rewrite of the legacy PHP/React platform, deployed under the internal project name ",
+			"Multi-tenant B2B SaaS for partner and channel management — workspaces, partner and customer records, opportunities, objectives and key results (OKRs), campaigns with a visual email builder, smart lists, shared partner spaces and CSV import. It is a ground-up TypeScript rewrite of the legacy PHP and React platform, deployed under the internal project name ",
 		),
 		mono("qollabi-ai"),
 		txt("."),
@@ -25,6 +26,7 @@ export const qollabiAi: Project = {
 	sheet: {
 		title: "Qollabi 2.0 — platform scale",
 		badges: ["Bun workspaces", "Sheet 01"],
+		note: "Team-built platform; my own contribution is in section 01.",
 		stats: [
 			{ value: "~205k", label: "Lines of TypeScript" },
 			{ value: "7 + 26", label: "Apps & shared packages" },
@@ -40,18 +42,44 @@ export const qollabiAi: Project = {
 	sections: [
 		{
 			index: 1,
-			title: "My work",
+			title: "My role",
 			meta: "Product · pipelines · cloud",
 			kind: "bullets",
 			items: [
-				"Developed the new Qollabi AI product using the Remix framework.",
-				"Created Docker setup for development and UAT/production deployment pipelines.",
-				"Developed and maintained AWS Lambda functions and ActivePieces infrastructure.",
-				"Implemented server-side events client using PostgreSQL LISTEN/NOTIFY API.",
-				"Maintained Terraform code and Docker Swarm cluster.",
-				"Managed AWS services: Route53, RDS, MQ, S3, IAM.",
-				"Built Salesforce data migration scripts for clients.",
-				"Set up VPN and tunnel for development usage.",
+				[
+					bold("Product engineering on the Remix apps"),
+					txt(
+						" — feature work across shelf and dashboard, from Bloom command handlers and Drizzle schemas down to the shared design-system components.",
+					),
+				],
+				[
+					bold("Realtime without a broker"),
+					txt(" — I built the Server-Sent Events client over PostgreSQL "),
+					mono("LISTEN"),
+					txt("/"),
+					mono("NOTIFY"),
+					txt(
+						", so live updates reach the apps on the database already in the stack.",
+					),
+				],
+				[
+					bold("The delivery pipeline"),
+					txt(
+						" — the Docker-based development environment, the UAT and production pipelines, and the per-branch ephemeral environments with their own database and Keycloak realm.",
+					),
+				],
+				[
+					bold("The AWS and Swarm footprint"),
+					txt(
+						" — Terraform codebase, Docker Swarm cluster, Route 53, RDS, Amazon MQ, S3 and IAM, plus the VPN and reverse tunnel the team develops through.",
+					),
+				],
+				[
+					bold("Integrations and data migration"),
+					txt(
+						" — AWS Lambda functions, the Activepieces automation infrastructure and the Salesforce migration scripts used to onboard clients onto the new platform.",
+					),
+				],
 			],
 		},
 		{
@@ -67,7 +95,7 @@ export const qollabiAi: Project = {
 					),
 				],
 				[
-					bold("“Bloom” — a homegrown application framework"),
+					bold("“Bloom” — an in-house application framework"),
 					txt(" — a "),
 					mono("Kernel"),
 					txt(
@@ -136,7 +164,7 @@ export const qollabiAi: Project = {
 			items: [
 				{
 					name: "shelf",
-					desc: "Customer-facing Remix SPA/SSR app for partnerships, opportunities and key metrics (473 route modules).",
+					desc: "Customer-facing Remix SPA and SSR app for partnerships, opportunities and OKRs (473 route modules).",
 				},
 				{
 					name: "dashboard",
@@ -398,8 +426,8 @@ export const qollabiAi: Project = {
 					body: "A Maily/TipTap drag-and-drop builder for customer campaigns and React Email templates for system mail, both rendered through a shared @bloom/maily-renderer package.",
 				},
 				{
-					title: "AI-assisted development conventions",
-					body: ".cursor/rules and .prompts encode backend and frontend scaffolding conventions in the repo, so generated code matches the architecture.",
+					title: "Architecture conventions encoded in the repo",
+					body: ".cursor/rules and .prompts hold the backend and frontend scaffolding rules, so AI-assisted scaffolding conforms to the layering instead of eroding it.",
 				},
 			],
 		},
@@ -423,7 +451,7 @@ export const qollabiAi: Project = {
 	card: {
 		kicker: "qollabi.com · 2024–2026",
 		title: "Qollabi 2.0",
-		body: "Greenfield TypeScript rewrite of the platform on Remix — ~205k lines across 7 apps, Postgres RLS tenancy and an in-house application framework.",
+		body: "Ground-up TypeScript rewrite of the platform on Remix — ~205k lines across 7 apps, Postgres RLS tenancy and an in-house application framework.",
 		meta: "Remix · Bun · Postgres RLS",
 		placeholder: "Qollabi AI screenshot",
 		src: "/work/qollabi-ai-card.webp",
@@ -433,6 +461,6 @@ export const qollabiAi: Project = {
 	seo: {
 		title: "Qollabi 2.0",
 		description:
-			"A greenfield TypeScript rewrite of a multi-tenant B2B partner-management platform — Remix, Bun workspaces, an in-house application framework and PostgreSQL row-level security across seven deployables.",
+			"A ground-up TypeScript rewrite of a B2B partner-management platform — Remix, Bun workspaces and Postgres row-level security across seven deployables.",
 	},
 };

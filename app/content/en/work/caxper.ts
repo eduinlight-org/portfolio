@@ -3,12 +3,13 @@ import { bold, mono, type Project, txt } from "~/content/types";
 export const caxper: Project = {
 	slug: "caxper",
 	name: "Caxper",
-	kicker: "Co-founder & solo developer · Multi-tenant SaaS",
-	headline: ["Caxper"],
-	lead: "Multi-tenant SaaS for independent insurance agents — client & policy management, commission/income ledger, expenses, tax reporting, renewals, licensing/CE tracking, and Stripe-billed subscriptions.",
+	kicker: "Co-founder & sole engineer · Multi-tenant SaaS",
+	headline: ["Insurance SaaS, built", "as the sole engineer"],
+	lead: "Multi-tenant SaaS for independent insurance agents — client and policy management, a commission and income ledger, expenses, tax reporting, renewals, and license and continuing-education tracking, all on Stripe-billed subscriptions.",
 	sublead:
-		"Built and shipped end to end as the sole developer, co-founded with a partner in the US.",
+		"I co-founded Caxper with a US-based business partner and built the entire product — architecture, apps, API and infrastructure — as the sole engineer.",
 	link: { label: "caxper.eduindev.com", href: "https://caxper.eduindev.com/" },
+	linkAsButton: true,
 
 	hero: {
 		placeholder: "Drop a Caxper screenshot",
@@ -19,11 +20,11 @@ export const caxper: Project = {
 	},
 
 	band: [
-		{ value: "150k", label: "Lines of TypeScript" },
+		{ value: "~150k", label: "Lines of TypeScript" },
 		{ value: "217", label: "REST endpoints" },
 		{ value: "62", label: "Database entities" },
 		{ value: "44", label: "Migrations" },
-		{ value: "5 + 9", label: "Apps & shared packages" },
+		{ value: "6 + 9", label: "Apps & shared packages" },
 	],
 
 	sections: [
@@ -36,7 +37,7 @@ export const caxper: Project = {
 				[
 					bold("pnpm workspaces monorepo"),
 					txt(
-						" — 5 applications + 9 internal packages, fully typed end-to-end.",
+						" — 6 applications + 9 internal packages, fully typed end to end.",
 					),
 				],
 				[
@@ -74,7 +75,7 @@ export const caxper: Project = {
 		{
 			index: 2,
 			title: "Apps in the monorepo",
-			meta: "5 apps · 9 packages",
+			meta: "6 apps · 9 packages",
 			kind: "cards",
 			columns: 3,
 			items: [
@@ -178,30 +179,39 @@ export const caxper: Project = {
 			meta: "Six decisions",
 			kind: "cards",
 			columns: 2,
+			titleStyle: "kicker",
 			items: [
 				{
+					title: "Tenancy the database enforces",
 					body: [
 						txt(
-							"Postgres RLS as the tenancy boundary, with an auto-injector that adds ",
+							"Postgres row-level security is the tenancy boundary, with an auto-injector that adds ",
 						),
 						mono("enable_rls()"),
-						txt(" calls into generated migrations."),
+						txt(
+							" calls into generated migrations, so a new table cannot ship unscoped.",
+						),
 					],
 				},
 				{
-					body: "Rule-based automation engine for idempotent commission/income generation with dedup keys.",
+					title: "Idempotent commission generation",
+					body: "A rule-based automation engine generates commission and income entries against deduplication keys, so a replayed import cannot pay an agent twice.",
 				},
 				{
-					body: "Plan-change state machine covering every plan × billing-interval transition, with Stripe proration and entitlement side effects.",
+					title: "Plan changes as a state machine",
+					body: "Every plan × billing-interval transition is modelled explicitly, with Stripe proration and entitlement side effects hanging off the transition rather than the caller.",
 				},
 				{
-					body: "Pluggable PDF import adapters that normalize carrier exports into the same wizard pipeline as CSV/XLSX.",
+					title: "One import pipeline, many carriers",
+					body: "Pluggable PDF adapters normalize each carrier's export into the same wizard pipeline as CSV and XLSX, so a new carrier is an adapter rather than a new flow.",
 				},
 				{
-					body: "Runtime-extensible translation model (3-table normalized) — adding a locale requires no schema change.",
+					title: "Locales without migrations",
+					body: "A three-table normalized translation model resolves copy at runtime, so adding a language requires no schema change and no deploy.",
 				},
 				{
-					body: "Forecast layer (residuals) that replays the income calculator read-only, never writing to the ledger.",
+					title: "Read-only forecasting",
+					body: "The residual-income forecast replays the same calculator as the ledger in read-only mode, so projections can never write a real commission row.",
 				},
 			],
 		},
@@ -225,7 +235,7 @@ export const caxper: Project = {
 	card: {
 		kicker: "caxper.eduindev.com · co-founder",
 		title: "Caxper",
-		body: "Multi-tenant SaaS for independent insurance agents — policies, commission ledger, tax reporting and Stripe billing, built solo.",
+		body: "Multi-tenant SaaS for independent insurance agents — policies, commission ledger, tax reporting and Stripe billing, built as the sole engineer.",
 		meta: "NestJS · React 19 · Postgres RLS",
 		placeholder: "Caxper screenshot",
 		src: "/work/caxper-card.webp",
@@ -235,6 +245,6 @@ export const caxper: Project = {
 	seo: {
 		title: "Caxper",
 		description:
-			"Multi-tenant SaaS for independent insurance agents — policies, commission ledger, tax reporting and Stripe billing. NestJS, React 19 and PostgreSQL row-level security, built solo.",
+			"Multi-tenant SaaS for insurance agents, built solo — policies, commission ledger, tax reporting and Stripe billing on NestJS, React 19 and Postgres RLS.",
 	},
 };

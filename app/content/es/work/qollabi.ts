@@ -4,9 +4,9 @@ export const qollabi: Project = {
 	slug: "qollabi",
 	name: "Qollabi",
 	kicker:
-		"Qollabi · Desarrollador de Software Senior / DevOps · Ene 2024 – Abr 2026",
-	headline: ["Estrangulando una plataforma", "heredada de 268k líneas"],
-	lead: "Qollabi es un SaaS B2B multi-tenant para equipos de venta de canal y partners — planificación de cuentas, seguimiento de OKR, planes de negocio conjuntos compartidos con partners, actividades y campañas, periodos de reporte, benchmarks, actualizaciones inteligentes, importación y exportación masivas e integraciones con CRM.",
+		"Qollabi · Desarrollador de Software Senior e Ingeniero DevOps · Ene 2024 – Abr 2026",
+	headline: ["Migración strangler fig", "de una plataforma de 268k líneas"],
+	lead: "Qollabi es una plataforma SaaS B2B multi-tenant para equipos de venta de partners y canal — planificación de cuentas, objetivos y resultados clave (OKR), planes de negocio conjuntos compartidos con partners, actividades y campañas, periodos de reporte, benchmarks, actualizaciones inteligentes, importación y exportación masivas, e integraciones con CRM.",
 	link: { label: "qollabi.com", href: "https://qollabi.com" },
 	linkAsButton: true,
 
@@ -20,7 +20,7 @@ export const qollabi: Project = {
 	sheet: {
 		title: "Qollabi — escala de la plataforma",
 		badges: ["3 repositorios", "Hoja 01"],
-		note: "~268k líneas de PHP en más de 3.700 ficheros, ~49k líneas de TypeScript en el frontend federado y ~142k líneas de JavaScript en el frontend heredado.",
+		note: "~268k líneas de PHP en más de 3.700 ficheros, ~49k líneas de TypeScript en el frontend federado y ~142k líneas de JavaScript en el frontend heredado. Esta es la escala de la plataforma tal como la heredé; mi propio trabajo está en la sección 01.",
 		stats: [
 			{ value: "230", label: "Consultas GraphQL" },
 			{ value: "331", label: "Mutaciones GraphQL" },
@@ -36,17 +36,38 @@ export const qollabi: Project = {
 	sections: [
 		{
 			index: 1,
-			title: "Mi trabajo",
+			title: "Mi papel",
 			meta: "Frontend · backend · plataforma",
 			kind: "bullets",
 			items: [
-				"Mantuve y amplié una SPA heredada con backend en Symfony.",
-				"Introduje una arquitectura de micro-frontends en el proyecto heredado.",
-				"Creé el entorno Docker para desarrollo y los pipelines de despliegue a UAT y producción.",
-				"Mantuve el código Terraform y el clúster de Docker Swarm.",
-				"Gestioné servicios de AWS: Route53, RDS, MQ, S3, IAM.",
-				"Construí scripts de migración de datos desde Salesforce para clientes.",
-				"Configuré la VPN y el túnel para el entorno de desarrollo.",
+				[
+					bold("Introduje la arquitectura de micro-frontends"),
+					txt(
+						" — un remote de Module Federation en React 18 consumido en tiempo de ejecución por el host de React 16, para poder publicar trabajo nuevo sin esperar al tren de releases heredado.",
+					),
+				],
+				[
+					bold("Mantuve y amplié la plataforma heredada"),
+					txt(
+						" — funcionalidad y corrección de errores entre el backend GraphQL en Symfony y la SPA de React 16 que se apoya en él.",
+					),
+				],
+				[
+					bold("Entrega e infraestructura"),
+					txt(
+						" — el entorno de desarrollo basado en Docker, los pipelines de UAT y producción, el código Terraform y el clúster de Docker Swarm, además de la VPN y el túnel inverso con los que trabaja el equipo.",
+					),
+				],
+				[
+					bold("La infraestructura de AWS"),
+					txt(" — Route 53, RDS, Amazon MQ, S3 e IAM."),
+				],
+				[
+					bold("Migración de datos desde Salesforce"),
+					txt(
+						" — los scripts que trasladaron los datos de cuentas, planes y objetivos de los clientes durante el alta.",
+					),
+				],
 			],
 		},
 		{
@@ -403,7 +424,7 @@ export const qollabi: Project = {
 				},
 				{
 					title: "OAuth de Salesforce en el navegador",
-					body: "El flujo completo se ejecuta en el cliente, cifrando las credenciales antes de que el token llegue siquiera al almacenamiento.",
+					body: "La integración se configura por tenant y no hay almacén de credenciales en servidor, así que el flujo se ejecuta en el cliente — las credenciales se cifran antes de que el token llegue siquiera al almacenamiento del navegador.",
 				},
 				{
 					title: "Herramientas de reejecución de proyecciones",
@@ -435,8 +456,8 @@ export const qollabi: Project = {
 	card: {
 		kicker: "qollabi.com · 2024–2026",
 		title: "Qollabi",
-		body: "SPA heredada sobre un backend Symfony, mantenida y ampliada — y encaminada hacia una arquitectura de micro-frontends.",
-		meta: "SPA · Symfony · Micro-frontends",
+		body: "Migración strangler fig de una plataforma de 268k líneas en Symfony y React 16 — micro-frontends con Module Federation, event sourcing y la frontera de la migración impuesta por tests de arquitectura en CI.",
+		meta: "Symfony · Module Federation · Event sourcing",
 		placeholder: "Captura de Qollabi",
 		src: "/work/qollabi-card.webp",
 		alt: "Plataforma Qollabi",
@@ -445,6 +466,6 @@ export const qollabi: Project = {
 	seo: {
 		title: "Qollabi",
 		description:
-			"Estrangulando una plataforma de 268k líneas en Symfony y React 16 con Module Federation de Webpack, event sourcing sobre MongoDB y una API GraphQL-first — con la frontera de la migración impuesta por tests de arquitectura en CI.",
+			"Migración strangler fig de una plataforma de 268k líneas en Symfony y React 16 — micro-frontends con Module Federation y tests de arquitectura en CI.",
 	},
 };

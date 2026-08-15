@@ -3,9 +3,10 @@ import { bold, em, mono, type Project, txt } from "~/content/types";
 export const qollabi: Project = {
 	slug: "qollabi",
 	name: "Qollabi",
-	kicker: "Qollabi · Senior Software Developer / DevOps · Jan 2024 – Apr 2026",
-	headline: ["Strangling a 268k-line", "legacy platform"],
-	lead: "Qollabi is multi-tenant B2B SaaS for channel & partner sales teams — account planning, OKR tracking, joint business plans shared with partners, activities & campaigns, reporting periods, benchmarks, smart updates, bulk import/export and CRM integrations.",
+	kicker:
+		"Qollabi · Senior Software Developer & DevOps Engineer · Jan 2024 – Apr 2026",
+	headline: ["Strangler-fig migration", "of a 268k-line platform"],
+	lead: "Qollabi is a multi-tenant B2B SaaS platform for partner and channel sales teams — account planning, objectives and key results (OKRs), joint business plans shared with partners, activities and campaigns, reporting periods, benchmarks, smart updates, bulk import and export, and CRM integrations.",
 	link: { label: "qollabi.com", href: "https://qollabi.com" },
 	linkAsButton: true,
 
@@ -19,7 +20,7 @@ export const qollabi: Project = {
 	sheet: {
 		title: "Qollabi — platform scale",
 		badges: ["3 repositories", "Sheet 01"],
-		note: "~268k lines of PHP across 3,700+ files, ~49k lines of TypeScript in the federated frontend, ~142k lines of JavaScript in the legacy frontend.",
+		note: "~268k lines of PHP across 3,700+ files, ~49k lines of TypeScript in the federated frontend, ~142k lines of JavaScript in the legacy frontend. This is the scale of the platform as I inherited it; my own work is in section 01.",
 		stats: [
 			{ value: "230", label: "GraphQL queries" },
 			{ value: "331", label: "GraphQL mutations" },
@@ -35,17 +36,38 @@ export const qollabi: Project = {
 	sections: [
 		{
 			index: 1,
-			title: "My work",
+			title: "My role",
 			meta: "Frontend · backend · platform",
 			kind: "bullets",
 			items: [
-				"Maintained and extended a legacy SPA with a Symfony backend.",
-				"Introduced micro-frontend architecture on legacy project.",
-				"Created Docker setup for development and UAT/production deployment pipelines.",
-				"Maintained Terraform code and Docker Swarm cluster.",
-				"Managed AWS services: Route53, RDS, MQ, S3, IAM.",
-				"Built Salesforce data migration scripts for clients.",
-				"Set up VPN and tunnel for development usage.",
+				[
+					bold("Introduced the micro-frontend architecture"),
+					txt(
+						" — a React 18 Module Federation remote consumed at runtime by the React 16 host, so new work could ship without waiting on the legacy release train.",
+					),
+				],
+				[
+					bold("Maintained and extended the legacy platform"),
+					txt(
+						" — feature work and defect fixing across the Symfony GraphQL backend and the React 16 SPA that sits on it.",
+					),
+				],
+				[
+					bold("Delivery and infrastructure"),
+					txt(
+						" — the Docker-based development environment, the UAT and production pipelines, the Terraform codebase and the Docker Swarm cluster, plus the VPN and reverse tunnel the team develops through.",
+					),
+				],
+				[
+					bold("The AWS footprint"),
+					txt(" — Route 53, RDS, Amazon MQ, S3 and IAM."),
+				],
+				[
+					bold("Salesforce data migration"),
+					txt(
+						" — the scripts that moved client account, plan and objective data across during onboarding.",
+					),
+				],
 			],
 		},
 		{
@@ -331,7 +353,7 @@ export const qollabi: Project = {
 				[
 					bold("Docker Compose local stacks driven by Makefile targets"),
 					txt(
-						" — PHP-FPM, Nginx, MongoDB replica set, RabbitMQ, Redis and mongo-express on the backend; remote + legacy dev servers, Storybook, and a tunnel container for Auth0 callbacks on the frontend.",
+						" — PHP-FPM, Nginx, MongoDB replica set, RabbitMQ, Redis and mongo-express on the backend; remote + legacy dev servers, Storybook and a tunnel container for Auth0 callbacks on the frontend.",
 					),
 				],
 				[
@@ -392,7 +414,7 @@ export const qollabi: Project = {
 				},
 				{
 					title: "Salesforce OAuth in the browser",
-					body: "The full flow runs client-side with credential encryption before the token ever reaches storage.",
+					body: "The integration is configured per tenant with no server-side credential store, so the flow runs client-side — credentials are encrypted before the token ever reaches browser storage.",
 				},
 				{
 					title: "Projection replay tooling",
@@ -424,8 +446,8 @@ export const qollabi: Project = {
 	card: {
 		kicker: "qollabi.com · 2024–2026",
 		title: "Qollabi",
-		body: "Legacy SPA on a Symfony backend, maintained and extended — and moved toward a micro-frontend architecture.",
-		meta: "SPA · Symfony · Micro-frontends",
+		body: "Strangler-fig migration of a 268k-line Symfony and React 16 platform — Module Federation micro-frontends, event sourcing and the migration boundary enforced by architecture tests in CI.",
+		meta: "Symfony · Module Federation · Event sourcing",
 		placeholder: "Qollabi screenshot",
 		src: "/work/qollabi-card.webp",
 		alt: "Qollabi platform",
@@ -434,6 +456,6 @@ export const qollabi: Project = {
 	seo: {
 		title: "Qollabi",
 		description:
-			"Strangling a 268k-line Symfony and React 16 platform with Webpack Module Federation, event sourcing on MongoDB and a GraphQL-first API — with the migration boundary enforced by architecture tests in CI.",
+			"Strangler-fig migration of a 268k-line Symfony and React 16 platform — Module Federation micro-frontends, event sourcing and architecture tests in CI.",
 	},
 };

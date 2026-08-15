@@ -3,9 +3,9 @@ import { bold, mono, type Project, txt } from "~/content/types";
 export const lightnotes: Project = {
 	slug: "lightnotes",
 	name: "lightnotes",
-	kicker: "eduinlight-org · personal product · open source (MIT)",
-	headline: ["One rust codebase", "Six platforms"],
-	lead: "LightNotes is a local-first notes & diary app with a WYSIWYG Markdown editor, folders & tags, reminders, offline-first encrypted local storage, and background sync to a self-hosted REST + SSE API, deployed to Kubernetes via GitOps.",
+	kicker: "Personal product · open source (MIT)",
+	headline: ["One Rust codebase", "Six platforms"],
+	lead: "LightNotes is a local-first notes and diary app — WYSIWYG Markdown editing, folders and tags, reminders, and encrypted on-device storage. The hard parts were making one Rust codebase render on six platforms and keeping a background sync loop correct against a self-hosted REST + SSE API.",
 	link: {
 		label: "Source on GitHub",
 		href: "https://github.com/eduinlight-org/lightnotes",
@@ -22,10 +22,10 @@ export const lightnotes: Project = {
 	sheet: {
 		title: "LightNotes — workspace scale",
 		badges: ["Rust 2021", "Sheet 01"],
-		note: "~22k lines of Rust across 317 files. Six platform targets: Web/WASM, macOS, Windows, Linux, Android, iOS.",
+		note: "~22k lines of Rust across 317 files. Six platform targets: web (WASM), macOS, Windows, Linux, Android and iOS.",
 		stats: [
 			{ value: "6", label: "Platform targets" },
-			{ value: "11", label: "Crates (5 apps + 6 shared)" },
+			{ value: "5 + 6", label: "Crates — apps + shared" },
 			{ value: "77", label: "UI components" },
 			{ value: "~22k", label: "Lines of Rust" },
 			{ value: "12", label: "REST / SSE endpoints" },
@@ -143,7 +143,7 @@ export const lightnotes: Project = {
 				},
 				{
 					name: "packages/app",
-					desc: "Shared routes, views, 32 app components, and global state (sync, session, scheduler, reminders).",
+					desc: "Shared routes, views, 32 app components and global state (sync, session, scheduler, reminders).",
 				},
 				{
 					name: "packages/ui",
@@ -257,7 +257,7 @@ export const lightnotes: Project = {
 				{
 					label: "Transport",
 					value:
-						"api-sdk — hand-rolled REST + SSE client (reqwest/rustls, async-stream, futures-util) compiling for both native and wasm",
+						"api-sdk — custom REST + SSE client (reqwest, rustls, async-stream, futures-util) compiling for both native and wasm",
 				},
 				{
 					label: "Scheduling",
@@ -283,7 +283,7 @@ export const lightnotes: Project = {
 				{
 					label: "Database",
 					value:
-						"MongoDB 7 — mongodb driver + mongodm, hand-written versioned index/collection migrations",
+						"MongoDB 7 — mongodb driver + mongodm, custom versioned index and collection migrations",
 				},
 				{
 					label: "Realtime",
@@ -415,7 +415,7 @@ export const lightnotes: Project = {
 				[
 					bold("Code signing"),
 					txt(
-						" — Apple Developer ID signing, notarization and stapling (hardened runtime with JIT entitlements for JavaScriptCore), Windows Authenticode with RFC 3161 timestamping, and Android APK/AAB via a Gradle post-processing step with generated icon sets.",
+						" — Apple Developer ID signing, notarization and stapling (hardened runtime with JIT entitlements for JavaScriptCore), Windows Authenticode with RFC 3161 timestamping, and Android APK and AAB via a Gradle post-processing step with generated icon sets.",
 					),
 				],
 				[
@@ -446,7 +446,7 @@ export const lightnotes: Project = {
 				},
 				{
 					title: "Offline as the default state",
-					body: "The pending-change queue, debounce window, backoff reconnect and cursor catch-up all live client-side, so the server stays a dumb append-only change log.",
+					body: "The pending-change queue, debounce window, backoff reconnect and cursor catch-up all live client-side, so the server stays a thin append-only change log.",
 				},
 				{
 					title: "One UI tree, six platforms",
@@ -454,7 +454,7 @@ export const lightnotes: Project = {
 				},
 				{
 					title: "Build-time API base URL",
-					body: "option_env! bakes the endpoint into the WASM bundle, with the cache-busting caveat documented — a deliberate trade of runtime configurability for a fully static SPA image.",
+					body: "option_env! bakes the endpoint into the WASM bundle, with the cache-invalidation trade-off documented — a deliberate trade of runtime configurability for a fully static SPA image.",
 				},
 				{
 					title: "Single-replica API by design",
@@ -488,9 +488,9 @@ export const lightnotes: Project = {
 	],
 
 	card: {
-		kicker: "Featured · open source (MIT)",
+		kicker: "Personal product · open source (MIT)",
 		title: "lightnotes",
-		body: "A local-first notes app built with Dioxus 0.7 — one Rust codebase shipping to web, desktop, and mobile, with a rich Markdown editor, folders & tags, and background sync to a self-hosted API.",
+		body: "A local-first notes app built with Dioxus 0.7 — one Rust codebase shipping to web, desktop and mobile, with a rich Markdown editor, folders and tags, and background sync to a self-hosted API.",
 		meta: "Rust · Dioxus 0.7 · Web / desktop / mobile",
 		placeholder: "lightnotes screenshot",
 		src: "/work/lightnotes-card.webp",
@@ -502,6 +502,6 @@ export const lightnotes: Project = {
 	seo: {
 		title: "lightnotes",
 		description:
-			"A local-first notes and diary app in one Rust codebase shipping to six platforms — Dioxus 0.7, encrypted SQLite, an Axum REST + SSE sync API and ArgoCD GitOps on k3s.",
+			"A local-first notes and diary app in one Rust codebase shipping to six platforms — Dioxus 0.7, encrypted SQLite and an Axum sync API on k3s.",
 	},
 };

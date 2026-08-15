@@ -5,7 +5,7 @@ export const holaplace: Project = {
 	name: "HolaPlace",
 	kicker: "HolaPlace · Desarrollador de Software Senior · Jun 2020 – Dic 2023",
 	headline: ["Un marketplace de espacios", "de doble cara, desde cero"],
-	lead: "Reservas de espacios para eventos y servicios complementarios — publicación y alta de espacios, calendarios de disponibilidad con sincronización iCal, flujo de solicitud y negociación de reservas, chat entre huésped y anfitrión, pagos divididos con Stripe Connect (depósitos, retenciones, liquidaciones, reclamaciones, reembolsos), servicios de proveedores, reseñas, códigos promocionales, facturación y contratos, contenido multiidioma y automatización de CRM y marketing.",
+	lead: "Un marketplace para reservar espacios de eventos y los servicios de proveedores que los acompañan — publicación y alta de espacios, calendarios de disponibilidad, flujo de solicitud y negociación, chat entre huéspedes y anfitriones, reseñas, facturación y contratos. Lo difícil fue el dinero — depósitos, retenciones, cargos divididos, liquidaciones, reclamaciones y reembolsos con Stripe Connect — y mantener los calendarios de los anfitriones sincronizados en ambos sentidos por iCal.",
 	link: { label: "holaplace.com", href: "https://holaplace.com" },
 	linkAsButton: true,
 
@@ -19,7 +19,7 @@ export const holaplace: Project = {
 	sheet: {
 		title: "HolaPlace — escala de la plataforma",
 		badges: ["4 repositorios", "Hoja 01"],
-		note: "~228k líneas de TypeScript repartidas en 4 repositorios, más ~3,3k líneas de Terraform en tres entornos.",
+		note: "~228k líneas de TypeScript repartidas en cuatro repositorios, más ~3,3k líneas de Terraform en tres entornos.",
 		stats: [
 			{ value: "~228k", label: "Líneas de TypeScript" },
 			{ value: "399", label: "Endpoints REST" },
@@ -35,17 +35,40 @@ export const holaplace: Project = {
 	sections: [
 		{
 			index: 1,
-			title: "Mi trabajo",
+			title: "Mi papel",
 			meta: "Equipo de seis personas",
 			kind: "bullets",
 			items: [
-				"Construí la plataforma holaplace.com desde cero con el stack MERN.",
-				"Desarrollé una SPA en React usando Redux, React Router, XState para el estado complejo y Socket.IO para las funcionalidades en tiempo real.",
-				"Implementé los servicios de backend con NestJS y Express, integrando MongoDB, Elasticsearch, Stripe, Redis y AWS S3.",
-				"Contenericé los servicios con Docker y Docker Compose; usé AWS LocalStack para desarrollo cloud en local.",
-				"Apliqué TDD con Jest, cubriendo tests unitarios, de integración y end-to-end.",
-				"Gestioné los repositorios con Git y GitLab; automaticé los despliegues con Terraform.",
-				"Realicé revisiones de código y colaboré en un equipo multidisciplinar de 6 personas.",
+				[
+					bold("Uno de seis, desde el repositorio vacío"),
+					txt(
+						" — estuve en la plataforma desde el primer commit hasta el último, entre la API, la SPA y la infraestructura.",
+					),
+				],
+				[
+					bold("La SPA en React"),
+					txt(
+						" — Redux y XState para los flujos de reserva y pago, TanStack Query para el estado de servidor, Socket.IO para chat, notificaciones y sincronización de calendarios.",
+					),
+				],
+				[
+					bold("El dinero"),
+					txt(
+						" — el flujo de Stripe Connect de principio a fin: depósitos, retenciones, cargos divididos, transferencias, liquidaciones, resolución de reclamaciones y reembolsos, con procesadores de webhooks separados para plataforma y connect.",
+					),
+				],
+				[
+					bold("Los servicios de backend"),
+					txt(
+						" — módulos de NestJS y Express sobre MongoDB, Elasticsearch, Redis y S3, trabajados con tests desde el principio con Jest en las suites unitarias, de integración y end-to-end.",
+					),
+				],
+				[
+					bold("La entrega"),
+					txt(
+						" — Docker y Docker Compose en local con LocalStack sustituyendo a AWS, pipelines de GitLab por repositorio y despliegues con Terraform en dev, stage y producción.",
+					),
+				],
 			],
 		},
 		{
@@ -162,7 +185,7 @@ export const holaplace: Project = {
 				{
 					label: "Correo / CRM",
 					value:
-						"Sendinblue (Brevo) + plantillas EJS, deals de Pipedrive, entrada de bugs en ClickUp, notificaciones con la Web API de Slack",
+						"Brevo (antes Sendinblue) + plantillas EJS, deals de Pipedrive, entrada de bugs en ClickUp, notificaciones con la Web API de Slack",
 				},
 				{
 					label: "Mensajería",
@@ -233,7 +256,7 @@ export const holaplace: Project = {
 				{
 					label: "Estilos",
 					value:
-						"Tailwind CSS 3 + PostCSS/Sass, Material-UI 4 (core, lab, pickers) + @mui/base",
+						"Tailwind CSS 3 + PostCSS y Sass, MUI 4 (core, lab, pickers) + @mui/base",
 				},
 				{ label: "Estado de servidor", value: "TanStack Query 4 (+ devtools)" },
 				{
@@ -357,7 +380,7 @@ export const holaplace: Project = {
 				[
 					bold("Redes"),
 					txt(
-						" — ALBs públicos e internos, 9 target groups y reglas de listener, certificados ACM con validación DNS en Route53, una zona pública de Route53 más ",
+						" — ALBs públicos e internos, 9 target groups y reglas de listener, certificados ACM con validación DNS en Route 53, una zona pública de Route 53 más ",
 					),
 					mono("holaplace.internal"),
 					txt(", un web ACL de WAFv2 y 8 security groups."),
@@ -474,6 +497,6 @@ export const holaplace: Project = {
 	seo: {
 		title: "HolaPlace",
 		description:
-			"Un marketplace de espacios de doble cara construido desde cero — 399 endpoints REST sobre NestJS y MongoDB, pagos divididos con Stripe Connect, siete gateways de tiempo real e infraestructura inmutable en AWS con Terraform.",
+			"Un marketplace de espacios de doble cara construido desde cero — 399 endpoints REST sobre NestJS y MongoDB, pagos divididos con Stripe Connect y siete gateways de tiempo real.",
 	},
 };

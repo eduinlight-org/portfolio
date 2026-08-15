@@ -8,7 +8,11 @@ type SeoInput = {
 };
 
 export function generateMeta({ title, description, url, image }: SeoInput) {
-	const fullTitle = title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
+	// The home page's own title already carries the name and the role, so appending
+	// the site name would print "Eduin Garcia" twice in the tab and the SERP.
+	const fullTitle = title.includes(SITE_NAME)
+		? title
+		: `${title} | ${SITE_NAME}`;
 
 	return [
 		// React Router replaces an ancestor's `meta` with the leaf route's rather

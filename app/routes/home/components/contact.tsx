@@ -50,7 +50,7 @@ export function Contact({ contact }: ContactProps) {
 							target="_blank"
 							rel="noopener"
 						>
-							{t("actions.downloadCvPdf")}
+							{t("actions.downloadCv")}
 						</a>
 					</div>
 				</div>

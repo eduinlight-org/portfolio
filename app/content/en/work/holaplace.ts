@@ -4,8 +4,8 @@ export const holaplace: Project = {
 	slug: "holaplace",
 	name: "HolaPlace",
 	kicker: "HolaPlace · Senior Software Developer · Jun 2020 – Dec 2023",
-	headline: ["A two-sided venue", "marketplace, from zero"],
-	lead: "Booking for event venues and add-on services — listings & onboarding, availability calendars with iCal sync, a booking request/negotiation flow, guest↔host chat, Stripe Connect split payments (deposits, holds, payouts, claims, refunds), supplier services, reviews, promo codes, invoicing and contracts, multi-language content, and CRM/marketing automation.",
+	headline: ["A two-sided venue", "marketplace, from scratch"],
+	lead: "A marketplace for booking event venues and the supplier services that go with them — listings and onboarding, availability calendars, a request and negotiation flow, chat between guests and hosts, reviews, invoicing and contracts. The hard parts were the money — Stripe Connect deposits, holds, split charges, payouts, claims and refunds — and keeping host calendars in sync in both directions over iCal.",
 	link: { label: "holaplace.com", href: "https://holaplace.com" },
 	linkAsButton: true,
 
@@ -19,7 +19,7 @@ export const holaplace: Project = {
 	sheet: {
 		title: "HolaPlace — platform scale",
 		badges: ["4 repositories", "Sheet 01"],
-		note: "~228k lines of TypeScript across 4 repositories, plus ~3.3k lines of Terraform across three environments.",
+		note: "~228k lines of TypeScript across four repositories, plus ~3.3k lines of Terraform across three environments.",
 		stats: [
 			{ value: "~228k", label: "Lines of TypeScript" },
 			{ value: "399", label: "REST endpoints" },
@@ -35,17 +35,40 @@ export const holaplace: Project = {
 	sections: [
 		{
 			index: 1,
-			title: "My work",
+			title: "My role",
 			meta: "Six-person team",
 			kind: "bullets",
 			items: [
-				"Built holaplace.com platform from scratch using the MERN stack.",
-				"Developed a React SPA using Redux, React Router, XState for complex state management, and Socket.IO for real-time features.",
-				"Implemented backend services with NestJS and Express, integrating MongoDB, Elasticsearch, Stripe, Redis, and AWS S3.",
-				"Containerized services with Docker and Docker Compose; used AWS LocalStack for local cloud development.",
-				"Applied TDD with Jest, covering unit, integration, and end-to-end tests.",
-				"Managed repositories with Git and GitLab; automated deployments using Terraform.",
-				"Performed code reviews and collaborated in a 6-person cross-functional team.",
+				[
+					bold("One of six, from the empty repository onwards"),
+					txt(
+						" — I was on the platform from the first commit to the last, across the API, the SPA and the infrastructure.",
+					),
+				],
+				[
+					bold("The React SPA"),
+					txt(
+						" — Redux and XState for the booking and checkout flows, TanStack Query for server state, Socket.IO for chat, notifications and calendar sync.",
+					),
+				],
+				[
+					bold("The money"),
+					txt(
+						" — the Stripe Connect flow end to end: deposits, holds, split charges, transfers, payouts, claim adjudication and refunds, with separate platform and connect webhook processors.",
+					),
+				],
+				[
+					bold("Backend services"),
+					txt(
+						" — NestJS and Express modules over MongoDB, Elasticsearch, Redis and S3, worked test-first with Jest across unit, integration and end-to-end suites.",
+					),
+				],
+				[
+					bold("Delivery"),
+					txt(
+						" — Docker and Docker Compose locally with LocalStack standing in for AWS, GitLab pipelines per repository and Terraform deployments across dev, stage and production.",
+					),
+				],
 			],
 		},
 		{
@@ -160,7 +183,7 @@ export const holaplace: Project = {
 				{
 					label: "Email / CRM",
 					value:
-						"Sendinblue (Brevo) + EJS templates, Pipedrive deals, ClickUp bug intake, Slack Web API notifications",
+						"Brevo (formerly Sendinblue) + EJS templates, Pipedrive deals, ClickUp bug intake, Slack Web API notifications",
 				},
 				{
 					label: "Messaging",
@@ -226,7 +249,7 @@ export const holaplace: Project = {
 				{
 					label: "Styling",
 					value:
-						"Tailwind CSS 3 + PostCSS/Sass, Material-UI 4 (core, lab, pickers) + @mui/base",
+						"Tailwind CSS 3 + PostCSS and Sass, MUI 4 (core, lab, pickers) + @mui/base",
 				},
 				{ label: "Server state", value: "TanStack Query 4 (+ devtools)" },
 				{
@@ -304,7 +327,7 @@ export const holaplace: Project = {
 						),
 						mono("axios-retry"),
 						txt(
-							" callbacks into the API through a token service, Joi-validated env plus AWS Secrets Manager, and Slack error reporting behind a health endpoint.",
+							" callbacks into the API through a token service, Joi-validated env plus AWS Secrets Manager and Slack error reporting behind a health endpoint.",
 						),
 					],
 				},
@@ -347,7 +370,7 @@ export const holaplace: Project = {
 				[
 					bold("Networking"),
 					txt(
-						" — public and internal ALBs, 9 target groups and listener rules, ACM certs with Route53 DNS validation, a Route53 public zone plus ",
+						" — public and internal ALBs, 9 target groups and listener rules, ACM certs with Route 53 DNS validation, a Route 53 public zone plus ",
 					),
 					mono("holaplace.internal"),
 					txt(", a WAFv2 web ACL and 8 security groups."),
@@ -387,7 +410,7 @@ export const holaplace: Project = {
 				[
 					bold("Local dev"),
 					txt(
-						" — Docker Compose stacks with a Mongo replica set and auto-restored S3 dump, Mongo Express, Redis, LocalStack (Terraform-provisioned AWS mocks), two Stripe CLI webhook listeners, and Traefik v3 in the front repo to reproduce the production SPA/SEO split.",
+						" — Docker Compose stacks with a Mongo replica set and auto-restored S3 dump, Mongo Express, Redis, LocalStack (Terraform-provisioned AWS mocks), two Stripe CLI webhook listeners and Traefik v3 in the front repo to reproduce the production SPA/SEO split.",
 					),
 				],
 			],
@@ -402,7 +425,7 @@ export const holaplace: Project = {
 			items: [
 				{
 					title: "Stripe Connect money flow",
-					body: "The full marketplace lifecycle: deposit holds, split charges, transfers and reversals, manual payouts, deposit-claim adjudication with its own money service, and separate platform/connect webhook processors.",
+					body: "The full marketplace lifecycle: deposit holds, split charges, transfers and reversals, manual payouts, deposit-claim adjudication with its own money service, and separate platform and connect webhook processors.",
 				},
 				{
 					title: "Externalized cron",
@@ -464,6 +487,6 @@ export const holaplace: Project = {
 	seo: {
 		title: "HolaPlace",
 		description:
-			"A two-sided venue marketplace built from zero — 399 REST endpoints on NestJS and MongoDB, Stripe Connect split payments, seven realtime gateways and immutable AWS infrastructure in Terraform.",
+			"A two-sided venue marketplace built from scratch — 399 REST endpoints on NestJS and MongoDB, Stripe Connect split payments and seven realtime gateways.",
 	},
 };

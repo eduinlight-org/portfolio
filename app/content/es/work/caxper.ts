@@ -3,12 +3,13 @@ import { bold, mono, type Project, txt } from "~/content/types";
 export const caxper: Project = {
 	slug: "caxper",
 	name: "Caxper",
-	kicker: "Cofundador y desarrollador único · SaaS multi-tenant",
-	headline: ["Caxper"],
-	lead: "SaaS multi-tenant para agentes de seguros independientes — gestión de clientes y pólizas, libro de comisiones e ingresos, gastos, informes fiscales, renovaciones, seguimiento de licencias y formación continua, y suscripciones facturadas con Stripe.",
+	kicker: "Cofundador e ingeniero único · SaaS multi-tenant",
+	headline: ["SaaS de seguros,", "construido en solitario"],
+	lead: "SaaS multi-tenant para agentes de seguros independientes — gestión de clientes y pólizas, libro de comisiones e ingresos, gastos, informes fiscales, renovaciones, y seguimiento de licencias y formación continua, todo sobre suscripciones facturadas con Stripe.",
 	sublead:
-		"Construido y puesto en producción de principio a fin como desarrollador único, cofundado con un socio en Estados Unidos.",
+		"Cofundé Caxper con un socio de negocio en Estados Unidos y construí el producto entero — arquitectura, apps, API e infraestructura — como ingeniero único.",
 	link: { label: "caxper.eduindev.com", href: "https://caxper.eduindev.com/" },
+	linkAsButton: true,
 
 	hero: {
 		placeholder: "Añade una captura de Caxper",
@@ -19,11 +20,11 @@ export const caxper: Project = {
 	},
 
 	band: [
-		{ value: "150k", label: "Líneas de TypeScript" },
+		{ value: "~150k", label: "Líneas de TypeScript" },
 		{ value: "217", label: "Endpoints REST" },
 		{ value: "62", label: "Entidades de base de datos" },
 		{ value: "44", label: "Migraciones" },
-		{ value: "5 + 9", label: "Apps y paquetes compartidos" },
+		{ value: "6 + 9", label: "Apps y paquetes compartidos" },
 	],
 
 	sections: [
@@ -36,7 +37,7 @@ export const caxper: Project = {
 				[
 					bold("Monorepo con pnpm workspaces"),
 					txt(
-						" — 5 aplicaciones + 9 paquetes internos, completamente tipado de extremo a extremo.",
+						" — 6 aplicaciones + 9 paquetes internos, completamente tipado de extremo a extremo.",
 					),
 				],
 				[
@@ -74,7 +75,7 @@ export const caxper: Project = {
 		{
 			index: 2,
 			title: "Apps del monorepo",
-			meta: "5 apps · 9 paquetes",
+			meta: "6 apps · 9 paquetes",
 			kind: "cards",
 			columns: 3,
 			items: [
@@ -178,30 +179,39 @@ export const caxper: Project = {
 			meta: "Seis decisiones",
 			kind: "cards",
 			columns: 2,
+			titleStyle: "kicker",
 			items: [
 				{
+					title: "La tenancy la impone la base de datos",
 					body: [
 						txt(
-							"RLS de Postgres como frontera de tenancy, con un inyector que añade automáticamente las llamadas ",
+							"El row-level security de Postgres es la frontera de tenancy, con un inyector que añade automáticamente las llamadas ",
 						),
 						mono("enable_rls()"),
-						txt(" a las migraciones generadas."),
+						txt(
+							" a las migraciones generadas, para que ninguna tabla nueva pueda publicarse sin ámbito.",
+						),
 					],
 				},
 				{
-					body: "Motor de automatización basado en reglas para generar comisiones e ingresos de forma idempotente mediante claves de deduplicación.",
+					title: "Generación idempotente de comisiones",
+					body: "Un motor de automatización basado en reglas genera comisiones e ingresos contra claves de deduplicación, de modo que reprocesar una importación no puede pagar dos veces a un agente.",
 				},
 				{
-					body: "Máquina de estados de cambio de plan que cubre cada transición plan × periodo de facturación, con prorrateo de Stripe y efectos sobre los derechos del plan.",
+					title: "Los cambios de plan como máquina de estados",
+					body: "Cada transición plan × periodo de facturación está modelada explícitamente, con el prorrateo de Stripe y los efectos sobre los derechos del plan colgando de la transición y no de quien la invoca.",
 				},
 				{
-					body: "Adaptadores de importación de PDF intercambiables que normalizan los exportes de las aseguradoras hacia el mismo asistente que CSV y XLSX.",
+					title: "Un solo pipeline de importación, muchas aseguradoras",
+					body: "Adaptadores de PDF intercambiables normalizan el export de cada aseguradora hacia el mismo asistente que CSV y XLSX, así que una aseguradora nueva es un adaptador y no un flujo nuevo.",
 				},
 				{
-					body: "Modelo de traducciones extensible en tiempo de ejecución (3 tablas normalizadas) — añadir un idioma no requiere cambios de esquema.",
+					title: "Idiomas sin migraciones",
+					body: "Un modelo de traducciones normalizado en tres tablas resuelve los textos en tiempo de ejecución, así que añadir un idioma no requiere cambios de esquema ni despliegue.",
 				},
 				{
-					body: "Capa de previsión (residuales) que reejecuta el calculador de ingresos en modo solo lectura, sin escribir nunca en el libro contable.",
+					title: "Previsiones de solo lectura",
+					body: "La previsión de ingresos residuales reejecuta el mismo calculador que el libro contable en modo solo lectura, así que una proyección nunca puede escribir una comisión real.",
 				},
 			],
 		},
@@ -225,7 +235,7 @@ export const caxper: Project = {
 	card: {
 		kicker: "caxper.eduindev.com · cofundador",
 		title: "Caxper",
-		body: "SaaS multi-tenant para agentes de seguros independientes — pólizas, libro de comisiones, informes fiscales y facturación con Stripe, construido en solitario.",
+		body: "SaaS multi-tenant para agentes de seguros independientes — pólizas, libro de comisiones, informes fiscales y facturación con Stripe, construido como ingeniero único.",
 		meta: "NestJS · React 19 · Postgres RLS",
 		placeholder: "Captura de Caxper",
 		src: "/work/caxper-card.webp",
@@ -235,6 +245,6 @@ export const caxper: Project = {
 	seo: {
 		title: "Caxper",
 		description:
-			"SaaS multi-tenant para agentes de seguros independientes — pólizas, libro de comisiones, informes fiscales y facturación con Stripe. NestJS, React 19 y row-level security de PostgreSQL, construido en solitario.",
+			"SaaS multi-tenant para agentes de seguros, en solitario — pólizas, comisiones, informes fiscales y facturación con Stripe sobre NestJS, React 19 y Postgres.",
 	},
 };

@@ -3,9 +3,9 @@ import { bold, mono, type Project, txt } from "~/content/types";
 export const lightnotes: Project = {
 	slug: "lightnotes",
 	name: "lightnotes",
-	kicker: "eduinlight-org · producto personal · código abierto (MIT)",
-	headline: ["Una base de código rust", "seis plataformas"],
-	lead: "LightNotes es una app local-first de notas y diario con editor WYSIWYG de Markdown, carpetas y etiquetas, recordatorios, almacenamiento local cifrado con prioridad offline y sincronización en segundo plano contra una API REST + SSE autoalojada, desplegada en Kubernetes mediante GitOps.",
+	kicker: "Producto personal · código abierto (MIT)",
+	headline: ["Una base de código Rust", "seis plataformas"],
+	lead: "LightNotes es una app local-first de notas y diario — edición WYSIWYG de Markdown, carpetas y etiquetas, recordatorios y almacenamiento cifrado en el dispositivo. Lo difícil fue hacer que una sola base de código Rust se renderizara en seis plataformas y que el bucle de sincronización en segundo plano fuera correcto contra una API REST + SSE autoalojada.",
 	link: {
 		label: "Código en GitHub",
 		href: "https://github.com/eduinlight-org/lightnotes",
@@ -22,10 +22,10 @@ export const lightnotes: Project = {
 	sheet: {
 		title: "LightNotes — escala del workspace",
 		badges: ["Rust 2021", "Hoja 01"],
-		note: "~22k líneas de Rust repartidas en 317 ficheros. Seis plataformas de destino: web/WASM, macOS, Windows, Linux, Android e iOS.",
+		note: "~22k líneas de Rust repartidas en 317 ficheros. Seis plataformas de destino: web (WASM), macOS, Windows, Linux, Android e iOS.",
 		stats: [
 			{ value: "6", label: "Plataformas de destino" },
-			{ value: "11", label: "Crates (5 apps + 6 compartidos)" },
+			{ value: "5 + 6", label: "Crates — apps + compartidos" },
 			{ value: "77", label: "Componentes de UI" },
 			{ value: "~22k", label: "Líneas de Rust" },
 			{ value: "12", label: "Endpoints REST / SSE" },
@@ -264,7 +264,7 @@ export const lightnotes: Project = {
 				{
 					label: "Transporte",
 					value:
-						"api-sdk — cliente REST + SSE hecho a mano (reqwest/rustls, async-stream, futures-util) que compila tanto para nativo como para wasm",
+						"api-sdk — cliente REST + SSE propio (reqwest, rustls, async-stream, futures-util) que compila tanto para nativo como para wasm",
 				},
 				{
 					label: "Planificación",
@@ -291,7 +291,7 @@ export const lightnotes: Project = {
 				{
 					label: "Base de datos",
 					value:
-						"MongoDB 7 — driver mongodb + mongodm, migraciones versionadas de índices y colecciones escritas a mano",
+						"MongoDB 7 — driver mongodb + mongodm, migraciones versionadas propias de índices y colecciones",
 				},
 				{
 					label: "Tiempo real",
@@ -499,7 +499,7 @@ export const lightnotes: Project = {
 	],
 
 	card: {
-		kicker: "Destacado · código abierto (MIT)",
+		kicker: "Producto personal · código abierto (MIT)",
 		title: "lightnotes",
 		body: "Una app de notas local-first construida con Dioxus 0.7 — una base de código Rust que se publica en web, escritorio y móvil, con editor Markdown enriquecido, carpetas y etiquetas, y sincronización en segundo plano contra una API autoalojada.",
 		meta: "Rust · Dioxus 0.7 · Web / escritorio / móvil",
@@ -513,6 +513,6 @@ export const lightnotes: Project = {
 	seo: {
 		title: "lightnotes",
 		description:
-			"Una app local-first de notas y diario en una sola base de código Rust que llega a seis plataformas — Dioxus 0.7, SQLite cifrado, una API de sincronización REST + SSE en Axum y GitOps con ArgoCD sobre k3s.",
+			"Una app local-first de notas y diario en una sola base de código Rust que llega a seis plataformas — Dioxus 0.7, SQLite cifrado y una API de sincronización en Axum sobre k3s.",
 	},
 };
